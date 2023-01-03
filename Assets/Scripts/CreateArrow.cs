@@ -73,7 +73,7 @@ public class CreateArrow : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("Collision Stay");
+        //Debug.Log("Collision Stay");
         for (int i = 0; i < collision.contactCount; i++)
         {
             scale = new Vector3(1f, 1f, Vector3.Magnitude(collision.impulse / Time.fixedDeltaTime));
@@ -94,7 +94,7 @@ public class CreateArrow : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("Collision Exit");
+        //Debug.Log("Collision Exit");
         collisionExit = true;
     }
 }

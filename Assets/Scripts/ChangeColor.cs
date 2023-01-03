@@ -4,74 +4,47 @@ using UnityEngine;
 
 public class ChangeColor : MonoBehaviour
 {
-    //private GameObject arrowPrefab;
-    private GameObject arrow;
+    [SerializeField]
+    private GameObject[] bodies;
 
-    public Vector3 scale;
-    public Vector3 rotation;
-    public Vector3 position;
-    public Vector3 originRotation;
-    public Vector3 originPosition;
-    public bool collisionExit = false;
+    [SerializeField]
+    private Material[] colors;
 
+    [SerializeField]
+    private float[] boundaryNums;
+
+    private float force = 0f;
+    private float maxForce = 0;
+    private float totalWeight = 0;
+
+    private void Awake()
+    {
+        for(int i = 0; i < bodies.Length; i++)
+        {
+            totalWeight += bodies[i].GetComponent<Rigidbody>().mass;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        //arrowPrefab = GameObject.Find("Arrow");
-        arrow = gameObject.transform.GetChild(0).gameObject;
-        originRotation = arrow.transform.localRotation.eulerAngles;
-        originPosition = arrow.transform.localPosition;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log(gameObject.tag + " collision, impulse: " + collision.impulse);
-        //arrow = Instantiate(arrowPrefab);
-        //arrow.transform.parent = gameObject.transform;
-
-        /*
-        scale = new Vector3(1f, 1f, Vector3.Magnitude(collision.impulse) / Time.fixedDeltaTime);
-        arrow.transform.localScale = scale;
-
-        rotation = originRotation + collision.impulse;
-        arrow.transform.localRotation = Quaternion.Euler(rotation);
-
-        if (originPosition.z == 0)
+        for(int i = 0; i < bodies.Length; i++)
         {
-            position = new Vector3(originPosition.x + 0.04f * (scale.z - 1), 0, 0);
+            force += bodies[i].GetComponent<CalculateContactForce>().forcePower;
         }
-        else if(originPosition.x == 0)
-        {
-            position = new Vector3(0, 0, originPosition.z + 0.04f * (scale.z - 1));
-        }
-        arrow.transform.localPosition = position;
-        */
-    }
+        force /= bodies.Length;
 
-    private void OnCollisionStay(Collision collision)
-    {
-        //Debug.Log(gameObject.tag + " collision, impulse: " + collision.impulse);
-        scale = new Vector3(1f, 1f, Vector3.Magnitude(collision.impulse / Time.fixedDeltaTime));
-        rotation = originRotation + (collision.impulse / Time.fixedDeltaTime);
-        /*
-        if (originPosition.z == 0)
+        GetComponent<SkinnedMeshRenderer>().material.color = Color.HSVToRGB(1f, force / 1000, 1f);
+        if (force > maxForce)
         {
-            position = new Vector3(originPosition.x, originPosition.y, originPosition.z);
+            maxForce = force;
+            Debug.Log(maxForce);
         }
-        else if (originPosition.x == 0)
-        {
-            position = new Vector3(originPosition.x, originPosition.y, originPosition.z);
-        }
-        */
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        collisionExit = true;
+        force = 0;
     }
 }
