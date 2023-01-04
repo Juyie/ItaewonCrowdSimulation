@@ -1285,7 +1285,6 @@ MonoBehaviour:
   - {fileID: 9156292957242146915}
   - {fileID: 9156292957950124503}
   - {fileID: 9156292956692611806}
-  - {fileID: 9156292957430368297}
   colors:
   - {fileID: 2100000, guid: 2b9f31e101fe4c44097275f5261aa3a7, type: 2}
   - {fileID: 2100000, guid: 9c7121d23f4394c4396ba8d46a639d19, type: 2}
@@ -2401,6 +2400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodies:
   - {fileID: 9156292957297620349}
+  - {fileID: 9156292957430368297}
   colors:
   - {fileID: 2100000, guid: 2b9f31e101fe4c44097275f5261aa3a7, type: 2}
   - {fileID: 2100000, guid: 9c7121d23f4394c4396ba8d46a639d19, type: 2}
