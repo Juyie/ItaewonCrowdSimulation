@@ -21,13 +21,19 @@ public class CalculateContactForce : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        forcePower = collision.impulse.magnitude / Time.fixedDeltaTime;
+        if (transform.root.name != collision.transform.root.name)
+        {
+            forcePower = collision.impulse.magnitude / Time.fixedDeltaTime;
+        }
         //Debug.Log("calculated force: " +forcePower);
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        forcePower = collision.impulse.magnitude / Time.fixedDeltaTime;
+        if (transform.root.name != collision.transform.root.name)
+        {
+            forcePower = collision.impulse.magnitude / Time.fixedDeltaTime;
+        }
         //Debug.Log("calculated force: "  + forcePower);
     }
 

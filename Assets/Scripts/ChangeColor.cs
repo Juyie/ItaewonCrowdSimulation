@@ -8,12 +8,6 @@ public class ChangeColor : MonoBehaviour
     private GameObject[] bodies;
 
     [SerializeField]
-    private Material[] colors;
-
-    [SerializeField]
-    private float[] boundaryNums;
-
-    [SerializeField]
     private Gradient gradient;
 
     [Range(0f, 1f)]
@@ -29,6 +23,7 @@ public class ChangeColor : MonoBehaviour
         {
             totalWeight += bodies[i].GetComponent<Rigidbody>().mass;
         }
+        Debug.Log(totalWeight);
     }
     // Start is called before the first frame update
     void Start()
@@ -47,7 +42,6 @@ public class ChangeColor : MonoBehaviour
 
         t = Mathf.Min(force / 300, 1f);
 
-        //GetComponent<SkinnedMeshRenderer>().material.color = Color.HSVToRGB(1f, force / 1000, 1f);
         GetComponent<SkinnedMeshRenderer>().material.color = gradient.Evaluate(t);
         if (force > maxForce)
         {
