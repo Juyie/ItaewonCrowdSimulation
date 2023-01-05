@@ -38,9 +38,10 @@ public class ChangeColor : MonoBehaviour
         {
             force += bodies[i].GetComponent<CalculateContactForce>().forcePower;
         }
-        force /= bodies.Length;
+        //force /= bodies.Length;
+        force /= totalWeight;
 
-        t = Mathf.Min(force / 300, 1f);
+        t = Mathf.Min(force / 50, 1f);
 
         GetComponent<SkinnedMeshRenderer>().material.color = gradient.Evaluate(t);
         if (force > maxForce)
@@ -48,6 +49,19 @@ public class ChangeColor : MonoBehaviour
             maxForce = force;
             Debug.Log(maxForce);
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            if(GetComponent<SkinnedMeshRenderer>().material.color == Color.blue || GetComponent<SkinnedMeshRenderer>().material.color == Color.white) 
+            {
+                GetComponent<SkinnedMeshRenderer>().enabled = false;
+            }
+        }
+        else
+        {
+            GetComponent<SkinnedMeshRenderer>().enabled = true;
+        }
+
         force = 0;
     }
 }
