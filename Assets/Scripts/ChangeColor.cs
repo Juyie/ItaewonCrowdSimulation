@@ -39,9 +39,9 @@ public class ChangeColor : MonoBehaviour
             force += bodies[i].GetComponent<CalculateContactForce>().forcePower;
         }
         //force /= bodies.Length;
-        force /= totalWeight;
+        //force /= totalWeight;
 
-        t = Mathf.Min(force / 50, 1f);
+        t = Mathf.Min(force / 1500, 1f);
 
         GetComponent<SkinnedMeshRenderer>().material.color = gradient.Evaluate(t);
         if (force > maxForce)
