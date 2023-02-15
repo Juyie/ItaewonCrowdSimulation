@@ -15,6 +15,7 @@ public class SpawnAgents : MonoBehaviour
     private float[] intervalTimes;
 
     private bool isReady = true;
+    private Vector3 randPos;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,10 +38,13 @@ public class SpawnAgents : MonoBehaviour
         float intervalTime = Random.Range(intervalTimes[0], intervalTimes[1]);
         yield return new WaitForSeconds(intervalTime - 1);
         GameObject newAgent = Instantiate(agent);
-        newAgent.transform.position = spawnTf.position;
+        randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-16f, 16f));
+        newAgent.transform.position = spawnTf.position + randPos;
+        newAgent.transform.rotation = agent.transform.rotation;
         newAgent.transform.parent = spawnTf;
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
+        newAgent.SetActive(true);
         isReady = true;
     }
 

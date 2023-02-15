@@ -39,14 +39,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 navMeshAgent.isStopped = true;
             }
-            else
+            else if (!isRagdollOn && navMeshAgent.destination != null)
             {
                 navMeshAgent.SetDestination(target.position);
             }
 
             if (!navMeshAgent.pathPending)
             {
-                if (navMeshAgent.remainingDistance < 0.1)
+                if (navMeshAgent.remainingDistance <= 0.3)
                 {
                     Destroy(gameObject);
                 }
