@@ -23,7 +23,7 @@ public class ChangeColor : MonoBehaviour
         {
             totalWeight += bodies[i].GetComponent<Rigidbody>().mass;
         }
-        Debug.Log(totalWeight);
+        //Debug.Log(totalWeight);
     }
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,7 @@ public class ChangeColor : MonoBehaviour
         if (force > maxForce)
         {
             maxForce = force;
-            Debug.Log(maxForce);
+            //Debug.Log(maxForce);
         }
 
         if (Input.GetMouseButton(0))

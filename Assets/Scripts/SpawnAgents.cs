@@ -16,20 +16,26 @@ public class SpawnAgents : MonoBehaviour
 
     private bool isReady = true;
     private Vector3 randPos;
+    private bool isOn = true;
 
     // Start is called before the first frame update
     void Awake()
     {
-
+        isOn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isReady)
+        if (isReady && isOn)
         {
             StartCoroutine(Spawn());
             isReady = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            isOn = !isOn;
         }
     }
 
