@@ -8,6 +8,9 @@ public class OnOffRagdoll : MonoBehaviour
     [SerializeField]
     private Rigidbody[] rigidbodies;
 
+    [SerializeField]
+    private GameObject[] colorBodies;
+
     private Animator animator;
     private bool isRagdollOn = false;
 
@@ -21,9 +24,9 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        for(int i = 0; i < rigidbodies.Length; i++)
+        for (int i = 0; i < rigidbodies.Length; i++)
         {
-            TurnOffRagdoll(rigidbodies[i]);
+            TurnOffRigidBody(rigidbodies[i]);
         }
     }
 
@@ -32,35 +35,68 @@ public class OnOffRagdoll : MonoBehaviour
     {
         if(isRagdollOn && Input.GetKeyDown(KeyCode.Space))
         {
-            for (int i = 0; i < rigidbodies.Length; i++)
-            {
-                TurnOffRagdoll(rigidbodies[i]);
-            }
-
-            isRagdollOn = false;
+            TurnOffRagdoll();
         }
         else if(!isRagdollOn && Input.GetKeyDown(KeyCode.Space))
         {
-            for (int i = 0; i < rigidbodies.Length; i++)
-            {
-                TurnOnRagdoll(rigidbodies[i]);
-            }
-
-            isRagdollOn = true;
+            TurnOnRagdoll();
         }
     }
 
-    private void TurnOnRagdoll(Rigidbody rigidbody)
+    private void TurnOnRigidBody(Rigidbody rigidbody)
     {
         animator.enabled = false;
         rigidbody.useGravity = true;
         rigidbody.isKinematic = false;
     }
 
-    private void TurnOffRagdoll(Rigidbody rigidbody)
+    private void TurnOffRigidBody(Rigidbody rigidbody)
     {
         animator.enabled = true;
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
+    }
+
+    private void TurnOnChangeColor()
+    {
+        for(int i = 0; i < colorBodies.Length; i++)
+        {
+            Color bodyColor = colorBodies[i].GetComponent<SkinnedMeshRenderer>().material.color;
+            colorBodies[i].GetComponent<SkinnedMeshRenderer>().material.color = new Color(bodyColor.r, bodyColor.g, bodyColor.b, 1.0f);
+            colorBodies[i].GetComponent<ChangeColor>().enabled = true;
+        }
+    }
+    private void TurnOffChangeColor()
+    {
+        for (int i = 0; i < colorBodies.Length; i++)
+        {
+            colorBodies[i].GetComponent<ChangeColor>().enabled = false;
+            Color bodyColor = colorBodies[i].GetComponent<SkinnedMeshRenderer>().material.color;
+            colorBodies[i].GetComponent<SkinnedMeshRenderer>().material.color = new Color(bodyColor.r, bodyColor.g, bodyColor.b, 0.3f);
+        }
+    }
+
+    public void TurnOnRagdoll()
+    {
+        for (int i = 0; i < rigidbodies.Length; i++)
+        {
+            TurnOnRigidBody(rigidbodies[i]);
+        }
+
+        TurnOnChangeColor();
+
+        isRagdollOn = true;
+    }
+
+    public void TurnOffRagdoll()
+    {
+        for (int i = 0; i < rigidbodies.Length; i++)
+        {
+            TurnOffRigidBody(rigidbodies[i]);
+        }
+
+        TurnOffChangeColor();
+
+        isRagdollOn = false;
     }
 }

@@ -8,6 +8,12 @@ public class CalculateDensity : MonoBehaviour
     [SerializeField]
     private Text densityUIText;
 
+    [SerializeField]
+    private bool useUI = false;
+
+    [SerializeField]
+    private OnOffRagdoll onOffRagdoll;
+
     private int agentNum = 1;
 
     // Start is called before the first frame update
@@ -19,39 +25,39 @@ public class CalculateDensity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(agentNum >= 64)
+        {
+            onOffRagdoll.TurnOnRagdoll();
+        }
+        else
+        {
+            onOffRagdoll.TurnOffRagdoll();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigg Enter");
-        agentNum++;
-        DisplayUI();
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log("Trigg Stay");
+        if (other.tag == "agent")
+        {
+            agentNum++;
+            DisplayUI();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Trigg Exit");
-        agentNum--;
-        DisplayUI();
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Col Enter");
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        Debug.Log("Col Stay");
+        if (other.tag == "agent")
+        {
+            agentNum--;
+            DisplayUI();
+        }
     }
 
     private void DisplayUI()
     {
-        densityUIText.text = agentNum.ToString(); 
+        if (useUI)
+        {
+            densityUIText.text = agentNum.ToString();
+        }
     }
 }
