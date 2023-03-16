@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class OnOffRagdoll : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class OnOffRagdoll : MonoBehaviour
 
     [SerializeField]
     private GameObject[] colorBodies;
+
+    [SerializeField]
+    private NavMeshObstacle[] navObstacles;
+
+    private NavMeshAgent navAgent;
 
     private Animator animator;
     private bool isRagdollOn = false;
@@ -24,10 +30,9 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        for (int i = 0; i < rigidbodies.Length; i++)
-        {
-            TurnOffRigidBody(rigidbodies[i]);
-        }
+        TurnOffRigidBody();
+
+        navAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -43,18 +48,26 @@ public class OnOffRagdoll : MonoBehaviour
         }
     }
 
-    private void TurnOnRigidBody(Rigidbody rigidbody)
+    private void TurnOnRigidBody()
     {
         animator.enabled = false;
-        rigidbody.useGravity = true;
-        rigidbody.isKinematic = false;
+
+        for (int i = 0; i < rigidbodies.Length; i++)
+        {
+            rigidbodies[i].useGravity = true;
+            rigidbodies[i].isKinematic = false;
+        }
     }
 
-    private void TurnOffRigidBody(Rigidbody rigidbody)
+    private void TurnOffRigidBody()
     {
         animator.enabled = true;
-        rigidbody.useGravity = false;
-        rigidbody.isKinematic = true;
+
+        for (int i = 0; i < rigidbodies.Length; i++)
+        {
+            rigidbodies[i].useGravity = false;
+            rigidbodies[i].isKinematic = true;
+        }
     }
 
     private void TurnOnChangeColor()
@@ -76,26 +89,42 @@ public class OnOffRagdoll : MonoBehaviour
         }
     }
 
+    private void TurnOnNavObstacles()
+    {
+        navAgent.enabled = false;
+        /*
+        for (int i = 0; i < navObstacles.Length; i++)
+        {
+            navObstacles[i].enabled = true;
+        }
+        */
+    }
+
+    private void TurnOffNavObstacles()
+    {
+        navAgent.enabled = true;
+        /*
+        for (int i = 0; i < navObstacles.Length; i++)
+        {
+            navObstacles[i].enabled = false;
+        }
+        */
+    }
+
     public void TurnOnRagdoll()
     {
-        for (int i = 0; i < rigidbodies.Length; i++)
-        {
-            TurnOnRigidBody(rigidbodies[i]);
-        }
-
+        TurnOnRigidBody();
         TurnOnChangeColor();
+        TurnOnNavObstacles();
 
         isRagdollOn = true;
     }
 
     public void TurnOffRagdoll()
     {
-        for (int i = 0; i < rigidbodies.Length; i++)
-        {
-            TurnOffRigidBody(rigidbodies[i]);
-        }
-
+        TurnOffRigidBody();
         TurnOffChangeColor();
+        TurnOffNavObstacles();
 
         isRagdollOn = false;
     }

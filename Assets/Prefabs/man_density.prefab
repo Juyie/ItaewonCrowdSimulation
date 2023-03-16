@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6880932694223084226
 Transform:
   m_ObjectHideFlags: 0
@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 9156292956466221285}
   - component: {fileID: 9156292956466221286}
   - component: {fileID: 9156292956466221287}
+  - component: {fileID: 8100462028831356461}
   m_Layer: 0
   m_Name: mixamorig12:LeftArm
   m_TagString: Left Arm
@@ -232,6 +233,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &8100462028831356461
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292956466221290}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.06, y: 0.12657325, z: 0.06}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.1265732, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292956482347342
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,12 +459,21 @@ MonoBehaviour:
   - {fileID: 9156292956893802716}
   - {fileID: 9156292958119917551}
   - {fileID: 9156292957102336899}
+  - {fileID: 8577235090074135402}
   colorBodies:
   - {fileID: 9156292958039447346}
   - {fileID: 9156292957292879387}
   - {fileID: 9156292957138524820}
   - {fileID: 9156292957789355374}
   - {fileID: 9156292956596943104}
+  navObstacles:
+  - {fileID: 2047012152061303427}
+  - {fileID: 3022193923852494779}
+  - {fileID: 4185979295218438843}
+  - {fileID: 8835339111819513022}
+  - {fileID: 8100462028831356461}
+  - {fileID: 1875160693769915588}
+  - {fileID: 7495936606386503906}
 --- !u!114 &9160018124809068718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +518,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 9156292956586031252}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.24
   m_Height: 1.8
   m_Direction: 1
@@ -958,6 +984,7 @@ GameObject:
   - component: {fileID: 9156292956893802717}
   - component: {fileID: 9156292956893802718}
   - component: {fileID: 9156292956893802719}
+  - component: {fileID: 1875160693769915588}
   m_Layer: 0
   m_Name: mixamorig12:Head
   m_TagString: Untagged
@@ -1067,6 +1094,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &1875160693769915588
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292956893802721}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1109828, y: 0.0554914, z: 0.1109828}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.338722e-11, y: 0.08116883, z: 0.03}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292956922693110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1216,7 @@ GameObject:
   - component: {fileID: 9156292957061350418}
   - component: {fileID: 9156292957061350419}
   - component: {fileID: 9156292957061350420}
+  - component: {fileID: 3022193923852494779}
   m_Layer: 0
   m_Name: mixamorig12:LeftUpLeg
   m_TagString: Left Hips
@@ -1283,6 +1327,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &3022193923852494779
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957061350423}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1285371, y: 0.21422856, z: 0.1285371}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.2142285, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292957102336904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,6 +2033,7 @@ GameObject:
   - component: {fileID: 9156292957297620344}
   - component: {fileID: 9156292957297620345}
   - component: {fileID: 9156292957297620346}
+  - component: {fileID: 8835339111819513022}
   m_Layer: 0
   m_Name: mixamorig12:Spine2
   m_TagString: Middle Spine
@@ -2084,6 +2145,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &8835339111819513022
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957297620349}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.21078464, y: 0.076689, z: 0.14011206}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.00000001488414, y: 0.07668908, z: 0.01112676}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292957310553424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,6 +2265,7 @@ GameObject:
   - component: {fileID: 9156292957430368295}
   - component: {fileID: 9156292957430368293}
   - component: {fileID: 9156292957430368294}
+  - component: {fileID: 2047012152061303427}
   m_Layer: 0
   m_Name: mixamorig12:Hips
   m_TagString: Pelvis
@@ -2254,6 +2332,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &2047012152061303427
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957430368297}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.2107845, y: 0.20387875, z: 0.1411745}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.0003872961, y: 0.1479544, z: -0.01023869}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292957451172861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,6 +3026,7 @@ GameObject:
   - component: {fileID: 9156292957950124498}
   - component: {fileID: 9156292957950124499}
   - component: {fileID: 9156292957950124500}
+  - component: {fileID: 4185979295218438843}
   m_Layer: 0
   m_Name: mixamorig12:RightUpLeg
   m_TagString: Right Hips
@@ -3042,6 +3137,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &4185979295218438843
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957950124503}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1284883, y: 0.2141471, z: 0.1284883}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.2141471, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292958010326754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,6 +3606,7 @@ GameObject:
   - component: {fileID: 9156292958119917548}
   - component: {fileID: 9156292958119917549}
   - component: {fileID: 9156292958119917550}
+  - component: {fileID: 7495936606386503906}
   m_Layer: 0
   m_Name: mixamorig12:RightArm
   m_TagString: Right Arm
@@ -3605,6 +3717,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &7495936606386503906
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292958119917553}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.06330881, y: 0.12661766, z: 0.06330881}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.1266176, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292958156763686
 GameObject:
   m_ObjectHideFlags: 0

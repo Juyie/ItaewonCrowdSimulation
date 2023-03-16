@@ -23,38 +23,41 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (navMeshAgent.isOnNavMesh)
+        if (navMeshAgent.enabled == true)
         {
-            if (navMeshAgent.velocity.sqrMagnitude <= 0.1)
+            if (navMeshAgent.isOnNavMesh)
             {
-                animator.SetBool("isWalking", false);
+                if (navMeshAgent.velocity.sqrMagnitude <= 0.1)
+                {
+                    animator.SetBool("isWalking", false);
+                }
+                else
+                {
+                    animator.SetBool("isWalking", true);
+                }
+
+                isRagdollOn = gameObject.GetComponent<OnOffRagdoll>().GetIsRagdollOn();
+                if (isRagdollOn)
+                {
+                    navMeshAgent.isStopped = true;
+                }
+                else if (!isRagdollOn && navMeshAgent.destination != null)
+                {
+                    navMeshAgent.SetDestination(target.position);
+                }
+
+                if (!navMeshAgent.pathPending)
+                {
+                    if (navMeshAgent.remainingDistance <= 0.3)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
             }
             else
             {
-                animator.SetBool("isWalking", true);
+                Destroy(gameObject);
             }
-
-            isRagdollOn = gameObject.GetComponent<OnOffRagdoll>().GetIsRagdollOn();
-            if (isRagdollOn)
-            {
-                navMeshAgent.isStopped = true;
-            }
-            else if (!isRagdollOn && navMeshAgent.destination != null)
-            {
-                navMeshAgent.SetDestination(target.position);
-            }
-
-            if (!navMeshAgent.pathPending)
-            {
-                if (navMeshAgent.remainingDistance <= 0.3)
-                {
-                    Destroy(gameObject);
-                }
-            }
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 }

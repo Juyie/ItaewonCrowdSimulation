@@ -19,12 +19,13 @@ public class ActivateByCoordinate : MonoBehaviour
     [SerializeField]
     private GameObject densityPlane;
 
+    private OnOffRagdoll onOffRagdoll;
     private bool isActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        onOffRagdoll = transform.GetComponent<OnOffRagdoll>();
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class ActivateByCoordinate : MonoBehaviour
             bodies[i].SetActive(true);
         }
 
-        densityPlane.SetActive(true);
+        //densityPlane.SetActive(true);
     }
 
     private void Deactive()
@@ -59,8 +60,8 @@ public class ActivateByCoordinate : MonoBehaviour
         {
             bodies[i].SetActive(false);
         }
-
-        densityPlane.SetActive(false);
+        onOffRagdoll.TurnOffRagdoll();
+        //densityPlane.SetActive(false);
     }
 
     private void ActiveAfterSeconds()
