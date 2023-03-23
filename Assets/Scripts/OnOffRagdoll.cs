@@ -52,22 +52,26 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator.enabled = false;
 
+        /*
         for (int i = 0; i < rigidbodies.Length; i++)
         {
             rigidbodies[i].useGravity = true;
             rigidbodies[i].isKinematic = false;
         }
+        */
     }
 
     private void TurnOffRigidBody()
     {
         animator.enabled = true;
 
+        /*
         for (int i = 0; i < rigidbodies.Length; i++)
         {
             rigidbodies[i].useGravity = false;
             rigidbodies[i].isKinematic = true;
         }
+        */
     }
 
     private void TurnOnChangeColor()
@@ -92,23 +96,21 @@ public class OnOffRagdoll : MonoBehaviour
     private void TurnOnNavObstacles()
     {
         navAgent.enabled = false;
-        /*
+        
         for (int i = 0; i < navObstacles.Length; i++)
         {
             navObstacles[i].enabled = true;
         }
-        */
     }
 
     private void TurnOffNavObstacles()
     {
         navAgent.enabled = true;
-        /*
+        
         for (int i = 0; i < navObstacles.Length; i++)
         {
             navObstacles[i].enabled = false;
         }
-        */
     }
 
     public void TurnOnRagdoll()

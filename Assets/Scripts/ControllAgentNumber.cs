@@ -10,6 +10,9 @@ public class ControllAgentNumber : MonoBehaviour
     [SerializeField]
     private DisplayAgentNumber displayAgentNumber;
 
+    [SerializeField]
+    private int maxAgentNum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +22,7 @@ public class ControllAgentNumber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(displayAgentNumber.agentNumber >= 15000)
+        if(displayAgentNumber.agentNumber >= maxAgentNum)
         {
             foreach (SpawnAgents spawnAgent in spawnAgents)
             {
