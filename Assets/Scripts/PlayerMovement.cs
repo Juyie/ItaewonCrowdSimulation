@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private bool isRagdollOn;
+    private DisplayAgentNumber displayAgentNumber;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
         animator= GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         //navMeshAgent.SetDestination(target.position);
+
+        displayAgentNumber = FindObjectOfType<DisplayAgentNumber>();
     }
 
     // Update is called once per frame
@@ -50,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (navMeshAgent.remainingDistance <= 0.3)
                     {
+                        displayAgentNumber.agentNumber--;
                         Destroy(gameObject);
                     }
                 }

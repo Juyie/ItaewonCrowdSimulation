@@ -52,26 +52,22 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator.enabled = false;
 
-        /*
         for (int i = 0; i < rigidbodies.Length; i++)
         {
             rigidbodies[i].useGravity = true;
             rigidbodies[i].isKinematic = false;
         }
-        */
     }
 
     private void TurnOffRigidBody()
     {
         animator.enabled = true;
 
-        /*
         for (int i = 0; i < rigidbodies.Length; i++)
         {
             rigidbodies[i].useGravity = false;
             rigidbodies[i].isKinematic = true;
         }
-        */
     }
 
     private void TurnOnChangeColor()

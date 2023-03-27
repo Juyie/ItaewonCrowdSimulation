@@ -18,6 +18,8 @@ TagManager:
   - Middle Spine
   - Head
   - agent
+  - FullCam
+  - SideCam
   layers:
   - Default
   - TransparentFX

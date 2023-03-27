@@ -22,11 +22,6 @@ public class DisplayAgentNumber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject group in groups)
-        {
-            agentNumber += group.transform.childCount;
-        }
         uiText.text = agentNumber.ToString();
-        agentNumber = 0;
     }
 }

@@ -14,6 +14,9 @@ public class SpawnAgents : MonoBehaviour
     [SerializeField]
     private float[] intervalTimes;
 
+    [SerializeField]
+    private DisplayAgentNumber displayAgentNumber;
+
     private bool isReady = true;
     private Vector3 randPos;
     private bool isOn = true;
@@ -51,6 +54,7 @@ public class SpawnAgents : MonoBehaviour
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
         newAgent.SetActive(true);
+        displayAgentNumber.agentNumber++;
         isReady = true;
     }
 

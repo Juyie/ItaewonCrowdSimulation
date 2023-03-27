@@ -107,7 +107,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 0, z: 10}
+  m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9156292956466221290
 GameObject:
@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xCoordinates: {x: 5, y: 42}
-  zCoordinates: {x: 2, y: 6.5}
+  zCoordinates: {x: 0, y: 10}
   bodyCollider: {fileID: 7224867085170324193}
   bodies:
   - {fileID: 9156292958039447346}

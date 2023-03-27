@@ -37,7 +37,7 @@ public class CalculateDensity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "agent")
+        if (other.CompareTag("agent"))
         {
             agentNum++;
             DisplayUI();
@@ -46,7 +46,7 @@ public class CalculateDensity : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "agent")
+        if (other.CompareTag("agent"))
         {
             agentNum--;
             DisplayUI();
