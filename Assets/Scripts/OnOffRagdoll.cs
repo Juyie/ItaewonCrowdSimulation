@@ -19,6 +19,8 @@ public class OnOffRagdoll : MonoBehaviour
 
     private Animator animator;
     private bool isRagdollOn = false;
+    private PlayerMovement playerMovement;
+    private bool isStop = false;
 
     public bool GetIsRagdollOn()
     {
@@ -33,6 +35,8 @@ public class OnOffRagdoll : MonoBehaviour
         TurnOffRigidBody();
 
         navAgent = GetComponent<NavMeshAgent>();
+
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -46,13 +50,24 @@ public class OnOffRagdoll : MonoBehaviour
         {
             TurnOnRagdoll();
         }
+
+        /*
+        if (isStop)
+        {
+            navAgent.isStopped = true;
+        }
+        else
+        {
+            navAgent.isStopped = false;
+        }
+        */
     }
 
     private void TurnOnRigidBody()
     {
         animator.enabled = false;
 
-        for (int i = 0; i < rigidbodies.Length; i++)
+        for (int i = 0; i < rigidbodies.Length - 1; i++)
         {
             rigidbodies[i].useGravity = true;
             rigidbodies[i].isKinematic = false;
@@ -63,7 +78,7 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator.enabled = true;
 
-        for (int i = 0; i < rigidbodies.Length; i++)
+        for (int i = 0; i < rigidbodies.Length - 1; i++)
         {
             rigidbodies[i].useGravity = false;
             rigidbodies[i].isKinematic = true;
@@ -97,6 +112,7 @@ public class OnOffRagdoll : MonoBehaviour
         {
             navObstacles[i].enabled = true;
         }
+        //StopNavMeshAgent();
     }
 
     private void TurnOffNavObstacles()
@@ -107,6 +123,7 @@ public class OnOffRagdoll : MonoBehaviour
         {
             navObstacles[i].enabled = false;
         }
+        //RestartNavMeshAgent();
     }
 
     public void TurnOnRagdoll()
@@ -125,5 +142,23 @@ public class OnOffRagdoll : MonoBehaviour
         TurnOffNavObstacles();
 
         isRagdollOn = false;
+    }
+
+    private void StopNavMeshAgent()
+    {
+        isStop = true;
+        playerMovement.enabled = false;
+        navAgent.speed = 0;
+        navAgent.angularSpeed = 0;
+        navAgent.acceleration = 0;
+    }
+
+    private void RestartNavMeshAgent()
+    {
+        isStop = false;
+        playerMovement.enabled = true;
+        navAgent.speed = 1.5f;
+        navAgent.angularSpeed = 120f;
+        navAgent.acceleration = 3f;
     }
 }
