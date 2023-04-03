@@ -20,6 +20,7 @@ public class SpawnAgents : MonoBehaviour
     private bool isReady = true;
     private Vector3 randPos;
     private bool isOn = true;
+    private int count = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,6 +49,7 @@ public class SpawnAgents : MonoBehaviour
         yield return new WaitForSeconds(intervalTime - 1);
         GameObject newAgent = Instantiate(agent);
         randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-16f, 16f));
+        newAgent.name += count.ToString();
         newAgent.transform.position = spawnTf.position + randPos;
         newAgent.transform.rotation = agent.transform.rotation;
         newAgent.transform.parent = spawnTf;
@@ -56,6 +58,7 @@ public class SpawnAgents : MonoBehaviour
         newAgent.SetActive(true);
         displayAgentNumber.agentNumber++;
         isReady = true;
+        count++;
     }
 
     IEnumerator SetReady()
