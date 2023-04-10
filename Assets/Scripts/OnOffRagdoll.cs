@@ -7,6 +7,9 @@ using UnityEngine.AI;
 public class OnOffRagdoll : MonoBehaviour
 {
     [SerializeField]
+    private bool isForTest;
+
+    [SerializeField]
     private Rigidbody[] rigidbodies;
 
     [SerializeField]
@@ -32,7 +35,8 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        TurnOffRigidBody();
+        if(!isForTest)
+            TurnOffRigidBody();
 
         navAgent = GetComponent<NavMeshAgent>();
 
@@ -104,7 +108,7 @@ public class OnOffRagdoll : MonoBehaviour
         }
     }
 
-    private void TurnOnNavObstacles()
+    public void TurnOnNavObstacles()
     {
         navAgent.enabled = false;
         
