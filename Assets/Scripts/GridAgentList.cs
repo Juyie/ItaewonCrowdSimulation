@@ -9,6 +9,7 @@ public class GridAgentList : MonoBehaviour
     private bool printList;
 
     List<GameObject> agentList = new List<GameObject>();
+    Dictionary<GameObject, float> agentSpeedDictionary = new Dictionary<GameObject, float>();
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class GridAgentList : MonoBehaviour
         }
     }
 
+    // List
     public int GetListLength()
     {
         return agentList.Count;
@@ -59,23 +61,11 @@ public class GridAgentList : MonoBehaviour
         //PrintList();
     }
 
-    private void PrintList()
-    {
-        string debugString = agentList.Count.ToString() + ": [";
-
-        foreach (GameObject agent in agentList)
-        {
-            debugString += agent.name + ", ";
-        }
-        debugString += "]";
-        Debug.Log(debugString);
-    }
-
     public void TurnOnRagdolls()
     {
         foreach (GameObject agent in agentList)
         {
-            if(agent == null)
+            if (agent == null)
             {
                 RemoveAgent(agent);
             }
@@ -92,6 +82,69 @@ public class GridAgentList : MonoBehaviour
                 RemoveAgent(agent);
             }
             agent.GetComponent<OnOffRagdoll>().TurnOffRagdoll();
+        }
+    }
+    private void PrintList()
+    {
+        string debugString = agentList.Count.ToString() + ": [";
+
+        foreach (GameObject agent in agentList)
+        {
+            debugString += agent.name + ", ";
+        }
+        debugString += "]";
+        Debug.Log(debugString);
+    }
+
+    // Dictionary
+    public int GetDictionaryLength()
+    {
+        return agentSpeedDictionary.Count;
+    }
+
+    public float GetSpeedPerAgent()
+    {
+        float weight = 0;
+        foreach (KeyValuePair<GameObject, float> item in agentSpeedDictionary)
+        {
+            //weight += (1.5f - item.Value) / 1.5f;
+            weight += Mathf.Pow((Mathf.Exp((1.5f - item.Value) / 1.5f) - 1) / (Mathf.Exp(1) - 1), 3.0f);
+        }
+        return weight;
+    }
+
+    public void AddAgentDic(GameObject name, float speed)
+    {
+        agentSpeedDictionary.Add(name, speed);
+    }
+
+    public bool FindAgentDic(GameObject name)
+    {
+        if (agentSpeedDictionary.ContainsKey(name))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void FixAgentDic(GameObject name, float speed)
+    {
+        agentSpeedDictionary[name] = speed;
+    }
+
+    public void RemoveAgentDic(GameObject name)
+    {
+        agentSpeedDictionary.Remove(name);
+    }
+
+    public void TurnOnRagdollsDic()
+    {
+        foreach (KeyValuePair<GameObject, float> item in agentSpeedDictionary)
+        {
+            item.Key.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
         }
     }
 }

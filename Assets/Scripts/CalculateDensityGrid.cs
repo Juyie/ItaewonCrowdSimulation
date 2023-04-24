@@ -12,14 +12,21 @@ public class CalculateDensityGrid : MonoBehaviour
 
     private bool turnOn = false;
 
+    // weight calculation ver.
+    private float criteriaWeight = 0.95f;
+    private float criteriaWeightNum;
+
     // Start is called before the first frame update
     void Start()
     {
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
         criteriaAgentNum = Mathf.FloorToInt(area * 4);
+        criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
 
+    /*
+    // List
     // Update is called once per frame
     void Update()
     {
@@ -28,12 +35,7 @@ public class CalculateDensityGrid : MonoBehaviour
             turnOn = true;
             agentList.TurnOnRagdolls();
         }
-        /*
-        else
-        {
-            agentList.TurnOffRagdolls();
-        }
-        */
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,4 +75,43 @@ public class CalculateDensityGrid : MonoBehaviour
             agentList.RemoveAgent(other.gameObject);
         }
     }
+    */
+    
+    
+    // Dictionary
+    void Update()
+    {
+        //Debug.Log(agentList.GetSpeedPerAgent());
+        if (agentList.GetSpeedPerAgent() >= criteriaWeight * criteriaWeightNum)
+        {
+            agentList.TurnOnRagdollsDic();
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("agent") && !agentList.FindAgentDic(other.gameObject))
+        {
+            agentList.AddAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
+            Debug.Log(other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
+        {
+            agentList.FixAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
+        {
+            agentList.RemoveAgentDic(other.gameObject);
+        }
+    }
+    
 }
