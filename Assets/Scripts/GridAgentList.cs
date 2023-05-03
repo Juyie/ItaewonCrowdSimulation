@@ -11,6 +11,13 @@ public class GridAgentList : MonoBehaviour
     List<GameObject> agentList = new List<GameObject>();
     Dictionary<GameObject, float> agentSpeedDictionary = new Dictionary<GameObject, float>();
 
+    private float exponentialNum = 3.0f;
+
+    public void SetExponentialNum(float num)
+    {
+        exponentialNum = num;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,7 +115,7 @@ public class GridAgentList : MonoBehaviour
         foreach (KeyValuePair<GameObject, float> item in agentSpeedDictionary)
         {
             //weight += (1.5f - item.Value) / 1.5f;
-            weight += Mathf.Pow((Mathf.Exp((1.5f - item.Value) / 1.5f) - 1) / (Mathf.Exp(1) - 1), 3.0f);
+            weight += Mathf.Pow((Mathf.Exp((1.5f - item.Value) / 1.5f) - 1) / (Mathf.Exp(1) - 1), exponentialNum);
         }
         return weight;
     }

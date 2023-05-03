@@ -28,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (navMeshAgent.enabled == true)
         {
+            if(navMeshAgent.path.status == 0)
+            {
+                gameObject.tag = "agent";
+            }
+
             if (navMeshAgent.isOnNavMesh)
             {
                 if (navMeshAgent.velocity.sqrMagnitude <= 0.1)
