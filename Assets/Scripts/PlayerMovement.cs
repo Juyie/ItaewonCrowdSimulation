@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isRagdollOn;
     private DisplayAgentNumber displayAgentNumber;
 
+    private bool addTag = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,13 +28,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!addTag)
+        {
+            Invoke("AddTag", 3f);
+            addTag = true;
+        }
         if (navMeshAgent.enabled == true)
         {
-            if(navMeshAgent.path.status == 0)
-            {
-                gameObject.tag = "agent";
-            }
-
             if (navMeshAgent.isOnNavMesh)
             {
                 if (navMeshAgent.velocity.sqrMagnitude <= 0.1)
@@ -68,5 +70,10 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void AddTag()
+    {
+        gameObject.tag = "agent";
     }
 }
