@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private bool isRagdollOn;
+    private DisplayAgentNumber displayAgentNumber;
+
+    private bool addTag = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,43 +21,59 @@ public class PlayerMovement : MonoBehaviour
         animator= GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         //navMeshAgent.SetDestination(target.position);
+
+        displayAgentNumber = FindObjectOfType<DisplayAgentNumber>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (navMeshAgent.isOnNavMesh)
+        if(!addTag)
         {
-            if (navMeshAgent.velocity.sqrMagnitude <= 0.1)
+            Invoke("AddTag", 3f);
+            addTag = true;
+        }
+        if (navMeshAgent.enabled == true)
+        {
+            if (navMeshAgent.isOnNavMesh)
             {
-                animator.SetBool("isWalking", false);
-            }
-            else
-            {
-                animator.SetBool("isWalking", true);
-            }
-
-            isRagdollOn = gameObject.GetComponent<OnOffRagdoll>().GetIsRagdollOn();
-            if (isRagdollOn)
-            {
-                navMeshAgent.isStopped = true;
-            }
-            else
-            {
-                navMeshAgent.SetDestination(target.position);
-            }
-
-            if (!navMeshAgent.pathPending)
-            {
-                if (navMeshAgent.remainingDistance < 0.1)
+                if (navMeshAgent.velocity.sqrMagnitude <= 0.1)
                 {
-                    Destroy(gameObject);
+                    animator.SetBool("isWalking", false);
+                }
+                else
+                {
+                    animator.SetBool("isWalking", true);
+                }
+
+                isRagdollOn = gameObject.GetComponent<OnOffRagdoll>().GetIsRagdollOn();
+                if (isRagdollOn)
+                {
+                    navMeshAgent.isStopped = true;
+                }
+                else if (!isRagdollOn && navMeshAgent.destination != null)
+                {
+                    navMeshAgent.SetDestination(target.position);
+                }
+
+                if (!navMeshAgent.pathPending)
+                {
+                    if (navMeshAgent.remainingDistance <= 0.3)
+                    {
+                        displayAgentNumber.agentNumber--;
+                        Destroy(gameObject);
+                    }
                 }
             }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    private void AddTag()
+    {
+        gameObject.tag = "agent";
     }
 }

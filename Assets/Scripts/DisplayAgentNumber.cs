@@ -11,7 +11,7 @@ public class DisplayAgentNumber : MonoBehaviour
     [SerializeField]
     private Text uiText;
 
-    private int agentNumber = 0;
+    public int agentNumber = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +22,6 @@ public class DisplayAgentNumber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject group in groups)
-        {
-            agentNumber += group.transform.childCount;
-        }
         uiText.text = agentNumber.ToString();
-        agentNumber = 0;
     }
 }

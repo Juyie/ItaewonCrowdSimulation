@@ -17,7 +17,10 @@ public class CalculateContactForce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(forcePower > 30000.0f)
+        {
+            Debug.Log("force: " + forcePower);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {

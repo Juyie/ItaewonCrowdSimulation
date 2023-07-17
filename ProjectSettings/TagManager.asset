@@ -17,6 +17,14 @@ TagManager:
   - Right Elbow
   - Middle Spine
   - Head
+  - agent
+  - FullCam
+  - SideCam
+  - Cam1
+  - Cam2
+  - Cam3
+  - Cam4
+  - Cam5
   layers:
   - Default
   - TransparentFX
@@ -26,7 +34,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - agent
   - 
   - 
   - 
