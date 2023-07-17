@@ -42,5 +42,17 @@ public class CameraController : MonoBehaviour
             currentCamera = cameras[3];
             currentCamera.enabled = true;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            currentCamera.enabled = false;
+            currentCamera = cameras[4];
+            currentCamera.enabled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            currentCamera.enabled = false;
+            currentCamera = cameras[5];
+            currentCamera.enabled = true;
+        }
     }
 }
