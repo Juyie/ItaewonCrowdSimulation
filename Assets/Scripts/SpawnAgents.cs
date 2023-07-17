@@ -45,8 +45,9 @@ public class SpawnAgents : MonoBehaviour
 
     IEnumerator Spawn()
     {
+        isReady = false;
         float intervalTime = Random.Range(intervalTimes[0], intervalTimes[1]);
-        yield return new WaitForSeconds(intervalTime - 1);
+        yield return new WaitForSeconds(intervalTime);
         GameObject newAgent = Instantiate(agent);
         randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-16f, 16f));
         newAgent.name += count.ToString();
