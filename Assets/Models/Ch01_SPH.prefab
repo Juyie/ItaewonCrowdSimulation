@@ -571,6 +571,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -821,6 +822,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1219,6 +1221,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1581,7 +1584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d88f067f040da34aa54246a5f717aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPower: 300
+  goalPower: 0
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   forcePhysic: {x: 0, y: 0, z: 0}
@@ -1595,7 +1598,7 @@ MonoBehaviour:
     smoothingRadius: 1
     smoothingRadiusSq: 1
     restDensity: 50
-    gravityMult: 0
+    gravityMult: 2000
     particleMass: 0.2
     particleViscosity: 0.2
     particleDrag: 0.025
@@ -1610,8 +1613,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.7, z: 3}
-  m_Center: {x: 0, y: 0.85, z: 0}
+  m_Size: {x: 5, y: 1.75, z: 5}
+  m_Center: {x: 0, y: 0.875, z: 0}
 --- !u!136 &2486467426211959087
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2244,6 +2247,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2541,6 +2545,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

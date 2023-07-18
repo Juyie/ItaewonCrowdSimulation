@@ -77,7 +77,7 @@ public class SPHAgents : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agents = new List<GameObject>();
+        //agents = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -226,7 +226,7 @@ public class SPHAgents : MonoBehaviour
             goalNorm = (goalPos - gameObject.transform.position).normalized;
             rotation = new Vector3(0.0f, forcePhysic.normalized.y, 0.0f);
             Vector3 forceGoal = goalNorm * goalPower;
-            //Debug.Log("Pressure: " + forcePressure + ", Viscosity: " + forceViscosity);
+            Debug.Log("Pressure: " + forcePressure + ", Viscosity: " + forceViscosity);
             // Apply
             forcePhysic = forcePressure + forceViscosity + forceGoal;
             //particles[i].forcePhysic = forcePressure + forceViscosity + forceGravity;
@@ -245,7 +245,7 @@ public class SPHAgents : MonoBehaviour
 
     private void ApplyPosition()
     {
-        gameObject.transform.position = new Vector3(position.x, 0.0f, position.z);
+        gameObject.transform.position = position;
     }
 
     private void CheckVelocityForAnimation()
