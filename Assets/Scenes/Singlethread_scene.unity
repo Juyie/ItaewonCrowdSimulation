@@ -465,7 +465,7 @@ MonoBehaviour:
   SPHManager: {fileID: 1514274466}
   charPrefab: {fileID: 5404014298171222289, guid: 081e89e6053b88e49bdf398e64d47d79,
     type: 3}
-  amount: 828
+  amount: 690
 --- !u!4 &601911575
 Transform:
   m_ObjectHideFlags: 0
@@ -1642,7 +1642,7 @@ MonoBehaviour:
     particleMass: 0.2
     particleViscosity: 0.2
     particleDrag: 0.025
-  amount: 828
+  amount: 690
   rowSize: 10
 --- !u!4 &1514274467
 Transform:
