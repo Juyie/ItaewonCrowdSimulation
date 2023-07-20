@@ -108,7 +108,7 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.3
-    agentHeight: 1.7
+    agentHeight: 1.75
     agentSlope: 45
     agentClimb: 0.5
     ledgeDropHeight: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   SPHManager: {fileID: 1514274466}
   charPrefab: {fileID: 5404014298171222289, guid: 081e89e6053b88e49bdf398e64d47d79,
     type: 3}
-  amount: 690
+  amount: 345
 --- !u!4 &601911575
 Transform:
   m_ObjectHideFlags: 0
@@ -1642,8 +1642,9 @@ MonoBehaviour:
     particleMass: 0.2
     particleViscosity: 0.2
     particleDrag: 0.025
-  amount: 690
+  amount: 345
   rowSize: 10
+  RVO_SPH: 1
 --- !u!4 &1514274467
 Transform:
   m_ObjectHideFlags: 0
@@ -1845,10 +1846,10 @@ BoxCollider:
   m_GameObject: {fileID: 1758700836}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1760088884
 GameObject:
   m_ObjectHideFlags: 0
