@@ -109,6 +109,7 @@ public class SPHAgents : MonoBehaviour
         }
     }
 
+    /*
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Agent") && !agents.Contains(other.gameObject))
@@ -116,6 +117,8 @@ public class SPHAgents : MonoBehaviour
             agents.Add(other.gameObject);
         }
     }
+    */
+
     private static bool Intersect(SPHCollider collider, Vector3 position, float radius, out Vector3 penetrationNormal, out Vector3 penetrationPosition, out float penetrationLength)
     {
         Vector3 colliderProjection = collider.position - position;
@@ -184,7 +187,7 @@ public class SPHAgents : MonoBehaviour
 
             for (int i = 0; i < agents.Count; i++)
             {
-                Vector3 ri = agents[i].GetComponent<SPHAgents>().position - position;
+                Vector3 ri = agents[i].transform.position - transform.position;
                 float r2 = ri.sqrMagnitude;
 
                 if (r2 < parameters[parameterID].smoothingRadiusSq)
@@ -207,7 +210,8 @@ public class SPHAgents : MonoBehaviour
             // Physics
             for (int i = 0; i < agents.Count; i++)
             {
-                Vector3 ri = agents[i].GetComponent<SPHAgents>().position - position;
+                Vector3 ri = agents[i].transform.position - transform.position;
+                //Debug.Log("ri: " + ri);
                 float r2 = ri.sqrMagnitude;
                 float r = Mathf.Sqrt(r2);
 
@@ -218,19 +222,20 @@ public class SPHAgents : MonoBehaviour
                 }
             }
 
-            //Vector2 forceGravity = GRAVITY * density * parameters[parameterID].gravityMult;
-            //Vector3 goalNorm = (particles[i].goalPosition - particles[i].position).normalized;
+            Vector3 forceGravity = GRAVITY * density * parameters[parameterID].gravityMult;
+
+            // forceGoal
             Vector3 goalNorm;
             Vector3 rotation;
             goalPos = new Vector3(Random.Range(-4.5f, 4.5f), 0.0f, goalPos.z);
-            goalNorm = (goalPos - gameObject.transform.position).normalized;
+            goalNorm = (goalPos - transform.position).normalized;
             rotation = new Vector3(0.0f, forcePhysic.normalized.y, 0.0f);
             Vector3 forceGoal = goalNorm * goalPower;
-            Debug.Log("Pressure: " + forcePressure + ", Viscosity: " + forceViscosity);
+            //Debug.Log("Pressure: " + forcePressure + ", Viscosity: " + forceViscosity);
+
             // Apply
-            forcePhysic = forcePressure + forceViscosity + forceGoal;
-            //particles[i].forcePhysic = forcePressure + forceViscosity + forceGravity;
-            //particles[i].go.transform.rotation = Quaternion.Euler(rotation);
+            forcePhysic = forcePressure + forceViscosity + forceGravity + forceGoal;
+            //Debug.Log("force physic: " + forcePhysic);
         }
         else
         {
