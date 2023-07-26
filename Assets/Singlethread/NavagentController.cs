@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class NavagentController : MonoBehaviour
 {
+    public Vector3 goalPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,12 @@ public class NavagentController : MonoBehaviour
 
         if (gameObject.GetComponent<NavMeshAgent>().isOnNavMesh)
         {
-            gameObject.GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(-4.5f, 4.5f), 0.0f, 19.0f);
+            gameObject.GetComponent<NavMeshAgent>().destination = goalPos;
+        }
+
+        if(gameObject.GetComponent<NavMeshObstacle>().enabled)
+        {
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
         }
     }
 }

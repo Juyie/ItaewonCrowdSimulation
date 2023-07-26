@@ -37,14 +37,14 @@ public class RVOAgentProperty : MonoBehaviour
             {
                 float xij = Mathf.Abs(particles[j].position.x - RVOagents[i].go.transform.position.x);
                 float zij = Mathf.Abs(particles[j].position.z - RVOagents[i].go.transform.position.z);
-                if (xij < SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq && zij < SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq)
+                if (xij < SPHManager.parameters[0].smoothingRadiusSq && zij < SPHManager.parameters[0].smoothingRadiusSq)
                 {
                     Vector3 rij = particles[j].position - RVOagents[i].go.transform.position;
                     float r2 = rij.sqrMagnitude;
 
-                    if (r2 < SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq)
+                    if (r2 < SPHManager.parameters[0].smoothingRadiusSq)
                     {
-                        RVOagents[i].density += SPHManager.parameters[particles[i].parameterID].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(SPHManager.parameters[particles[i].parameterID].smoothingRadius, 9.0f))) * Mathf.Pow(SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq - r2, 3.0f);
+                        RVOagents[i].density += SPHManager.parameters[0].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(SPHManager.parameters[0].smoothingRadius, 9.0f))) * Mathf.Pow(SPHManager.parameters[0].smoothingRadiusSq - r2, 3.0f);
                     }
                 }
             }
@@ -54,19 +54,19 @@ public class RVOAgentProperty : MonoBehaviour
             {
                 float xij = Mathf.Abs(RVOagents[k].go.transform.position.x - RVOagents[i].go.transform.position.x);
                 float zij = Mathf.Abs(RVOagents[k].go.transform.position.z - RVOagents[i].go.transform.position.z);
-                if (xij < SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq && zij < SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq)
+                if (xij < SPHManager.parameters[0].smoothingRadiusSq && zij < SPHManager.parameters[0].smoothingRadiusSq)
                 {
                     Vector3 rij = RVOagents[k].go.transform.position - RVOagents[i].go.transform.position;
                     float r2 = rij.sqrMagnitude;
 
-                    if (r2 < SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq)
+                    if (r2 < SPHManager.parameters[0].smoothingRadiusSq)
                     {
-                        RVOagents[i].density += SPHManager.parameters[particles[i].parameterID].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(SPHManager.parameters[particles[i].parameterID].smoothingRadius, 9.0f))) * Mathf.Pow(SPHManager.parameters[particles[i].parameterID].smoothingRadiusSq - r2, 3.0f);
+                        RVOagents[i].density += SPHManager.parameters[0].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(SPHManager.parameters[0].smoothingRadius, 9.0f))) * Mathf.Pow(SPHManager.parameters[0].smoothingRadiusSq - r2, 3.0f);
                     }
                 }
             }
 
-            RVOagents[i].pressure = GAS_CONST * (RVOagents[i].density - SPHManager.parameters[particles[i].parameterID].restDensity);
+            RVOagents[i].pressure = GAS_CONST * (RVOagents[i].density - SPHManager.parameters[0].restDensity);
         }
     }
 }
