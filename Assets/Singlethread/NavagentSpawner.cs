@@ -27,8 +27,8 @@ public class NavagentSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        RVOAgents = new RVOAgent[amount];
-        InitNavAgent();
+        RVOAgents = new RVOAgent[1];
+        //InitNavAgent();
     }
 
     // Update is called once per frame

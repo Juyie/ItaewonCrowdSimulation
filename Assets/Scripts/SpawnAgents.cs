@@ -12,10 +12,21 @@ public class SpawnAgents : MonoBehaviour
     private GameObject agent;
 
     [SerializeField]
-    private float[] intervalTimes;
+    private float intervalTime;
 
     [SerializeField]
     private DisplayAgentNumber displayAgentNumber;
+
+    [SerializeField]
+    private SPHManagerSingleThread SPHManager;
+
+    public struct RVOAgent
+    {
+        public float density;
+        public float pressure;
+        public GameObject go;
+    }
+    public RVOAgent[] RVOAgents = new RVOAgent[1];
 
     private bool isReady = true;
     private Vector3 randPos;
@@ -41,21 +52,42 @@ public class SpawnAgents : MonoBehaviour
         {
             isOn = !isOn;
         }
+
+        if(RVOAgents.Length != GameObject.Find("RVOAgents").transform.childCount)
+        {
+            UpdateRVO();
+        }
+    }
+
+    private void UpdateRVO()
+    {
+        RVOAgents = new RVOAgent[GameObject.Find("RVOAgents").transform.childCount];
+
+        for (int i = 0; i < GameObject.Find("RVOAgents").transform.childCount; i++)
+        {
+            GameObject go = GameObject.Find("RVOAgents").transform.GetChild(i).gameObject;
+            SPHProperties sp = go.GetComponent<SPHProperties>();
+
+            RVOAgents[i].density = sp.density;
+            RVOAgents[i].pressure = sp.pressure;
+            RVOAgents[i].go = go;
+        }
     }
 
     IEnumerator Spawn()
     {
         isReady = false;
-        float intervalTime = Random.Range(intervalTimes[0], intervalTimes[1]);
         yield return new WaitForSeconds(intervalTime);
         GameObject newAgent = Instantiate(agent);
         randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-16f, 16f));
         newAgent.name += count.ToString();
         newAgent.transform.position = spawnTf.position + randPos;
         newAgent.transform.rotation = agent.transform.rotation;
-        newAgent.transform.parent = spawnTf;
+        newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
+        SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+        sp.position = newAgent.transform.position;
         newAgent.SetActive(true);
         displayAgentNumber.agentNumber++;
         isReady = true;

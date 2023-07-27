@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class GridAgentList : MonoBehaviour
@@ -68,6 +69,21 @@ public class GridAgentList : MonoBehaviour
         //PrintList();
     }
 
+    public void TurnOnSPH()
+    {
+        foreach(GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<NavMeshAgent>().enabled = false;
+            agent.GetComponent<NavMeshObstacle>().enabled = true;
+            agent.GetComponent<SPHProperties>().position = agent.transform.position;
+            agent.transform.parent = GameObject.Find("SPHAgents").transform;
+        }
+    }
+
     public void TurnOnRagdolls()
     {
         foreach (GameObject agent in agentList)
@@ -77,6 +93,7 @@ public class GridAgentList : MonoBehaviour
                 RemoveAgent(agent);
             }
             agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
+            agent.transform.parent = GameObject.Find("RagdollAgents").transform;
         }
     }
 

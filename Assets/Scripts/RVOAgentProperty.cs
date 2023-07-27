@@ -16,12 +16,14 @@ public class RVOAgentProperty : MonoBehaviour
     void Start()
     {
         particles = SPHManager.particles;
-        RVOagents = GameObject.Find("RVOAgent").GetComponent<NavagentSpawner>().RVOAgents;
+        RVOagents = GameObject.Find("RVOManager").GetComponent<NavagentSpawner>().RVOAgents;
     }
 
     // Update is called once per frame
     void Update()
     {
+        particles = SPHManager.particles;
+        RVOagents = GameObject.Find("RVOManager").GetComponent<NavagentSpawner>().RVOAgents;
         ComputeDensityPressure();
     }
 

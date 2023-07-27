@@ -9,7 +9,8 @@ public class CalculateDensityGrid : MonoBehaviour
     private GridAgentList agentList;
 
     private float area;
-    private int criteriaAgentNum;
+    private int criteriaAgentNumSPH;
+    private int criteriaAgentNumRagdoll;
     private int criteriaSatisfyNum;
 
     public bool checkNeighbor = false;
@@ -27,7 +28,8 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
-        criteriaAgentNum = Mathf.FloorToInt(area * 4);
+        criteriaAgentNumSPH = Mathf.FloorToInt(area * 4);
+        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 6);
         criteriaSatisfyNum = Mathf.FloorToInt(area * 3);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
@@ -45,14 +47,23 @@ public class CalculateDensityGrid : MonoBehaviour
             }
             if (checkNeighbor)
             {
-                if (agentList.GetListLength() >= criteriaAgentNum && turnOn && satisfy)
+                if(agentList.GetListLength() >= criteriaAgentNumSPH && turnOn && satisfy)
+                {
+                    agentList.TurnOnSPH();
+                }
+                else if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy)
                 {
                     agentList.TurnOnRagdolls();
                 }
             }
             else
             {
-                if (agentList.GetListLength() >= criteriaAgentNum)
+                if (agentList.GetListLength() >= criteriaAgentNumSPH)
+                {
+                    turnOn = true;
+                    agentList.TurnOnSPH();
+                }
+                else if (agentList.GetListLength() >= criteriaAgentNumRagdoll)
                 {
                     turnOn = true;
                     agentList.TurnOnRagdolls();

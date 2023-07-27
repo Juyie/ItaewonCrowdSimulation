@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (!isRagdollOn && navMeshAgent.destination != null)
                 {
                     navMeshAgent.SetDestination(target.position);
+                    gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
                 }
 
                 if (!navMeshAgent.pathPending)
