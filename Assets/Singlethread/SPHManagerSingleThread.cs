@@ -103,9 +103,11 @@ public class SPHManagerSingleThread : MonoBehaviour
     private bool addForce = false;
 
     private NavagentSpawner.RVOAgent[] RVOagents;
+    private RagdollSpawner.RagdollAgent[] RagdollAgents;
 
     [Header("Interaction")]
     [SerializeField] private bool RVO_SPH;
+    [SerializeField] private bool SPH_RAGDOLL;
 
     private void Awake()
     {
@@ -115,6 +117,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private void Start()
     {
         RVOagents = GameObject.Find("RVOManager").GetComponent<NavagentSpawner>().RVOAgents;
+        RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
     }
 
     private void Update()
@@ -137,6 +140,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             addForce = false;
         }
 
+        /*
         if (Input.GetKey(KeyCode.X))
         {
             //RVOagents = new NavagentSpawner.RVOAgent[0];
@@ -151,8 +155,10 @@ public class SPHManagerSingleThread : MonoBehaviour
                 }
             }
         }
+        */
 
         RVOagents = GameObject.Find("RVOManager").GetComponent<NavagentSpawner>().RVOAgents;
+        RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
 
         if (particles.Length != GameObject.Find("SPHAgents").transform.childCount)
         {
@@ -313,6 +319,29 @@ public class SPHManagerSingleThread : MonoBehaviour
                 }
             }
 
+            // Ragdoll Agents
+            if (SPH_RAGDOLL)
+            {
+                for (int l = 0; l < RagdollAgents.Length; l++)
+                {
+                    if (RagdollAgents[l].go != null)
+                    {
+                        float xij = Mathf.Abs(RagdollAgents[l].go.transform.position.x - spi.position.x);
+                        float zij = Mathf.Abs(RagdollAgents[l].go.transform.position.z - spi.position.z);
+                        if (xij < parameters[spi.parameterID].smoothingRadiusSq && zij < parameters[spi.parameterID].smoothingRadiusSq)
+                        {
+                            Vector2 rij = new Vector2(RagdollAgents[l].go.transform.position.x - spi.position.x, RagdollAgents[l].go.transform.position.z - spi.position.z);
+                            float r2 = rij.sqrMagnitude;
+
+                            if (r2 < parameters[spi.parameterID].smoothingRadiusSq)
+                            {
+                                spi.density += parameters[spi.parameterID].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 9.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq - r2, 3.0f);
+                            }
+                        }
+                    }
+                }
+            }
+
             spi.pressure = GAS_CONST * (spi.density - parameters[spi.parameterID].restDensity);
         }
     }
@@ -372,6 +401,33 @@ public class SPHManagerSingleThread : MonoBehaviour
                                 forcePressure += -rij.normalized * parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f);
                                 //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (RVOagents[k].go.GetComponent<NavMeshAgent>().velocity - particles[i].velocity) / RVOagents[k].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
                                 forceViscosity += parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (new Vector2(RVOagents[k].go.GetComponent<NavMeshAgent>().velocity.x - spi.velocity.x, RVOagents[k].go.GetComponent<NavMeshAgent>().velocity.z - spi.velocity.z)) / RVOagents[k].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * (parameters[spi.parameterID].smoothingRadius - r);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Ragdoll Agents
+            if (SPH_RAGDOLL)
+            {
+                for (int l = 0; l < RagdollAgents.Length; l++)
+                {
+                    if (RagdollAgents[l].go != null)
+                    {
+                        float xij = Mathf.Abs(RagdollAgents[l].go.transform.position.x - spi.position.x);
+                        float zij = Mathf.Abs(RagdollAgents[l].go.transform.position.z - spi.position.z);
+                        if (xij < parameters[spi.parameterID].smoothingRadiusSq && zij < parameters[spi.parameterID].smoothingRadiusSq)
+                        {
+                            //Vector3 rij = RVOagents[k].go.transform.position - particles[i].position;
+                            Vector2 rij = new Vector2(RagdollAgents[l].go.transform.position.x - spi.position.x, RagdollAgents[l].go.transform.position.z - spi.position.z);
+                            float r2 = rij.sqrMagnitude;
+                            float r = Mathf.Sqrt(r2);
+
+                            if (r < parameters[spi.parameterID].smoothingRadius)
+                            {
+                                forcePressure += -rij.normalized * parameters[spi.parameterID].particleMass * (spi.pressure + RagdollAgents[l].pressure) / (2.0f * RagdollAgents[l].density) * (-45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f);
+                                //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (RVOagents[k].go.GetComponent<NavMeshAgent>().velocity - particles[i].velocity) / RVOagents[k].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
+                                forceViscosity += parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (new Vector2(RagdollAgents[l].go.GetComponent<NavMeshAgent>().velocity.x - spi.velocity.x, RagdollAgents[l].go.GetComponent<NavMeshAgent>().velocity.z - spi.velocity.z)) / RagdollAgents[l].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * (parameters[spi.parameterID].smoothingRadius - r);
                             }
                         }
                     }
@@ -440,7 +496,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     {
         for (int i = 0; i < particles.Length; i++)
         {
-            if(particles[i].go.GetComponent<SPHProperties>().velocity.magnitude > 1f)
+            if(particles[i].go.GetComponent<SPHProperties>().velocity.magnitude > 0.1f)
             {
                 particles[i].go.GetComponent<Animator>().SetBool("isWalking", true);
             }

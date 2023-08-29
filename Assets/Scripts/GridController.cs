@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GridController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject[] grids;
+
     public bool Step = true;
     public bool Exponential = false;
     public float stepSize = 0.01f;
@@ -26,6 +29,19 @@ public class GridController : MonoBehaviour
         else
         {
             Exponential = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            StartSimulation();
+        }
+    }
+
+    private void StartSimulation()
+    {
+        for(int i = 0;  i < grids.Length; i++)
+        {
+            grids[i].GetComponent<CalculateDensityGrid>().enabled = true;
         }
     }
 }
