@@ -422,7 +422,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             {
                 spi.forcePhysic = new Vector3(forcePressure.x + forceViscosity.x, 0.0f, forcePressure.y + forceViscosity.y) + forceGravity + forceGoal;
             }
-            particles[i].go.transform.rotation = Quaternion.Euler(rotation);
+            //particles[i].go.transform.rotation = Quaternion.Euler(rotation);
         }
     }
 
@@ -440,7 +440,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     {
         for (int i = 0; i < particles.Length; i++)
         {
-            if(particles[i].go.GetComponent<SPHProperties>().velocity.magnitude > 8f)
+            if(particles[i].go.GetComponent<SPHProperties>().velocity.magnitude > 1f)
             {
                 particles[i].go.GetComponent<Animator>().SetBool("isWalking", true);
             }

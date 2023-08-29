@@ -81,6 +81,7 @@ public class GridAgentList : MonoBehaviour
             agent.GetComponent<NavMeshObstacle>().enabled = true;
             agent.GetComponent<SPHProperties>().position = agent.transform.position;
             agent.transform.parent = GameObject.Find("SPHAgents").transform;
+            agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
         }
     }
 
@@ -94,6 +95,7 @@ public class GridAgentList : MonoBehaviour
             }
             agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
             agent.transform.parent = GameObject.Find("RagdollAgents").transform;
+            agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
         }
     }
 
