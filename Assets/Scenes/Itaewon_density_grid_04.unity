@@ -10344,6 +10344,7 @@ MonoBehaviour:
   Exponential: 0
   stepSize: 0.1
   exponentialSize: 3
+  setGrid: 1
 --- !u!1 &571914938
 GameObject:
   m_ObjectHideFlags: 0
@@ -12790,7 +12791,7 @@ MonoBehaviour:
   - particleRadius: 1
     smoothingRadius: 1
     smoothingRadiusSq: 1
-    restDensity: 50
+    restDensity: 20
     gravityMult: 2000
     particleMass: 0.2
     particleViscosity: 0.2

@@ -28,8 +28,8 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
-        criteriaAgentNumSPH = Mathf.FloorToInt(area * 2.5f);
-        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 10);
+        criteriaAgentNumSPH = Mathf.FloorToInt(area * 3f);
+        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 10f);
         criteriaSatisfyNum = Mathf.FloorToInt(area * 3);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
@@ -152,43 +152,4 @@ public class CalculateDensityGrid : MonoBehaviour
             }
         }
     }
-    
-    
-    /*
-    // Dictionary
-    void Update()
-    {
-        //Debug.Log(agentList.GetSpeedPerAgent());
-        if (agentList.GetSpeedPerAgent() >= criteriaWeight * criteriaWeightNum)
-        {
-            agentList.TurnOnRagdollsDic();
-        }
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("agent") && !agentList.FindAgentDic(other.gameObject))
-        {
-            agentList.AddAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
-            Debug.Log(other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
-        {
-            agentList.FixAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
-        {
-            agentList.RemoveAgentDic(other.gameObject);
-        }
-    }
-    */
 }
