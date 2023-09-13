@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private Transform target;
+    public Transform target;
 
     private Animator animator;
     private NavMeshAgent navMeshAgent;

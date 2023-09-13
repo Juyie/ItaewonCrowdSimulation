@@ -12,7 +12,11 @@ public class GridController : MonoBehaviour
     public bool Exponential = false;
     public float stepSize = 0.01f;
     public float exponentialSize = 3.0f;
+
+    public DisplayAgentNumber agentNumber;
     public bool setGrid = false;
+
+    private bool once = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -35,7 +39,13 @@ public class GridController : MonoBehaviour
             Exponential = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if(agentNumber.agentNumber > 1800 && once)
+        {
+            SaveAgentsData.Instance.JsonSave();
+            once = false;
+        }
+
+        if (agentNumber.agentNumber > 1820)
         {
             StartSimulation();
         }

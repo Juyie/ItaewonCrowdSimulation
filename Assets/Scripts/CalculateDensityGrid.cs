@@ -17,6 +17,8 @@ public class CalculateDensityGrid : MonoBehaviour
     public bool satisfy = false;
     public bool turnOn = false;
 
+    public bool turnOnRagdoll = false;
+
     // weight calculation ver.
     private float criteriaWeight = 0.95f;
     private float criteriaWeightNum;
@@ -28,9 +30,9 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
-        criteriaAgentNumSPH = Mathf.FloorToInt(area * 3f);
-        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 10f);
-        criteriaSatisfyNum = Mathf.FloorToInt(area * 3);
+        criteriaAgentNumSPH = Mathf.FloorToInt(area * 3);
+        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 300);
+        criteriaSatisfyNum = Mathf.FloorToInt(area * 2);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
 
@@ -43,17 +45,23 @@ public class CalculateDensityGrid : MonoBehaviour
             if (agentList.GetListLength() >= criteriaSatisfyNum)
             {
                 satisfy = true;
-                //GetComponent<MeshRenderer>().material.color = Color.red;
+                GetComponent<MeshRenderer>().material.color = Color.red;
             }
+            else
+            {
+                satisfy = false;
+                GetComponent<MeshRenderer>().material.color = Color.white;
+            }
+
             if (checkNeighbor)
             {
-                if(agentList.GetListLength() >= criteriaAgentNumSPH && turnOn && satisfy)
-                {
-                    agentList.TurnOnSPH();
-                }
-                else if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy)
+                if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy)
                 {
                     agentList.TurnOnRagdolls();
+                }
+                else if (agentList.GetListLength() >= criteriaAgentNumSPH && turnOn && satisfy)
+                {
+                    agentList.TurnOnSPH();
                 }
             }
             else

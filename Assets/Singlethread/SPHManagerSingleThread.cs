@@ -262,12 +262,12 @@ public class SPHManagerSingleThread : MonoBehaviour
         for (int i = 0; i < particles.Length; i++)
         {
             SPHProperties sp = particles[i].go.GetComponent<SPHProperties>();
-            sp.velocity += DT * (sp.forcePhysic) / sp.density;
+            sp.velocity += (DT * (sp.forcePhysic) / sp.density) * Time.deltaTime;
             if(sp.velocity.sqrMagnitude >= 1.5f)
             {
                 sp.velocity = sp.velocity.normalized * 1.5f;
             }
-            sp.position += DT * (sp.velocity );
+            sp.position += (DT * (sp.velocity)) * Time.deltaTime;
         }
     }
 

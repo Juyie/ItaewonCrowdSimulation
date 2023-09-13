@@ -20,6 +20,11 @@ public class CheckNeighborGrid : MonoBehaviour
         {
             GetComponent<CalculateDensityGrid>().turnOn = true;
         }
+        else
+        {
+            GetComponent<CalculateDensityGrid>().turnOn = false;
+        }
+
     }
 
     private bool CheckNeighbor()

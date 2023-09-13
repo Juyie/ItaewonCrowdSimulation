@@ -243,9 +243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &3479197
 MonoBehaviour:
@@ -808,9 +809,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &61418042
 BoxCollider:
@@ -1043,9 +1045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &69642207
 BoxCollider:
@@ -1866,9 +1869,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &110270453
 BoxCollider:
@@ -2011,9 +2015,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &115689482
 BoxCollider:
@@ -2155,9 +2160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &119173554
 BoxCollider:
@@ -2300,9 +2306,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &121411253
 BoxCollider:
@@ -2443,9 +2450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &127280479
 BoxCollider:
@@ -2775,9 +2783,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &142011664
 BoxCollider:
@@ -2920,9 +2929,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &144425323
 BoxCollider:
@@ -3066,9 +3076,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &154372340
 BoxCollider:
@@ -3212,9 +3223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &164553232
 BoxCollider:
@@ -3353,9 +3365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &169526637
 BoxCollider:
@@ -3685,9 +3698,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &187443287
 BoxCollider:
@@ -3918,9 +3932,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &200434653
 MonoBehaviour:
@@ -4001,9 +4016,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &204860106
 BoxCollider:
@@ -4443,9 +4459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &219504415
 BoxCollider:
@@ -4772,9 +4789,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &233611939
 BoxCollider:
@@ -4915,9 +4933,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &237533814
 BoxCollider:
@@ -5482,9 +5501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &256594408
 BoxCollider:
@@ -5625,9 +5645,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &268995611
 BoxCollider:
@@ -5828,9 +5849,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &286401397
 MonoBehaviour:
@@ -6006,9 +6028,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &302721225
 BoxCollider:
@@ -6390,9 +6413,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &315202398
 BoxCollider:
@@ -6533,9 +6557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &315946883
 BoxCollider:
@@ -6676,9 +6701,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &327137800
 BoxCollider:
@@ -6978,7 +7004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -49.6}
+  m_AnchoredPosition: {x: 100, y: -49.599976}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &339329352
@@ -7083,9 +7109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &342867106
 BoxCollider:
@@ -7226,9 +7253,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &346828067
 BoxCollider:
@@ -7575,9 +7603,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &401211684
 BoxCollider:
@@ -8235,6 +8264,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 416741922}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &423866472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423866474}
+  - component: {fileID: 423866473}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &423866473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423866472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef76473a333ebd94a891d267b3a2024f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  save: 0
+  agentPf: {fileID: 9156292956586031252, guid: 55de6d6971e449a4aaf5ee3915aaf68b, type: 3}
+  displayAgentNumber: {fileID: 2026858757}
+--- !u!4 &423866474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423866472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.2708, y: -2.9597602, z: 4.0333295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &468826185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8977,9 +9052,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &490255868
 BoxCollider:
@@ -9274,9 +9350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &503782749
 MonoBehaviour:
@@ -9450,9 +9527,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &515946763
 BoxCollider:
@@ -9592,9 +9670,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &527898105
 BoxCollider:
@@ -9735,9 +9814,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &538218215
 BoxCollider:
@@ -10054,9 +10134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &556190004
 BoxCollider:
@@ -10344,7 +10425,8 @@ MonoBehaviour:
   Exponential: 0
   stepSize: 0.1
   exponentialSize: 3
-  setGrid: 1
+  agentNumber: {fileID: 2026858757}
+  setGrid: 0
 --- !u!1 &571914938
 GameObject:
   m_ObjectHideFlags: 0
@@ -10675,9 +10757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &588635754
 BoxCollider:
@@ -10878,9 +10961,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &594306340
 MonoBehaviour:
@@ -11112,9 +11196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &615676532
 BoxCollider:
@@ -11376,9 +11461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &635762309
 BoxCollider:
@@ -11570,9 +11656,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &642459966
 BoxCollider:
@@ -12241,9 +12328,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &668188997
 BoxCollider:
@@ -12587,9 +12675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &672924472
 MonoBehaviour:
@@ -12672,9 +12761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &674529333
 BoxCollider:
@@ -12875,9 +12965,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &684796976
 BoxCollider:
@@ -13252,9 +13343,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &694042044
 BoxCollider:
@@ -13634,9 +13726,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &703244425
 BoxCollider:
@@ -13957,9 +14050,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &715024361
 BoxCollider:
@@ -14100,9 +14194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &725536116
 BoxCollider:
@@ -14633,9 +14728,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &749439140
 BoxCollider:
@@ -14868,9 +14964,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &767621022
 BoxCollider:
@@ -15076,6 +15173,99 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &785087656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 785087657}
+  - component: {fileID: 785087660}
+  - component: {fileID: 785087659}
+  - component: {fileID: 785087658}
+  m_Layer: 0
+  m_Name: Floor (12)
+  m_TagString: SPHCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &785087657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785087656}
+  m_LocalRotation: {x: 0.706942, y: 0.01526482, z: 0.015264825, w: 0.706942}
+  m_LocalPosition: {x: -24.06, y: -5.31, z: 0}
+  m_LocalScale: {x: 10, y: 40, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1999090791}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 92.474, y: -90, z: -90}
+--- !u!65 &785087658
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785087656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000002, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &785087659
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785087656}
+  m_Enabled: 1
+  m_CastShadows: 2
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3cb2a44ccac8ba549b446a275a9917aa, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &785087660
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785087656}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &793168606
 GameObject:
   m_ObjectHideFlags: 0
@@ -15137,9 +15327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &793168610
 BoxCollider:
@@ -15664,9 +15855,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &810559945
 BoxCollider:
@@ -15810,9 +16002,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &816544175
 BoxCollider:
@@ -16066,9 +16259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &839757922
 BoxCollider:
@@ -16191,9 +16385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &847562332
 BoxCollider:
@@ -16400,9 +16595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &853395695
 MonoBehaviour:
@@ -16845,9 +17041,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &884090914
 BoxCollider:
@@ -17447,9 +17644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &895385640
 MonoBehaviour:
@@ -17894,9 +18092,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &925860701
 MonoBehaviour:
@@ -18070,9 +18269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &933512569
 BoxCollider:
@@ -18399,9 +18599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &962047744
 BoxCollider:
@@ -18512,7 +18713,7 @@ Transform:
   m_GameObject: {fileID: 962302106}
   m_LocalRotation: {x: -0.013448694, y: -0.00005310678, z: 0.059021577, w: 0.99816614}
   m_LocalPosition: {x: 21.623, y: -1.027, z: 5.728}
-  m_LocalScale: {x: 0.2, y: 1, z: 0.1362234}
+  m_LocalScale: {x: 0.21, y: 1, z: 0.1362234}
   m_Children: []
   m_Father: {fileID: 672540660}
   m_RootOrder: 7
@@ -18602,9 +18803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &962302113
 MonoBehaviour:
@@ -19146,9 +19348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1042006977
 BoxCollider:
@@ -19387,9 +19590,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1052343090
 BoxCollider:
@@ -19560,9 +19764,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1056932749
 BoxCollider:
@@ -19703,9 +19908,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1062508137
 BoxCollider:
@@ -19846,9 +20052,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1070217930
 BoxCollider:
@@ -20562,9 +20769,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1183285596
 BoxCollider:
@@ -20890,9 +21098,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1213207010
 BoxCollider:
@@ -21033,9 +21242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1221455052
 BoxCollider:
@@ -21607,9 +21817,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1311286751
 BoxCollider:
@@ -21753,9 +21964,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1314230004
 BoxCollider:
@@ -21899,9 +22111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1315574330
 BoxCollider:
@@ -22040,9 +22253,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1319620976
 BoxCollider:
@@ -22245,9 +22459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1337526176
 MonoBehaviour:
@@ -22704,9 +22919,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1379455597
 BoxCollider:
@@ -22850,9 +23066,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1389915772
 BoxCollider:
@@ -22993,9 +23210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1397933469
 BoxCollider:
@@ -23230,9 +23448,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1402664771
 BoxCollider:
@@ -23373,9 +23592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1403117502
 BoxCollider:
@@ -23686,9 +23906,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1419485693
 MonoBehaviour:
@@ -23922,9 +24143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1440937000
 MonoBehaviour:
@@ -24098,9 +24320,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1442060196
 BoxCollider:
@@ -24241,9 +24464,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1448049148
 BoxCollider:
@@ -24461,9 +24685,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1463601462
 BoxCollider:
@@ -24696,9 +24921,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1497483020
 BoxCollider:
@@ -24932,9 +25158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1505735749
 BoxCollider:
@@ -25078,9 +25305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1535016684
 BoxCollider:
@@ -25219,9 +25447,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1538084356
 BoxCollider:
@@ -25513,9 +25742,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1551755328
 MonoBehaviour:
@@ -25784,9 +26014,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1603460673
 BoxCollider:
@@ -26551,9 +26782,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1636530289
 BoxCollider:
@@ -26666,7 +26898,7 @@ Transform:
   m_GameObject: {fileID: 1644569518}
   m_LocalRotation: {x: -0.010356923, y: 0.00012498134, z: 0.058565754, w: 0.9982298}
   m_LocalPosition: {x: 21.63, y: -1.095, z: 5.603}
-  m_LocalScale: {x: 0.2, y: 1, z: 0.16693811}
+  m_LocalScale: {x: 0.21, y: 1, z: 0.16693811}
   m_Children: []
   m_Father: {fileID: 708627592}
   m_RootOrder: 7
@@ -26696,9 +26928,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1644569522
 BoxCollider:
@@ -26932,9 +27165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1648428471
 BoxCollider:
@@ -27319,9 +27553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1700114539
 BoxCollider:
@@ -27555,9 +27790,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1709103318
 BoxCollider:
@@ -28634,9 +28870,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1754915772
 BoxCollider:
@@ -28837,9 +29074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1765805135
 MonoBehaviour:
@@ -28920,9 +29158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1768319694
 BoxCollider:
@@ -29249,9 +29488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1794898160
 BoxCollider:
@@ -29452,9 +29692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1830622616
 BoxCollider:
@@ -29593,9 +29834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1840130261
 BoxCollider:
@@ -29739,9 +29981,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1844675473
 BoxCollider:
@@ -29919,9 +30162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1851720853
 BoxCollider:
@@ -30344,9 +30588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1887885669
 BoxCollider:
@@ -31241,9 +31486,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1922199191
 BoxCollider:
@@ -31663,9 +31909,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1965123192
 BoxCollider:
@@ -32037,9 +32284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1981404133
 BoxCollider:
@@ -32180,9 +32428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1984744419
 BoxCollider:
@@ -32323,9 +32572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1989894500
 BoxCollider:
@@ -32829,6 +33079,7 @@ Transform:
   - {fileID: 1441610936}
   - {fileID: 1346406702}
   - {fileID: 1140111497}
+  - {fileID: 785087657}
   m_Father: {fileID: 1722222164}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32899,9 +33150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2005991575
 BoxCollider:
@@ -33179,9 +33431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2023045187
 BoxCollider:
@@ -33382,9 +33635,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &2023486603
 MonoBehaviour:
@@ -33454,7 +33708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -33622,9 +33876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2034299700
 BoxCollider:
@@ -34142,9 +34397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2058773176
 BoxCollider:
@@ -34819,9 +35075,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2112258359
 BoxCollider:
@@ -34960,9 +35217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2118005954
 BoxCollider:
@@ -35256,9 +35514,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &2124167284
 MonoBehaviour:
@@ -35339,9 +35598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2133960431
 BoxCollider:
@@ -35650,9 +35910,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a489140238f98408c9605f5c5e655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkNeighbor: 0
+  checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2140295961
 BoxCollider:
