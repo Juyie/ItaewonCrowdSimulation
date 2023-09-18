@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class NavagentSpawner : MonoBehaviour
 {
+    private static NavagentSpawner instance;
+    public static NavagentSpawner Instance
+    {
+        get { return instance; }
+    }
+
     public SPHManagerSingleThread SPHManager;
 
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.0f);
@@ -22,22 +28,29 @@ public class NavagentSpawner : MonoBehaviour
 
         public GameObject go;
     }
-    public RVOAgent[] RVOAgents;
+    public RVOAgent[] RVOAgents = new RVOAgent[5000];
 
     // Start is called before the first frame update
     void Awake()
     {
-        RVOAgents = new RVOAgent[1];
+        if(instance == null)
+        {
+            instance = this;
+        }
+
+        //RVOAgents = new RVOAgent[1];
         //InitNavAgent();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(RVOAgents.Length != GameObject.Find("RVOAgents").transform.childCount)
+        /*
+        if(RVOAgents.Length != GameObject.Find("RVOAgents").transform.childCount && SPHManager.RVO_SPH)
         {
             UpdateRVO();
         }
+        */
     }
 
     private void UpdateRVO()

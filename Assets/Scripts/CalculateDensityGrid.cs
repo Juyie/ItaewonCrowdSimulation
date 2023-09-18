@@ -94,69 +94,78 @@ public class CalculateDensityGrid : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (controller.Step)
+        if (this.enabled)
         {
-            if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<NavMeshAgent>().velocity.sqrMagnitude < controller.stepSize)
+            if (controller.Step)
             {
-                agentList.AddAgent(other.gameObject);
+                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<NavMeshAgent>().velocity.sqrMagnitude < controller.stepSize)
+                {
+                    agentList.AddAgent(other.gameObject);
+                }
             }
-        }
-        else if(controller.Exponential)
-        {
-            if (other.CompareTag("agent") && !agentList.FindAgentDic(other.gameObject))
+            else if (controller.Exponential)
             {
-                agentList.AddAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
-                Debug.Log(other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
+                if (other.CompareTag("agent") && !agentList.FindAgentDic(other.gameObject))
+                {
+                    agentList.AddAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
+                    Debug.Log(other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
+                }
             }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (controller.Step)
+        if (this.enabled)
         {
-            if (turnOn)
+            if (controller.Step)
             {
-                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject))
+                if (turnOn)
                 {
-                    agentList.AddAgent(other.gameObject);
+                    if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject))
+                    {
+                        agentList.AddAgent(other.gameObject);
+                    }
+                }
+                else
+                {
+                    if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<NavMeshAgent>().velocity.sqrMagnitude < controller.stepSize)
+                    {
+                        agentList.AddAgent(other.gameObject);
+                    }
+                    else if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
+                    {
+                        agentList.RemoveAgent(other.gameObject);
+                    }
                 }
             }
-            else
+            else if (controller.Exponential)
             {
-                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<NavMeshAgent>().velocity.sqrMagnitude < controller.stepSize)
+                if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
                 {
-                    agentList.AddAgent(other.gameObject);
+                    agentList.FixAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
                 }
-                else if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
-                {
-                    agentList.RemoveAgent(other.gameObject);
-                }
-            }
-        }
-        else if(controller.Exponential) 
-        {
-            if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
-            {
-                agentList.FixAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (controller.Step)
+        if (this.enabled)
         {
-            if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
+            if (controller.Step)
             {
-                agentList.RemoveAgent(other.gameObject);
+                if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
+                {
+                    agentList.RemoveAgent(other.gameObject);
+                }
             }
-        }
-        else if(controller.Exponential)
-        {
-            if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
+            else if (controller.Exponential)
             {
-                agentList.RemoveAgentDic(other.gameObject);
+                if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
+                {
+                    agentList.RemoveAgentDic(other.gameObject);
+                }
             }
         }
     }

@@ -26,7 +26,8 @@ public class SpawnAgents : MonoBehaviour
         public float pressure;
         public GameObject go;
     }
-    public RVOAgent[] RVOAgents = new RVOAgent[1];
+
+    public RVOAgent[] RVOAgents;
 
     private bool isReady = true;
     private Vector3 randPos;
@@ -37,6 +38,11 @@ public class SpawnAgents : MonoBehaviour
     void Awake()
     {
         isOn = true;
+    }
+
+    private void Start()
+    {
+        count = displayAgentNumber.agentNumber + 1;
     }
 
     // Update is called once per frame
@@ -53,10 +59,12 @@ public class SpawnAgents : MonoBehaviour
             isOn = !isOn;
         }
 
+        /*
         if(RVOAgents.Length != GameObject.Find("RVOAgents").transform.childCount)
         {
             UpdateRVO();
         }
+        */
     }
 
     private void UpdateRVO()
@@ -89,6 +97,11 @@ public class SpawnAgents : MonoBehaviour
         SPHProperties sp = newAgent.GetComponent<SPHProperties>();
         sp.position = newAgent.transform.position;
         newAgent.SetActive(true);
+
+        NavagentSpawner.Instance.RVOAgents[count].density = sp.density;
+        NavagentSpawner.Instance.RVOAgents[count].pressure = sp.pressure;
+        NavagentSpawner.Instance.RVOAgents[count].go = newAgent;
+
         displayAgentNumber.agentNumber++;
         isReady = true;
         count++;

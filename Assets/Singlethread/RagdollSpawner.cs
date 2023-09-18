@@ -23,7 +23,7 @@ public class RagdollSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(RagdollAgents.Length != GameObject.Find("RagdollAgents").transform.childCount)
+        if(RagdollAgents.Length != GameObject.Find("RagdollAgents").transform.childCount && SPHManager.SPH_RAGDOLL)
         {
             UpdateRagdoll();
         }
