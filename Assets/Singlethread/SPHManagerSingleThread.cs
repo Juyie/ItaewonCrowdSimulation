@@ -87,7 +87,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private static Vector3 GRAVITY = new Vector3(0.0f, -9.81f, 0.0f);
     private const float GAS_CONST = 2000.0f;
     private const float DT = 0.0008f;
-    private const float BOUND_DAMPING = -0.5f;
+    private const float BOUND_DAMPING = -0.99f;
     public float goalPower = 1000f;
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
@@ -262,10 +262,13 @@ public class SPHManagerSingleThread : MonoBehaviour
             {
                 SPHProperties sp = particles[i].go.GetComponent<SPHProperties>();
                 sp.velocity += (DT * (sp.forcePhysic) / sp.density);
+                /*
                 if (sp.velocity.sqrMagnitude >= 1.5f)
                 {
                     sp.velocity = sp.velocity.normalized * 1.5f;
+                    Debug.Log(sp.velocity);
                 }
+                */
                 sp.position += (DT * (sp.velocity));
             }
         }
@@ -474,6 +477,10 @@ public class SPHManagerSingleThread : MonoBehaviour
 
                 //float randPower = UnityEngine.Random.Range(0.5f, 1.5f);
                 Vector3 forceGoal = goalNorm * goalPower;// * randPower;
+                if(spi.goalPosition.x < 0)
+                {
+                    forceGoal = Vector3.zero;
+                }
 
                 Vector3 Impulse = new Vector3(0.0f, 0.0f, -100000);
 

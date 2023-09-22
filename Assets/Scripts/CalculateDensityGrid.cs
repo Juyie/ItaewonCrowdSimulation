@@ -63,6 +63,10 @@ public class CalculateDensityGrid : MonoBehaviour
                 {
                     agentList.TurnOnSPH();
                 }
+                else
+                {
+                    //agentList.TurnOffSPH();
+                }
             }
             else
             {

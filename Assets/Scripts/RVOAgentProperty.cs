@@ -25,7 +25,7 @@ public class RVOAgentProperty : MonoBehaviour
         if (SPHManagerSingleThread.Instance.RVO_SPH)
         {
             particles = SPHManager.particles;
-            RVOagents = GameObject.Find("RVOManager").GetComponent<NavagentSpawner>().RVOAgents;
+            RVOagents = NavagentSpawner.Instance.RVOAgents;
             ComputeDensityPressure();
         }
     }

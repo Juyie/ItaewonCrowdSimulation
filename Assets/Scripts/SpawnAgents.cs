@@ -42,7 +42,7 @@ public class SpawnAgents : MonoBehaviour
 
     private void Start()
     {
-        count = displayAgentNumber.agentNumber + 1;
+        count = displayAgentNumber.agentNumber;
     }
 
     // Update is called once per frame
@@ -86,6 +86,8 @@ public class SpawnAgents : MonoBehaviour
     {
         isReady = false;
         yield return new WaitForSeconds(intervalTime);
+        count = displayAgentNumber.agentNumber;
+        displayAgentNumber.agentNumber++;
         GameObject newAgent = Instantiate(agent);
         randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-16f, 16f));
         newAgent.name += count.ToString();
@@ -98,13 +100,11 @@ public class SpawnAgents : MonoBehaviour
         sp.position = newAgent.transform.position;
         newAgent.SetActive(true);
 
-        NavagentSpawner.Instance.RVOAgents[count].density = sp.density;
-        NavagentSpawner.Instance.RVOAgents[count].pressure = sp.pressure;
+        NavagentSpawner.Instance.RVOAgents[count].density = 1.0f;
+        NavagentSpawner.Instance.RVOAgents[count].pressure = 0.0f;
         NavagentSpawner.Instance.RVOAgents[count].go = newAgent;
 
-        displayAgentNumber.agentNumber++;
         isReady = true;
-        count++;
     }
 
     IEnumerator SetReady()

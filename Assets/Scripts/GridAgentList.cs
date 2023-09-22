@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -81,9 +82,44 @@ public class GridAgentList : MonoBehaviour
             agent.GetComponent<NavMeshObstacle>().enabled = true;
             agent.GetComponent<SPHProperties>().position = agent.transform.position;
             agent.transform.parent = GameObject.Find("SPHAgents").transform;
+            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].go = null;
+            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].pressure = 0.0f;
+            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].density = 1.0f;
             SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
             agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
         }
+    }
+
+    public void TurnOffSPH()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<NavMeshAgent>().enabled = true;
+            agent.GetComponent<NavMeshObstacle>().enabled = false;
+            agent.GetComponent<SPHProperties>().position = agent.transform.position;
+            agent.transform.parent = GameObject.Find("RVOAgents").transform;
+            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].go = agent;
+            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].pressure = agent.GetComponent<SPHProperties>().pressure;
+            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].density = agent.GetComponent<SPHProperties>().density;
+            InitSPH(int.Parse(agent.name.Substring(23)), agent);
+            agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+        }
+    }
+
+    private void InitSPH(int i, GameObject agent)
+    {
+        SPHManagerSingleThread.Instance.particles[i].position = agent.transform.position;
+        SPHManagerSingleThread.Instance.particles[i].goalPosition = agent.GetComponent<SPHProperties>().goalPosition;
+        SPHManagerSingleThread.Instance.particles[i].velocity = Vector3.zero;
+        SPHManagerSingleThread.Instance.particles[i].forcePhysic = Vector3.zero;
+        SPHManagerSingleThread.Instance.particles[i].forceHeading = Vector3.zero;
+        SPHManagerSingleThread.Instance.particles[i].density = 0.0f;
+        SPHManagerSingleThread.Instance.particles[i].pressure = 0.0f;
+        SPHManagerSingleThread.Instance.particles[i].go = null;
     }
 
     public void TurnOnRagdolls()

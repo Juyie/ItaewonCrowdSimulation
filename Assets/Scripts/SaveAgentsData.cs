@@ -71,14 +71,14 @@ public class SaveAgentsData : MonoBehaviour
 
             string saveJson = JsonUtility.ToJson(data);
 
-            File.WriteAllText(path + "agentdata3000.json", saveJson);
+            File.WriteAllText(path + "agentdata4000.json", saveJson);
             Debug.Log("data save");
         }
     }
 
     public void JsonLoad()
     {
-        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata1800.json";
+        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata3000.json";
 
             string saveFile = File.ReadAllText(path);
             AgentData data = JsonUtility.FromJson<AgentData>(saveFile);

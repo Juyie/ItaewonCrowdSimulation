@@ -45,26 +45,22 @@ public class NavagentSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(RVOAgents.Length != GameObject.Find("RVOAgents").transform.childCount && SPHManager.RVO_SPH)
-        {
-            UpdateRVO();
-        }
-        */
+        UpdateRVO();
     }
 
     private void UpdateRVO()
     {
-        RVOAgents = new RVOAgent[GameObject.Find("RVOAgents").transform.childCount];
-
-        for (int i = 0; i < GameObject.Find("RVOAgents").transform.childCount; i++)
+        for (int i = 0; i < RVOAgents.Length; i++)
         {
-            GameObject go = GameObject.Find("RVOAgents").transform.GetChild(i).gameObject;
-            SPHProperties sp = go.GetComponent<SPHProperties>();
+            if (RVOAgents[i].go != null)
+            {
+                SPHProperties sp = RVOAgents[i].go.GetComponent<SPHProperties>();
 
-            RVOAgents[i].density = sp.density;
-            RVOAgents[i].pressure = sp.pressure;
-            RVOAgents[i].go = go;
+                //RVOAgents[i].density = sp.density;
+                sp.density = RVOAgents[i].density;
+                //RVOAgents[i].pressure = sp.pressure;
+                sp.pressure = RVOAgents[i].pressure;
+            }
         }
     }
 
