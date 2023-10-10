@@ -13013,7 +13013,7 @@ MonoBehaviour:
     gravityMult: 2000
     particleMass: 0.2
     particleViscosity: 0.2
-    particleDrag: 0.025
+    particleDrag: 0.8
   amount: 0
   rowSize: 0
   RVO_SPH: 1

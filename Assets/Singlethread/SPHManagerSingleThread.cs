@@ -87,7 +87,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private static Vector3 GRAVITY = new Vector3(0.0f, -9.81f, 0.0f);
     private const float GAS_CONST = 2000.0f;
     private const float DT = 0.0008f;
-    private const float BOUND_DAMPING = -0.99f;
+    private const float BOUND_DAMPING = -0.0f;
     public float goalPower = 1000f;
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
@@ -212,9 +212,6 @@ public class SPHManagerSingleThread : MonoBehaviour
         Vector3 newVelocity = Vector3.Dot(velocity, penetrationNormal) * penetrationNormal * BOUND_DAMPING
                             + Vector3.Dot(velocity, collider.right) * collider.right * drag
                             + Vector3.Dot(velocity, collider.up) * collider.up * drag;
-        newVelocity = Vector3.Dot(newVelocity, Vector3.forward) * Vector3.forward
-                    + Vector3.Dot(newVelocity, Vector3.right) * Vector3.right
-                    + Vector3.Dot(newVelocity, Vector3.up) * Vector3.up;
         return newVelocity;
     }
 

@@ -45,7 +45,7 @@ public class GridController : MonoBehaviour
             once = false;
         }
 
-        if (agentNumber.agentNumber > 3050)
+        if (agentNumber.agentNumber > 2050)
         {
             StartSimulation();
         }

@@ -78,7 +78,7 @@ public class SaveAgentsData : MonoBehaviour
 
     public void JsonLoad()
     {
-        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata3000.json";
+        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata1800.json";
 
             string saveFile = File.ReadAllText(path);
             AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
