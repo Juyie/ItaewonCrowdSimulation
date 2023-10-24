@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Entities.UniversalDelegates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -68,31 +69,30 @@ public class NavagentSpawner : MonoBehaviour
     {
         for(int i = 0; i < amount/2; i++)
         {
-            GameObject go = Instantiate(charPrefab);
-            go.transform.parent = GameObject.Find("RVOAgents").transform;
-            go.transform.position = new Vector3(-4.5f + (i % 46) * 0.2f, 0.0f, -19.5f + (i / 46) % 46 * 0.5f);
-            go.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
-            go.GetComponent<NavagentController>().goalPos = goalPos1;
-            RVOAgents[i].density = 0.0f;
-            RVOAgents[i].pressure = 0.0f;
-            RVOAgents[i].go = go;
-            SPHProperties sp = go.GetComponent<SPHProperties>();
-            sp.position = go.transform.position;
-            sp.goalPosition = goalPos1;
+            GameObject newAgent = Instantiate(charPrefab);
+            newAgent.name += i;
+            //newAgent.transform.position = new Vector3(-20.0f + (i % 46) * 0.2f, 20.0f, -19.5f + (i / 46) % 46 * 0.5f);
+            //newAgent.transform.position = new Vector3(0.0f, 12.0f, 0.0f);
+            newAgent.GetComponent<PlayerMovement>().target = GameObject.Find("SimpleTarget1").transform;
+            newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
+            newAgent.GetComponent<NavMeshAgent>().enabled = true;
+            newAgent.GetComponent<PlayerMovement>().enabled = true;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            newAgent.SetActive(true);
         }
         for (int j = amount/2; j < amount; j++)
         {
-            GameObject go = Instantiate(charPrefab);
-            go.transform.parent = GameObject.Find("RVOAgents").transform;
-            go.transform.position = new Vector3(-4.5f + (j % 46) * 0.2f, 0.0f, 19.5f - (j / 46) % 46 * 0.5f);
-            go.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
-            go.GetComponent<NavagentController>().goalPos = goalPos2;
-            RVOAgents[j].density = 0.0f;
-            RVOAgents[j].pressure = 0.0f;
-            RVOAgents[j].go = go;
-            SPHProperties sp = go.GetComponent<SPHProperties>();
-            sp.position = go.transform.position;
-            sp.goalPosition = goalPos2;
+            GameObject newAgent = Instantiate(charPrefab);
+            newAgent.name += j;
+            newAgent.transform.position = new Vector3(-20.0f + (j % 46) * 0.2f, 20.0f, 19.5f - (j / 46) % 46 * 0.5f);
+            newAgent.GetComponent<PlayerMovement>().target = GameObject.Find("SimpleTarget1").transform;
+            newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
+            newAgent.GetComponent<NavMeshAgent>().enabled = true;
+            newAgent.GetComponent<PlayerMovement>().enabled = true;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            newAgent.SetActive(true);
         }
     }
 }

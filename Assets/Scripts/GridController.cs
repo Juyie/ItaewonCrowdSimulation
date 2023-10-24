@@ -17,6 +17,7 @@ public class GridController : MonoBehaviour
     public bool setGrid = false;
 
     private bool once = true;
+    private bool on = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -45,9 +46,14 @@ public class GridController : MonoBehaviour
             once = false;
         }
 
-        if (agentNumber.agentNumber > 2050)
+        if (agentNumber.agentNumber > 2050 && on)
         {
             StartSimulation();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            on = false;
+            StopSimulation();
         }
     }
 
@@ -56,6 +62,14 @@ public class GridController : MonoBehaviour
         for(int i = 0;  i < grids.Length; i++)
         {
             grids[i].GetComponent<CalculateDensityGrid>().enabled = true;
+        }
+    }
+
+    private void StopSimulation()
+    {
+        for (int i = 0; i < grids.Length; i++)
+        {
+            grids[i].GetComponent<CalculateDensityGrid>().enabled = false;
         }
     }
 }
