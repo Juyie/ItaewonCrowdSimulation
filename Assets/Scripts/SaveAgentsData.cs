@@ -27,7 +27,7 @@ public class SaveAgentsData : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //JsonLoad();
+        JsonLoad();
     }
 
     public static SaveAgentsData Instance

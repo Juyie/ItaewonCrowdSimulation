@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -91,6 +93,8 @@ public class SPHManagerSingleThread : MonoBehaviour
     public float goalPower = 1000f;
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
+    private float maxAcceleration = 5.0f;
+    private float maxVelocity = 1.8f;
 
     // Properties
     [Header("Import")]
@@ -151,6 +155,15 @@ public class SPHManagerSingleThread : MonoBehaviour
             RVOagents = NavagentSpawner.Instance.RVOAgents;
         if (SPH_RAGDOLL)
             RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            addForce = true;
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            addForce = false;
+        }
 
         /*
         if (particles.Length != GameObject.Find("SPHAgents").transform.childCount)
@@ -259,14 +272,13 @@ public class SPHManagerSingleThread : MonoBehaviour
             {
                 SPHProperties sp = particles[i].go.GetComponent<SPHProperties>();
                 sp.velocity += DT * sp.forcePhysic;
-                /*
-                if (sp.velocity.sqrMagnitude >= 1.5f)
-                {
-                    sp.velocity = sp.velocity.normalized * 1.5f;
-                    Debug.Log(sp.velocity);
-                }
-                */
                 sp.position += DT * sp.velocity;
+                /*
+                Vector3 f = Vector3.ClampMagnitude(sp.forcePhysic, maxAcceleration);
+                sp.velocity += DT * f;
+                Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
+                sp.position += DT * v;
+                */
             }
         }
     }
@@ -363,8 +375,35 @@ public class SPHManagerSingleThread : MonoBehaviour
 
                 // compute pressure
                 spi.pressure = GAS_CONST * (spi.density - parameters[spi.parameterID].restDensity);
+                /*
+                if (spi.position.x < 6 && spi.position.x > -2.0f && spi.position.z > 0 && spi.position.z < 6)
+                {
+                    if (spi.pressure >= 0)
+                    {
+                        spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
+                    }
+                    else
+                    {
+                        spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
+                    }
+                }
+                else
+                {
+                    spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+                }
+                */
 
-                Debug.Log("Density: " + spi.density + ", Pressure: " + spi.pressure);
+                // pressure color code
+                /*
+                if (spi.pressure >= 0)
+                {
+                    spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
+                }
+                else
+                {
+                    spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
+                }
+                */
             }
         }
     }
@@ -524,29 +563,31 @@ public class SPHManagerSingleThread : MonoBehaviour
                     forceGoal = Vector3.zero;
                 }
 
-                Vector3 Impulse = new Vector3(0.0f, 0.0f, -100000);
+                Vector3 Impulse = new Vector3(-10000.0f, 0.0f, 0.0f);
 
                 // Apply
-                /*
+                
                 if (addForce)
                 {
-                    if (spi.position.z >= 10.0f && spi.position.z <= 12.0f)
+                    if (spi.position.x >= 40.0f && spi.position.x <= 42.0f)
                     {
-                        spi.forcePhysic = new Vector3(forcePressure.x + forceViscosity.x, 0.0f, forcePressure.y + forceViscosity.y) + forceGravity + forceGoal + Impulse;
+                        spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density + Impulse;
                     }
                     else
                     {
-                        spi.forcePhysic = new Vector3(forcePressure.x + forceViscosity.x, 0.0f, forcePressure.y + forceViscosity.y) + forceGravity + forceGoal;
+                        spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
                     }
                 }
                 else
                 {
-                    spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x, 0.0f, forcePressure.y + forceViscosity.y) + forceGravity + forceGoal) / spi.density;
+                    spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
                 }
-                */
+                
 
-                spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x, 0.0f, forcePressure.y + forceViscosity.y) * 100 + forceGravity + forceGoal) / spi.density;
-                Debug.Log("Force: " + spi.forcePhysic);
+                //spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
+                if(Vector2.SqrMagnitude(forcePressure / spi.density - new Vector2(spi.forcePhysic.x, spi.forcePhysic.z)) > 50.0f)
+                    Debug.Log("Pressure Force: " + forcePressure / spi.density + ", Total Force: " + spi.forcePhysic);
+                //Debug.Log("Pressure Force: " + forcePressure + ", Total Force: " + spi.forcePhysic);
                 //particles[i].go.transform.rotation = Quaternion.Euler(rotation);
             }
         }
