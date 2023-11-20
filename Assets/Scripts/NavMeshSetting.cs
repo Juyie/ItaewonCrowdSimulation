@@ -5,11 +5,22 @@ using UnityEngine.AI;
 
 public class NavMeshSetting : MonoBehaviour
 {
+    [SerializeField]
+    private bool Default;
+
+    [SerializeField]
+    private float avoidanceTime = 2.0f;
+
+    [SerializeField]
+    private int pathfindingFrame = 100;
     // Start is called before the first frame update
     void Start()
     {
-        NavMesh.avoidancePredictionTime = 1.0f;
-        NavMesh.pathfindingIterationsPerFrame = 5000;
+        if (!Default)
+        {
+            NavMesh.avoidancePredictionTime = avoidanceTime;
+            NavMesh.pathfindingIterationsPerFrame = pathfindingFrame;
+        }
     }
 
     // Update is called once per frame

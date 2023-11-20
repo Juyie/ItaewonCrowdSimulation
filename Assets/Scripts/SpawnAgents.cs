@@ -89,7 +89,7 @@ public class SpawnAgents : MonoBehaviour
         count = displayAgentNumber.agentNumber;
         displayAgentNumber.agentNumber++;
         GameObject newAgent = Instantiate(agent);
-        randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-16f, 16f));
+        randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
         newAgent.name += count.ToString();
         newAgent.transform.position = spawnTf.position + randPos;
         newAgent.transform.rotation = agent.transform.rotation;
@@ -103,6 +103,11 @@ public class SpawnAgents : MonoBehaviour
         NavagentSpawner.Instance.RVOAgents[count].density = 1.0f;
         NavagentSpawner.Instance.RVOAgents[count].pressure = 0.0f;
         NavagentSpawner.Instance.RVOAgents[count].go = newAgent;
+
+        // color code
+        Color randColor = Random.ColorHSV(0, 1, 1, 1);
+        newAgent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
+        newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
 
         isReady = true;
     }

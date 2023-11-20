@@ -109,7 +109,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     [SerializeField] private int rowSize = 16;
 
     // Data
-    public SPHParticle[] particles = new SPHParticle[5000];
+    public SPHParticle[] particles = new SPHParticle[10000];
 
     private bool addForce = false;
 
@@ -140,7 +140,7 @@ public class SPHManagerSingleThread : MonoBehaviour
         RVOagents = NavagentSpawner.Instance.RVOAgents;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ComputeDensityPressure();
         ComputeForces();
@@ -271,8 +271,10 @@ public class SPHManagerSingleThread : MonoBehaviour
             if (particles[i].go != null)
             {
                 SPHProperties sp = particles[i].go.GetComponent<SPHProperties>();
-                sp.velocity += DT * sp.forcePhysic;
-                sp.position += DT * sp.velocity;
+                //sp.velocity += DT * sp.forcePhysic;
+                //sp.position += DT * sp.velocity;
+                sp.velocity += sp.forcePhysic * Time.fixedDeltaTime;
+                sp.position += sp.velocity * Time.fixedDeltaTime;
                 /*
                 Vector3 f = Vector3.ClampMagnitude(sp.forcePhysic, maxAcceleration);
                 sp.velocity += DT * f;
