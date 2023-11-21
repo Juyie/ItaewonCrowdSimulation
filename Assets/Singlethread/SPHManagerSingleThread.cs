@@ -450,6 +450,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                             {
                                 //forcePressure += -rij.normalized * parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f) / r;
                                 forcePressure += parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(spj.position.x - spi.position.x, spj.position.z - spi.position.z);
+                                Debug.Log("SPH Pressure: " + spj.pressure + ", Density: " + spj.density);
                             }
 
                             // compute viscosity
@@ -458,7 +459,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                         }
                     }
                 }
-
+                
                 // RVO Agents
                 if (RVO_SPH)
                 {
@@ -490,6 +491,8 @@ public class SPHManagerSingleThread : MonoBehaviour
                             float diff = parameters[spi.parameterID].smoothingRadiusSq - distanceSquared;
                             float rangeMinDist = parameters[spi.parameterID].smoothingRadius - dist;
 
+                            Vector2 tempPressure = Vector2.zero;
+
                             if (diff > 0)
                             {
                                 // compute pressure
@@ -497,7 +500,11 @@ public class SPHManagerSingleThread : MonoBehaviour
                                 {
                                     //forcePressure += -rij.normalized * parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f) / r;
                                     forcePressure += parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
+                                    tempPressure += parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
+                                    Debug.Log("RVO Pressure: " + RVOagents[k].pressure + ", Density: " + RVOagents[k].density);
                                 }
+
+                                //Debug.Log("RVO Pressure: " + tempPressure);
 
                                 // compute viscosity
                                 //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (particles[j].velocity - particles[i].velocity) / particles[j].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
