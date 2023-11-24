@@ -7550,7 +7550,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &364166323
 GameObject:
@@ -8466,7 +8466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &423866473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8480,6 +8480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   save: 0
+  load: 1
   agentPf: {fileID: 9156292956586031252, guid: 55de6d6971e449a4aaf5ee3915aaf68b, type: 3}
   displayAgentNumber: {fileID: 2026858757}
 --- !u!4 &423866474
@@ -10114,7 +10115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 542054581}
   agent: {fileID: 2040427846}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &542054581
@@ -10609,10 +10610,10 @@ MonoBehaviour:
   - {fileID: 839757917}
   Step: 1
   Exponential: 0
-  stepSize: 0.8
+  stepSize: 0.3
   exponentialSize: 3
   agentNumber: {fileID: 2026858757}
-  setGrid: 1
+  setGrid: 0
 --- !u!1 &571914938
 GameObject:
   m_ObjectHideFlags: 0
@@ -11793,7 +11794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 637471932}
   agent: {fileID: 1892348132}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &637471932
@@ -13125,7 +13126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd9288853fcd2345b7f0fe22029850b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPower: 1
+  goalPower: 10
   character0Prefab: {fileID: 9156292956586031252, guid: 55de6d6971e449a4aaf5ee3915aaf68b,
     type: 3}
   parameterID: 0
@@ -13154,7 +13155,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684796972
 GameObject:
@@ -15516,7 +15517,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &785087656
 GameObject:
@@ -15785,7 +15786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 794376918}
   agent: {fileID: 794576990}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &794376918
@@ -20325,7 +20326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056932745
 GameObject:
@@ -23370,7 +23371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1342209779}
   agent: {fileID: 703000001}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1346406701
@@ -24573,7 +24574,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1410382224
 MonoBehaviour:
@@ -24638,7 +24639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1417532232}
   agent: {fileID: 412260551}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1419485686
@@ -27858,7 +27859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1627358243}
   agent: {fileID: 689438604}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &1627358243
@@ -27926,7 +27927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1629524390}
   agent: {fileID: 416741923}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1636530285
@@ -28512,7 +28513,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1652129196
 GameObject:
@@ -31050,7 +31051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1827111894}
   agent: {fileID: 1621137839}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1830622612
@@ -35103,7 +35104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 2017738770}
   agent: {fileID: 25993707}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &2021722236
@@ -36042,7 +36043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 2042195963}
   agent: {fileID: 1981064144}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &2042195963
@@ -37625,7 +37626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 2136772908}
   agent: {fileID: 311784022}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &2136772908
@@ -37693,7 +37694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 2137127499}
   agent: {fileID: 23406930}
-  intervalTime: 0.3
+  intervalTime: 0.2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &2139872817

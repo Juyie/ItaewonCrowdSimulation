@@ -40,13 +40,13 @@ public class GridController : MonoBehaviour
             Exponential = true;
         }
 
-        if(agentNumber.agentNumber > 4000 && once)
+        if(agentNumber.agentNumber > 3000 && once)
         {
             SaveAgentsData.Instance.JsonSave();
             once = false;
         }
 
-        if (agentNumber.agentNumber > 2050 && on)
+        if (agentNumber.agentNumber > 3050 && on)
         {
             StartSimulation();
         }

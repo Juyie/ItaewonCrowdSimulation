@@ -164,7 +164,10 @@ public class SPHManagerSingleThread : MonoBehaviour
         {
             addForce = false;
         }
-
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            PrintPositions();
+        }
         /*
         if (particles.Length != GameObject.Find("SPHAgents").transform.childCount)
         {
@@ -273,14 +276,14 @@ public class SPHManagerSingleThread : MonoBehaviour
                 SPHProperties sp = particles[i].go.GetComponent<SPHProperties>();
                 //sp.velocity += DT * sp.forcePhysic;
                 //sp.position += DT * sp.velocity;
-                sp.velocity += sp.forcePhysic * Time.fixedDeltaTime;
-                sp.position += sp.velocity * Time.fixedDeltaTime;
-                /*
+
+                //sp.velocity += sp.forcePhysic * Time.fixedDeltaTime;
+                //sp.position += sp.velocity * Time.fixedDeltaTime;
+                
                 Vector3 f = Vector3.ClampMagnitude(sp.forcePhysic, maxAcceleration);
-                sp.velocity += DT * f;
+                sp.velocity += f * Time.fixedDeltaTime;
                 Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
-                sp.position += DT * v;
-                */
+                sp.position += v * Time.fixedDeltaTime;
             }
         }
     }
@@ -450,7 +453,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                             {
                                 //forcePressure += -rij.normalized * parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f) / r;
                                 forcePressure += parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(spj.position.x - spi.position.x, spj.position.z - spi.position.z);
-                                Debug.Log("SPH Pressure: " + spj.pressure + ", Density: " + spj.density);
+                                //Debug.Log("SPH Pressure: " + spj.pressure + ", Density: " + spj.density);
                             }
 
                             // compute viscosity
@@ -501,7 +504,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                                     //forcePressure += -rij.normalized * parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f) / r;
                                     forcePressure += parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
                                     tempPressure += parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
-                                    Debug.Log("RVO Pressure: " + RVOagents[k].pressure + ", Density: " + RVOagents[k].density);
+                                    //Debug.Log("RVO Pressure: " + RVOagents[k].pressure + ", Density: " + RVOagents[k].density);
                                 }
 
                                 //Debug.Log("RVO Pressure: " + tempPressure);
@@ -594,8 +597,8 @@ public class SPHManagerSingleThread : MonoBehaviour
                 
 
                 //spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
-                if(Vector2.SqrMagnitude(forcePressure / spi.density - new Vector2(spi.forcePhysic.x, spi.forcePhysic.z)) > 50.0f)
-                    Debug.Log("Pressure Force: " + forcePressure / spi.density + ", Total Force: " + spi.forcePhysic);
+                //if(Vector2.SqrMagnitude(forcePressure / spi.density - new Vector2(spi.forcePhysic.x, spi.forcePhysic.z)) > 50.0f)
+                    //Debug.Log("Pressure Force: " + forcePressure / spi.density + ", Total Force: " + spi.forcePhysic);
                 //Debug.Log("Pressure Force: " + forcePressure + ", Total Force: " + spi.forcePhysic);
                 //particles[i].go.transform.rotation = Quaternion.Euler(rotation);
             }
@@ -628,6 +631,24 @@ public class SPHManagerSingleThread : MonoBehaviour
                 else
                 {
                     particles[i].go.GetComponent<Animator>().SetBool("isWalking", false);
+                }
+            }
+        }
+    }
+
+    private void PrintPositions()
+    {
+        for(int i = 0; i < particles.Length; i++)
+        {
+            if (particles[i].go != null)
+            {
+                if (particles[i].go.GetComponent<SPHProperties>().position != particles[i].go.transform.position)
+                {
+                    Debug.Log("Diff position. SPH position: " + particles[i].go.GetComponent<SPHProperties>().position + ", GO position: " + particles[i].go.transform.position);
+                }
+                else
+                {
+                    Debug.Log("Same Position");
                 }
             }
         }

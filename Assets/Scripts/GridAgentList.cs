@@ -86,7 +86,7 @@ public class GridAgentList : MonoBehaviour
             NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].pressure = 0.0f;
             NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].density = 1.0f;
             SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
-            agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
         }
     }
 
@@ -106,7 +106,7 @@ public class GridAgentList : MonoBehaviour
             NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].pressure = agent.GetComponent<SPHProperties>().pressure;
             NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].density = agent.GetComponent<SPHProperties>().density;
             InitSPH(int.Parse(agent.name.Substring(23)), agent);
-            agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
         }
     }
 

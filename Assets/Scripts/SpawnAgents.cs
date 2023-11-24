@@ -105,9 +105,9 @@ public class SpawnAgents : MonoBehaviour
         NavagentSpawner.Instance.RVOAgents[count].go = newAgent;
 
         // color code
-        Color randColor = Random.ColorHSV(0, 1, 1, 1);
-        newAgent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
-        newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
+        //Color randColor = Random.ColorHSV(0, 1, 1, 1);
+        //newAgent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
+        //newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
 
         isReady = true;
     }

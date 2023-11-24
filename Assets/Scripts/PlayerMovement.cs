@@ -61,8 +61,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (navMeshAgent.remainingDistance <= 0.3)
                     {
-                        //displayAgentNumber.agentNumber--;
-                        //Destroy(gameObject);
+                        displayAgentNumber.agentNumber--;
+                        Destroy(gameObject);
                     }
                 }
             }

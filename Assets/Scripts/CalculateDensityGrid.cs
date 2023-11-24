@@ -45,12 +45,12 @@ public class CalculateDensityGrid : MonoBehaviour
             if (agentList.GetListLength() >= criteriaSatisfyNum)
             {
                 satisfy = true;
-                GetComponent<MeshRenderer>().material.color = Color.red;
+                //GetComponent<MeshRenderer>().material.color = Color.red;
             }
             else
             {
                 satisfy = false;
-                GetComponent<MeshRenderer>().material.color = Color.white;
+                //GetComponent<MeshRenderer>().material.color = Color.white;
             }
 
             if (checkNeighbor)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.AI;
+using UnityEditor.Recorder;
+using UnityEditor;
 
 public class AgentData
 {
@@ -17,6 +19,9 @@ public class SaveAgentsData : MonoBehaviour
     private bool save;
 
     [SerializeField]
+    private bool load;
+
+    [SerializeField]
     GameObject agentPf;
 
     [SerializeField]
@@ -27,7 +32,10 @@ public class SaveAgentsData : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        JsonLoad();
+        if (load)
+        {
+            JsonLoad();
+        }
     }
 
     public static SaveAgentsData Instance
@@ -71,14 +79,16 @@ public class SaveAgentsData : MonoBehaviour
 
             string saveJson = JsonUtility.ToJson(data);
 
-            File.WriteAllText(path + "agentdata4000.json", saveJson);
+            File.WriteAllText(path + "agentdata3000.json", saveJson);
+            RecorderWindow recorderWindow = GetRecorderWindow();
+            recorderWindow.StopRecording();
             Debug.Log("data save");
         }
     }
 
     public void JsonLoad()
     {
-        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata1800.json";
+        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata3000.json";
 
             string saveFile = File.ReadAllText(path);
             AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
@@ -98,5 +108,10 @@ public class SaveAgentsData : MonoBehaviour
             newAgent.SetActive(true);
             displayAgentNumber.agentNumber++;
         }
+    }
+
+    private RecorderWindow GetRecorderWindow()
+    {
+        return (RecorderWindow)EditorWindow.GetWindow(typeof(RecorderWindow));
     }
 }
