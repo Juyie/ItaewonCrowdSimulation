@@ -54,7 +54,9 @@ public class SpawnAgents : MonoBehaviour
             isReady = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        count = displayAgentNumber.agentNumber;
+
+        if (Input.GetKeyDown(KeyCode.Return) || count > 3800)
         {
             isOn = !isOn;
         }

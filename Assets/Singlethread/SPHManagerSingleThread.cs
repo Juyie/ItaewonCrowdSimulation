@@ -148,6 +148,7 @@ public class SPHManagerSingleThread : MonoBehaviour
         ComputeColliders();
 
         ApplyPosition();
+        ComputeColliders();
 
         CheckVelocityForAnimation();
 
@@ -642,13 +643,13 @@ public class SPHManagerSingleThread : MonoBehaviour
         {
             if (particles[i].go != null)
             {
-                if (particles[i].go.GetComponent<SPHProperties>().position != particles[i].go.transform.position)
-                {
-                    Debug.Log("Diff position. SPH position: " + particles[i].go.GetComponent<SPHProperties>().position + ", GO position: " + particles[i].go.transform.position);
-                }
-                else
+                if (particles[i].go.GetComponent<SPHProperties>().position.x == particles[i].go.transform.position.x && particles[i].go.GetComponent<SPHProperties>().position.z == particles[i].go.transform.position.z)
                 {
                     Debug.Log("Same Position");
+                }
+                else if (particles[i].go.GetComponent<SPHProperties>().position.x != particles[i].go.transform.position.x || particles[i].go.GetComponent<SPHProperties>().position.z != particles[i].go.transform.position.z)
+                {
+                    Debug.Log("Diff position. SPH position: " + particles[i].go.GetComponent<SPHProperties>().position + ", GO position: " + particles[i].go.transform.position);
                 }
             }
         }

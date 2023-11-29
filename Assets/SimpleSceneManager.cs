@@ -51,6 +51,12 @@ public class SimpleSceneManager : MonoBehaviour
             }
         }
 
+        if (ready)
+        {
+            Invoke("addRVOAgent", 3f);
+            ready = false;
+        }
+
         /*
         if (ready && count < 10000)
         {
@@ -119,6 +125,8 @@ public class SimpleSceneManager : MonoBehaviour
             newAgent.GetComponent<NavMeshAgent>().enabled = false;
             newAgent.GetComponent<NavMeshAgent>().enabled = true;
         }
+
+        //ready = true;
     }
 
     private void addSPHAgents()
