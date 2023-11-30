@@ -73,14 +73,14 @@ public class SPHManagerSingleThread : MonoBehaviour
         public Vector3 position;
         public Vector3 right;
         public Vector3 up;
-        public Vector2 scale;
+        public Vector3 scale;
 
         public void Init(Transform _transform)
         {
             position = _transform.position;
             right = _transform.right;
             up = _transform.up;
-            scale = new Vector2(_transform.lossyScale.x / 2f, _transform.lossyScale.y / 2f);
+            scale = new Vector3(_transform.lossyScale.x / 2f, _transform.lossyScale.y / 2f, _transform.lossyScale.z / 2f);
         }
     }
 
@@ -214,7 +214,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     {
         Vector3 colliderProjection = collider.position - position;
 
-        penetrationNormal = Vector3.Cross(collider.right, collider.up);
+        penetrationNormal = Vector3.Cross(collider.right, collider.up) * collider.scale.z;
         penetrationLength = Mathf.Abs(Vector3.Dot(colliderProjection, penetrationNormal)) - (radius / 2.0f);
         penetrationPosition = collider.position - colliderProjection;
 
