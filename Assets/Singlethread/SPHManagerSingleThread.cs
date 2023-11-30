@@ -35,7 +35,7 @@ public class SPHManagerSingleThread : MonoBehaviour
         public GameObject go;
 
         public void Init(Vector3 _position, Vector3 _goalPosition, int _parameterID, GameObject _go)
-        { 
+        {
             go = _go;
             SPHProperties sp = go.GetComponent<SPHProperties>();
             sp.position = _position;
@@ -56,7 +56,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     [System.Serializable]
     public struct SPHParameters
     {
-        #pragma warning disable 0649 // This line removes the warning saying that the variable is never assigned to. You can't assign a variable in a struct...
+#pragma warning disable 0649 // This line removes the warning saying that the variable is never assigned to. You can't assign a variable in a struct...
         public float particleRadius;
         public float smoothingRadius;
         public float smoothingRadiusSq;
@@ -65,7 +65,7 @@ public class SPHManagerSingleThread : MonoBehaviour
         public float particleMass;
         public float particleViscosity;
         public float particleDrag;
-        #pragma warning restore 0649
+#pragma warning restore 0649
     }
 
     private struct SPHCollider
@@ -123,7 +123,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private void Awake()
     {
         //InitSPH();
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -145,12 +145,12 @@ public class SPHManagerSingleThread : MonoBehaviour
         ComputeDensityPressure();
         ComputeForces();
         Integrate();
-        ComputeColliders();
 
         ApplyPosition();
         ComputeColliders();
 
         CheckVelocityForAnimation();
+        CheckLeftDistance();
 
         if (RVO_SPH)
             RVOagents = NavagentSpawner.Instance.RVOAgents;
@@ -180,7 +180,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private void InitSPH()
     {
         particles = new SPHParticle[amount];
-        
+
         for (int i = 0; i < amount; i++)
         {
             GameObject go = Instantiate(character0Prefab);
@@ -280,7 +280,7 @@ public class SPHManagerSingleThread : MonoBehaviour
 
                 //sp.velocity += sp.forcePhysic * Time.fixedDeltaTime;
                 //sp.position += sp.velocity * Time.fixedDeltaTime;
-                
+
                 Vector3 f = Vector3.ClampMagnitude(sp.forcePhysic, maxAcceleration);
                 sp.velocity += f * Time.fixedDeltaTime;
                 Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
@@ -312,7 +312,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                         if (diff > 0)
                         {
                             //spi.density += parameters[spj.parameterID].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 9.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq - r2, 3.0f);
-                            
+
                             // POLY6 2D
                             spi.density += parameters[spj.parameterID].particleMass * (4.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 8.0f))) * Mathf.Pow(diff, 3.0f);
                         }
@@ -463,7 +463,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                         }
                     }
                 }
-                
+
                 // RVO Agents
                 if (RVO_SPH)
                 {
@@ -571,7 +571,7 @@ public class SPHManagerSingleThread : MonoBehaviour
 
                 //float randPower = UnityEngine.Random.Range(0.5f, 1.5f);
                 Vector3 forceGoal = goalNorm * goalPower;// * randPower;
-                if(spi.goalPosition.x < 0)
+                if (spi.goalPosition.x < 0)
                 {
                     forceGoal = Vector3.zero;
                 }
@@ -579,7 +579,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                 Vector3 Impulse = new Vector3(-10000.0f, 0.0f, 0.0f);
 
                 // Apply
-                
+
                 if (addForce)
                 {
                     if (spi.position.x >= 40.0f && spi.position.x <= 42.0f)
@@ -595,11 +595,11 @@ public class SPHManagerSingleThread : MonoBehaviour
                 {
                     spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
                 }
-                
+
 
                 //spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
                 //if(Vector2.SqrMagnitude(forcePressure / spi.density - new Vector2(spi.forcePhysic.x, spi.forcePhysic.z)) > 50.0f)
-                    //Debug.Log("Pressure Force: " + forcePressure / spi.density + ", Total Force: " + spi.forcePhysic);
+                //Debug.Log("Pressure Force: " + forcePressure / spi.density + ", Total Force: " + spi.forcePhysic);
                 //Debug.Log("Pressure Force: " + forcePressure + ", Total Force: " + spi.forcePhysic);
                 //particles[i].go.transform.rotation = Quaternion.Euler(rotation);
             }
@@ -639,7 +639,7 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void PrintPositions()
     {
-        for(int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < particles.Length; i++)
         {
             if (particles[i].go != null)
             {
@@ -654,4 +654,5 @@ public class SPHManagerSingleThread : MonoBehaviour
             }
         }
     }
+
 }
