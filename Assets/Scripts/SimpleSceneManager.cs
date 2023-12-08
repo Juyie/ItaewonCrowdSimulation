@@ -87,9 +87,11 @@ public class SimpleSceneManager : MonoBehaviour
         newAgent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
         newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
 
+        /*
         NavagentSpawner.Instance.RVOAgents[count].density = 1.0f;
         NavagentSpawner.Instance.RVOAgents[count].pressure = 0.0f;
         NavagentSpawner.Instance.RVOAgents[count].go = newAgent;
+        */
 
         while (!newAgent.GetComponent<NavMeshAgent>().isOnNavMesh)
         {
@@ -116,9 +118,11 @@ public class SimpleSceneManager : MonoBehaviour
         newAgent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
         newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
 
+        /*
         NavagentSpawner.Instance.RVOAgents[count].density = 1.0f;
         NavagentSpawner.Instance.RVOAgents[count].pressure = 0.0f;
         NavagentSpawner.Instance.RVOAgents[count].go = newAgent;
+        */
 
         while (!newAgent.GetComponent<NavMeshAgent>().isOnNavMesh)
         {

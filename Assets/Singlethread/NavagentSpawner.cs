@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DataStructures.ViliWonka.KDTree;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities.UniversalDelegates;
 using UnityEngine;
@@ -12,87 +13,37 @@ public class NavagentSpawner : MonoBehaviour
         get { return instance; }
     }
 
-    public SPHManagerSingleThread SPHManager;
-
-    private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.0f);
-    private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.0f);
-
-    [SerializeField]
-    private GameObject charPrefab = null;
-
-    public int amount = 46 * 3;
-
-    public struct RVOAgent
-    {
-        public float density;
-        public float pressure;
-
-        public GameObject go;
-    }
-    public RVOAgent[] RVOAgents = new RVOAgent[5000];
+    public GameObject[] RVOGameObject;
+    public Vector3[] RVOPointCloud;
+    public KDTree RVOKDTree;
+    public int maxPointsPerLeafNode = 32;
+    public int[] TypeOfSimulation;
 
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance == null)
+        RVOGameObject = new GameObject[4500];
+        RVOPointCloud = new Vector3[4500];
+        TypeOfSimulation = new int[4500];
+
+        if (instance == null)
         {
             instance = this;
         }
-
-        //RVOAgents = new RVOAgent[1];
-        //InitNavAgent();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        UpdateRVO();
+        UpdateKDTree();
     }
 
-    private void UpdateRVO()
+    private void UpdateKDTree()
     {
-        for (int i = 0; i < RVOAgents.Length; i++)
+        for(int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (RVOAgents[i].go != null)
-            {
-                SPHProperties sp = RVOAgents[i].go.GetComponent<SPHProperties>();
+            RVOPointCloud[i] = RVOGameObject[i].transform.position;
+        }
 
-                //RVOAgents[i].density = sp.density;
-                sp.density = RVOAgents[i].density;
-                //RVOAgents[i].pressure = sp.pressure;
-                sp.pressure = RVOAgents[i].pressure;
-            }
-        }
-    }
-
-    private void InitNavAgent()
-    {
-        for(int i = 0; i < amount/2; i++)
-        {
-            GameObject newAgent = Instantiate(charPrefab);
-            newAgent.name += i;
-            //newAgent.transform.position = new Vector3(-20.0f + (i % 46) * 0.2f, 20.0f, -19.5f + (i / 46) % 46 * 0.5f);
-            //newAgent.transform.position = new Vector3(0.0f, 12.0f, 0.0f);
-            newAgent.GetComponent<PlayerMovement>().target = GameObject.Find("SimpleTarget1").transform;
-            newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
-            newAgent.GetComponent<NavMeshAgent>().enabled = true;
-            newAgent.GetComponent<PlayerMovement>().enabled = true;
-            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
-            sp.position = newAgent.transform.position;
-            newAgent.SetActive(true);
-        }
-        for (int j = amount/2; j < amount; j++)
-        {
-            GameObject newAgent = Instantiate(charPrefab);
-            newAgent.name += j;
-            newAgent.transform.position = new Vector3(-20.0f + (j % 46) * 0.2f, 20.0f, 19.5f - (j / 46) % 46 * 0.5f);
-            newAgent.GetComponent<PlayerMovement>().target = GameObject.Find("SimpleTarget1").transform;
-            newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
-            newAgent.GetComponent<NavMeshAgent>().enabled = true;
-            newAgent.GetComponent<PlayerMovement>().enabled = true;
-            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
-            sp.position = newAgent.transform.position;
-            newAgent.SetActive(true);
-        }
+        RVOKDTree.Rebuild();
     }
 }

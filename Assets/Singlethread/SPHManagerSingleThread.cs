@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using DataStructures.ViliWonka.KDTree;
+using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -113,8 +114,13 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private bool addForce = false;
 
-    private NavagentSpawner.RVOAgent[] RVOagents;
     private RagdollSpawner.RagdollAgent[] RagdollAgents;
+
+    private GameObject[] RVOGameObject;
+    private Vector3[] RVOPointCloud;
+    private KDTree RVOKDTree;
+    private KDQuery query;
+    private int[] TypeOfSimulation;
 
     [Header("Interaction")]
     [SerializeField] public bool RVO_SPH;
@@ -131,29 +137,29 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void Start()
     {
-        /*
-        if(RVO_SPH)
-            RVOagents = GameObject.Find("RVOManager").GetComponent<NavagentSpawner>().RVOAgents;
-        if(SPH_RAGDOLL)
-            RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
-        */
-        RVOagents = NavagentSpawner.Instance.RVOAgents;
+        query = new KDQuery();
     }
 
     private void FixedUpdate()
     {
+        RVOGameObject = NavagentSpawner.Instance.RVOGameObject;
+        RVOPointCloud = NavagentSpawner.Instance.RVOPointCloud;
+        RVOKDTree = NavagentSpawner.Instance.RVOKDTree;
+        TypeOfSimulation = NavagentSpawner.Instance.TypeOfSimulation;
+
         ComputeDensityPressure();
         ComputeForces();
         Integrate();
 
-        ApplyPosition();
         ComputeColliders();
+        ApplyPosition();
 
         CheckVelocityForAnimation();
-        CheckLeftDistance();
 
         if (RVO_SPH)
-            RVOagents = NavagentSpawner.Instance.RVOAgents;
+        {
+            
+        }
         if (SPH_RAGDOLL)
             RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
 
@@ -214,8 +220,8 @@ public class SPHManagerSingleThread : MonoBehaviour
     {
         Vector3 colliderProjection = collider.position - position;
 
-        penetrationNormal = Vector3.Cross(collider.right, collider.up) * collider.scale.z;
-        penetrationLength = Mathf.Abs(Vector3.Dot(colliderProjection, penetrationNormal)) - (radius / 2.0f);
+        penetrationNormal = Vector3.Cross(collider.right, collider.up);
+        penetrationLength = Mathf.Abs(Vector3.Dot(colliderProjection, penetrationNormal * collider.scale.z)) - (radius / 2.0f);
         penetrationPosition = collider.position - colliderProjection;
 
         return penetrationLength < 0.0f
@@ -244,9 +250,9 @@ public class SPHManagerSingleThread : MonoBehaviour
             colliders[i].Init(collidersGO[i].transform);
         }
 
-        for (int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (particles[i].go != null)
+            if (TypeOfSimulation[i] == 1)
             {
                 for (int j = 0; j < colliders.Length; j++)
                 {
@@ -255,7 +261,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                     Vector3 penetrationPosition;
                     float penetrationLength;
 
-                    SPHProperties sp = particles[i].go.GetComponent<SPHProperties>();
+                    SPHProperties sp = RVOGameObject[i].GetComponent<SPHProperties>();
                     if (Intersect(colliders[j], sp.position, parameters[sp.parameterID].particleRadius, out penetrationNormal, out penetrationPosition, out penetrationLength))
                     {
                         sp.velocity = DampVelocity(colliders[j], sp.velocity, penetrationNormal, 1.0f - parameters[sp.parameterID].particleDrag);
@@ -270,11 +276,12 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void Integrate()
     {
-        for (int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (particles[i].go != null)
+            // Only SPH agents
+            if (TypeOfSimulation[i] == 1)
             {
-                SPHProperties sp = particles[i].go.GetComponent<SPHProperties>();
+                SPHProperties sp = RVOGameObject[i].GetComponent<SPHProperties>();
                 //sp.velocity += DT * sp.forcePhysic;
                 //sp.position += DT * sp.velocity;
 
@@ -285,6 +292,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                 sp.velocity += f * Time.fixedDeltaTime;
                 Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
                 sp.position += v * Time.fixedDeltaTime;
+                //Debug.Log("Calc v and p) v: " + v + ", p: " + sp.position);
             }
         }
     }
@@ -292,125 +300,28 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void ComputeDensityPressure()
     {
-        for (int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (particles[i].go != null)
+            SPHProperties spi = RVOGameObject[i].GetComponent<SPHProperties>();
+            spi.density = 0.0f;
+
+            List<int> results = new List<int>();
+            query.Radius(RVOKDTree, spi.position, parameters[parameterID].smoothingRadiusSq, results);
+
+            for (int k = 0; k < results.Count; k++)
             {
-                SPHProperties spi = particles[i].go.GetComponent<SPHProperties>();
-                spi.density = 0.0f;
+                Vector2 rij = new Vector2(RVOPointCloud[results[k]].x - spi.position.x, RVOPointCloud[results[k]].z - spi.position.z);
+                float distanceSquared = rij.sqrMagnitude;
+                float diff = parameters[spi.parameterID].smoothingRadiusSq - distanceSquared;
 
-                // SPH Agents
-                for (int j = 0; j < particles.Length; j++)
-                {
-                    if (particles[j].go != null)
-                    {
-                        SPHProperties spj = particles[j].go.GetComponent<SPHProperties>();
-                        Vector2 rij = new Vector2(spj.position.x - spi.position.x, spj.position.z - spi.position.z);
-                        float distanceSquared = rij.sqrMagnitude;
-                        float diff = parameters[spi.parameterID].smoothingRadiusSq - distanceSquared;
-
-                        if (diff > 0)
-                        {
-                            //spi.density += parameters[spj.parameterID].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 9.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq - r2, 3.0f);
-
-                            // POLY6 2D
-                            spi.density += parameters[spj.parameterID].particleMass * (4.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 8.0f))) * Mathf.Pow(diff, 3.0f);
-                        }
-                    }
-                }
-
-                // RVO Agents
-                if (RVO_SPH)
-                {
-                    for (int k = 0; k < RVOagents.Length; k++)
-                    {
-                        if (RVOagents[k].go != null)
-                        {
-                            /*
-                            float xij = Mathf.Abs(RVOagents[k].go.transform.position.x - spi.position.x);
-                            float zij = Mathf.Abs(RVOagents[k].go.transform.position.z - spi.position.z);
-                            if (xij < parameters[spi.parameterID].smoothingRadiusSq && zij < parameters[spi.parameterID].smoothingRadiusSq)
-                            {
-                                Vector2 rij = new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
-                                float r2 = rij.sqrMagnitude;
-
-                                if (r2 < parameters[spi.parameterID].smoothingRadiusSq)
-                                {
-                                    spi.density += parameters[spi.parameterID].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 9.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq - r2, 3.0f);
-                                }
-                            }
-                            */
-                            Vector2 rij = new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
-                            float distanceSquared = rij.sqrMagnitude;
-                            float diff = parameters[spi.parameterID].smoothingRadiusSq - distanceSquared;
-
-                            if (diff > 0)
-                            {
-                                // POLY6 2D
-                                spi.density += parameters[spi.parameterID].particleMass * (4.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 8.0f))) * Mathf.Pow(diff, 3.0f);
-                            }
-                        }
-                    }
-                }
-
-                // Ragdoll Agents
-                if (SPH_RAGDOLL)
-                {
-                    for (int l = 0; l < RagdollAgents.Length; l++)
-                    {
-                        if (RagdollAgents[l].go != null)
-                        {
-                            float xij = Mathf.Abs(RagdollAgents[l].go.transform.position.x - spi.position.x);
-                            float zij = Mathf.Abs(RagdollAgents[l].go.transform.position.z - spi.position.z);
-                            if (xij < parameters[spi.parameterID].smoothingRadiusSq && zij < parameters[spi.parameterID].smoothingRadiusSq)
-                            {
-                                Vector2 rij = new Vector2(RagdollAgents[l].go.transform.position.x - spi.position.x, RagdollAgents[l].go.transform.position.z - spi.position.z);
-                                float r2 = rij.sqrMagnitude;
-
-                                if (r2 < parameters[spi.parameterID].smoothingRadiusSq)
-                                {
-                                    spi.density += parameters[spi.parameterID].particleMass * (315.0f / (64.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 9.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq - r2, 3.0f);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // add the agent itself
-                spi.density += parameters[spi.parameterID].particleMass * (4.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 8.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq, 3.0f);
-
-                // compute pressure
-                spi.pressure = GAS_CONST * (spi.density - parameters[spi.parameterID].restDensity);
-                /*
-                if (spi.position.x < 6 && spi.position.x > -2.0f && spi.position.z > 0 && spi.position.z < 6)
-                {
-                    if (spi.pressure >= 0)
-                    {
-                        spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
-                    }
-                    else
-                    {
-                        spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
-                    }
-                }
-                else
-                {
-                    spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
-                }
-                */
-
-                // pressure color code
-                /*
-                if (spi.pressure >= 0)
-                {
-                    spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
-                }
-                else
-                {
-                    spi.gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
-                }
-                */
+                spi.density += parameters[spi.parameterID].particleMass * (4.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 8.0f))) * Mathf.Pow(diff, 3.0f);
             }
+
+            // add the agent itself
+            spi.density += parameters[spi.parameterID].particleMass * (4.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 8.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq, 3.0f);
+
+            // compute pressure
+            spi.pressure = GAS_CONST * (spi.density - parameters[spi.parameterID].restDensity);
         }
     }
 
@@ -418,191 +329,68 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void ComputeForces()
     {
-        for (int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (particles[i].go != null)
+            Vector2 forcePressure = Vector2.zero;
+            Vector2 forceViscosity = Vector2.zero;
+            SPHProperties spi = RVOGameObject[i].GetComponent<SPHProperties>();
+
+            // Physics
+            List<int> results = new List<int>();
+            query.Radius(RVOKDTree, spi.position, parameters[parameterID].smoothingRadiusSq, results);
+            for (int k = 0; k < results.Count; k++)
             {
-                Vector2 forcePressure = Vector2.zero;
-                Vector2 forceViscosity = Vector2.zero;
-                SPHProperties spi = particles[i].go.GetComponent<SPHProperties>();
+                Vector2 rij = new Vector2(RVOPointCloud[results[k]].x - spi.position.x, RVOPointCloud[results[k]].z - spi.position.z);
+                float distanceSquared = rij.sqrMagnitude;
+                float dist = Mathf.Sqrt(distanceSquared);
+                float rangeMinDist = parameters[spi.parameterID].smoothingRadius - dist;
 
-                // Physics
-                // SPH Agents
-                for (int j = 0; j < particles.Length; j++)
+                SPHProperties spk = RVOGameObject[k].GetComponent<SPHProperties>();
+                forcePressure += (parameters[spi.parameterID].particleMass * (spi.pressure + spk.pressure) / (2.0f * spk.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(spk.position.x - spi.position.x, spk.position.z - spi.position.z)) / spi.density;
+                forceViscosity += (parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (360.0f / (29.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist / spk.density * (new Vector2(RVOGameObject[k].GetComponent<NavMeshAgent>().velocity.x - spi.velocity.x, RVOGameObject[k].GetComponent<NavMeshAgent>().velocity.z - spi.velocity.z))) / spi.density;
+                Debug.Log("In For Loop) FP: " + forcePressure + ", FV: " + forceViscosity);
+            }
+            Debug.Log("FP: " + forcePressure + ", FV: " + forceViscosity);
+
+            Vector3 forceGravity = GRAVITY * parameters[spi.parameterID].gravityMult;
+            Vector3 goalNorm;
+            Vector3 rotation;
+
+            goalNorm = (spi.goalPosition - spi.position).normalized;
+            rotation = new Vector3(0.0f, spi.forcePhysic.normalized.y + 180.0f, 0.0f);
+
+
+            //float randPower = UnityEngine.Random.Range(0.5f, 1.5f);
+            Vector3 forceGoal = goalNorm * goalPower;// * randPower;
+            /*
+            if (spi.goalPosition.x < 0)
+            {
+                forceGoal = Vector3.zero;
+            }
+            */
+
+            Vector3 Impulse = new Vector3(-10000.0f, 0.0f, 0.0f);
+
+            // Apply
+
+            if (addForce)
+            {
+                if (spi.position.x >= 40.0f && spi.position.x <= 42.0f)
                 {
-                    if (particles[j].go != null)
-                    {
-                        SPHProperties spj = particles[j].go.GetComponent<SPHProperties>();
-                        if (i == j) continue;
-
-                        Vector2 rij = new Vector2(spj.position.x - spi.position.x, spj.position.z - spi.position.z);
-                        float distanceSquared = rij.sqrMagnitude;
-                        float dist = Mathf.Sqrt(distanceSquared);
-                        float diff = parameters[spi.parameterID].smoothingRadiusSq - distanceSquared;
-                        float rangeMinDist = parameters[spi.parameterID].smoothingRadius - dist;
-
-                        if (diff > 0)
-                        {
-                            /*
-                            forcePressure += -rij.normalized * parameters[spi.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f);
-                            //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (particles[j].velocity - particles[i].velocity) / particles[j].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
-                            forceViscosity += parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (new Vector2(spj.velocity.x - spi.velocity.x, spj.velocity.z - spi.velocity.z)) / spj.density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * (parameters[spi.parameterID].smoothingRadius - r);
-                            */
-
-                            // compute pressure
-                            if (spi.pressure > 0)
-                            {
-                                //forcePressure += -rij.normalized * parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f) / r;
-                                forcePressure += parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(spj.position.x - spi.position.x, spj.position.z - spi.position.z);
-                                //Debug.Log("SPH Pressure: " + spj.pressure + ", Density: " + spj.density);
-                            }
-
-                            // compute viscosity
-                            //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (particles[j].velocity - particles[i].velocity) / particles[j].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
-                            forceViscosity += parameters[spi.parameterID].particleViscosity * parameters[spj.parameterID].particleMass * (360.0f / (29.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist / spj.density * (new Vector2(spj.velocity.x - spi.velocity.x, spj.velocity.z - spi.velocity.z));
-                        }
-                    }
-                }
-
-                // RVO Agents
-                if (RVO_SPH)
-                {
-                    for (int k = 0; k < RVOagents.Length; k++)
-                    {
-                        if (RVOagents[k].go != null)
-                        {
-                            /*
-                            float xij = Mathf.Abs(RVOagents[k].go.transform.position.x - spi.position.x);
-                            float zij = Mathf.Abs(RVOagents[k].go.transform.position.z - spi.position.z);
-                            if (xij < parameters[spi.parameterID].smoothingRadiusSq && zij < parameters[spi.parameterID].smoothingRadiusSq)
-                            {
-                                //Vector3 rij = RVOagents[k].go.transform.position - particles[i].position;
-                                Vector2 rij = new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
-                                float r2 = rij.sqrMagnitude;
-                                float r = Mathf.Sqrt(r2);
-
-                                if (r < parameters[spi.parameterID].smoothingRadius)
-                                {
-                                    forcePressure += -rij.normalized * parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f);
-                                    //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (RVOagents[k].go.GetComponent<NavMeshAgent>().velocity - particles[i].velocity) / RVOagents[k].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
-                                    forceViscosity += parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (new Vector2(RVOagents[k].go.GetComponent<NavMeshAgent>().velocity.x - spi.velocity.x, RVOagents[k].go.GetComponent<NavMeshAgent>().velocity.z - spi.velocity.z)) / RVOagents[k].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * (parameters[spi.parameterID].smoothingRadius - r);
-                                }
-                            }
-                            */
-                            Vector2 rij = new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
-                            float distanceSquared = rij.sqrMagnitude;
-                            float dist = Mathf.Sqrt(distanceSquared);
-                            float diff = parameters[spi.parameterID].smoothingRadiusSq - distanceSquared;
-                            float rangeMinDist = parameters[spi.parameterID].smoothingRadius - dist;
-
-                            Vector2 tempPressure = Vector2.zero;
-
-                            if (diff > 0)
-                            {
-                                // compute pressure
-                                if (spi.pressure > 0)
-                                {
-                                    //forcePressure += -rij.normalized * parameters[spj.parameterID].particleMass * (spi.pressure + spj.pressure) / (2.0f * spj.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f) / r;
-                                    forcePressure += parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
-                                    tempPressure += parameters[spi.parameterID].particleMass * (spi.pressure + RVOagents[k].pressure) / (2.0f * RVOagents[k].density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(RVOagents[k].go.transform.position.x - spi.position.x, RVOagents[k].go.transform.position.z - spi.position.z);
-                                    //Debug.Log("RVO Pressure: " + RVOagents[k].pressure + ", Density: " + RVOagents[k].density);
-                                }
-
-                                //Debug.Log("RVO Pressure: " + tempPressure);
-
-                                // compute viscosity
-                                //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (particles[j].velocity - particles[i].velocity) / particles[j].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
-                                forceViscosity += parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (360.0f / (29.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist / RVOagents[k].density * (new Vector2(RVOagents[k].go.GetComponent<NavMeshAgent>().velocity.x - spi.velocity.x, RVOagents[k].go.GetComponent<NavMeshAgent>().velocity.z - spi.velocity.z));
-                            }
-                        }
-                    }
-                }
-
-                // Ragdoll Agents
-                if (SPH_RAGDOLL)
-                {
-                    for (int l = 0; l < RagdollAgents.Length; l++)
-                    {
-                        if (RagdollAgents[l].go != null)
-                        {
-                            float xij = Mathf.Abs(RagdollAgents[l].go.transform.position.x - spi.position.x);
-                            float zij = Mathf.Abs(RagdollAgents[l].go.transform.position.z - spi.position.z);
-                            if (xij < parameters[spi.parameterID].smoothingRadiusSq && zij < parameters[spi.parameterID].smoothingRadiusSq)
-                            {
-                                //Vector3 rij = RVOagents[k].go.transform.position - particles[i].position;
-                                Vector2 rij = new Vector2(RagdollAgents[l].go.transform.position.x - spi.position.x, RagdollAgents[l].go.transform.position.z - spi.position.z);
-                                float r2 = rij.sqrMagnitude;
-                                float r = Mathf.Sqrt(r2);
-
-                                if (r < parameters[spi.parameterID].smoothingRadius)
-                                {
-                                    forcePressure += -rij.normalized * parameters[spi.parameterID].particleMass * (spi.pressure + RagdollAgents[l].pressure) / (2.0f * RagdollAgents[l].density) * (-45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadius - r, 2.0f);
-                                    //forceViscosity += parameters[particles[i].parameterID].particleViscosity * parameters[particles[i].parameterID].particleMass * (RVOagents[k].go.GetComponent<NavMeshAgent>().velocity - particles[i].velocity) / RVOagents[k].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[particles[i].parameterID].smoothingRadius, 6.0f))) * (parameters[particles[i].parameterID].smoothingRadius - r);
-                                    forceViscosity += parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (new Vector2(RagdollAgents[l].go.GetComponent<NavMeshAgent>().velocity.x - spi.velocity.x, RagdollAgents[l].go.GetComponent<NavMeshAgent>().velocity.z - spi.velocity.z)) / RagdollAgents[l].density * (45.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 6.0f))) * (parameters[spi.parameterID].smoothingRadius - r);
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-                Vector3 forceGravity = GRAVITY * spi.density * parameters[spi.parameterID].gravityMult;
-                //Vector3 forceGravity = GRAVITY;
-                //Vector3 goalNorm = (particles[i].goalPosition - particles[i].position).normalized;
-                Vector3 goalNorm;
-                Vector3 rotation;
-                /*
-                if (i % spawnPositions.Length <= 45)
-                {
-                    Vector3 goalPos = new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), 0.0f, goalPos1.z);
-                    goalNorm = (goalPos - particles[i].position).normalized;
-                    rotation = new Vector3(0.0f, particles[i].forcePhysic.normalized.y, 0.0f);
-                }
-                else
-                {
-                    Vector3 goalPos = new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), 0.0f, goalPos2.z);
-                    goalNorm = (goalPos - particles[i].position).normalized;
-                    rotation = new Vector3(0.0f, particles[i].forcePhysic.normalized.y + 180.0f, 0.0f);
-                }
-                */
-                goalNorm = (spi.goalPosition - spi.position).normalized;
-                rotation = new Vector3(0.0f, spi.forcePhysic.normalized.y + 180.0f, 0.0f);
-
-
-                //float randPower = UnityEngine.Random.Range(0.5f, 1.5f);
-                Vector3 forceGoal = goalNorm * goalPower;// * randPower;
-                if (spi.goalPosition.x < 0)
-                {
-                    forceGoal = Vector3.zero;
-                }
-
-                Vector3 Impulse = new Vector3(-10000.0f, 0.0f, 0.0f);
-
-                // Apply
-
-                if (addForce)
-                {
-                    if (spi.position.x >= 40.0f && spi.position.x <= 42.0f)
-                    {
-                        spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density + Impulse;
-                    }
-                    else
-                    {
-                        spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
-                    }
+                    spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density + Impulse;
                 }
                 else
                 {
                     spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
                 }
-
-
-                //spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
-                //if(Vector2.SqrMagnitude(forcePressure / spi.density - new Vector2(spi.forcePhysic.x, spi.forcePhysic.z)) > 50.0f)
-                //Debug.Log("Pressure Force: " + forcePressure / spi.density + ", Total Force: " + spi.forcePhysic);
-                //Debug.Log("Pressure Force: " + forcePressure + ", Total Force: " + spi.forcePhysic);
-                //particles[i].go.transform.rotation = Quaternion.Euler(rotation);
             }
+            else
+            {
+                spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity);
+                //Debug.Log("FP: " + forcePressure + ", FG: " + forceGoal + ", TF: " + spi.forcePhysic);
+            }
+
+            //Debug.Log("Force: " + spi.forcePhysic);
         }
     }
 
@@ -610,28 +398,28 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void ApplyPosition()
     {
-        for (int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (particles[i].go != null)
+            if (TypeOfSimulation[i] == 1)
             {
-                particles[i].go.transform.position = particles[i].go.GetComponent<SPHProperties>().position + new Vector3(0.0f, -parameters[0].particleRadius / 2, 0.0f);
+                RVOGameObject[i].transform.position = RVOGameObject[i].GetComponent<SPHProperties>().position + new Vector3(0.0f, -parameters[0].particleRadius / 2, 0.0f);
             }
         }
     }
 
     private void CheckVelocityForAnimation()
     {
-        for (int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (particles[i].go != null)
+            if (TypeOfSimulation[i] == 1)
             {
-                if (particles[i].go.GetComponent<SPHProperties>().velocity.magnitude > 0.1f)
+                if (RVOGameObject[i].GetComponent<SPHProperties>().velocity.magnitude > 0.1f)
                 {
-                    particles[i].go.GetComponent<Animator>().SetBool("isWalking", true);
+                    RVOGameObject[i].GetComponent<Animator>().SetBool("isWalking", true);
                 }
                 else
                 {
-                    particles[i].go.GetComponent<Animator>().SetBool("isWalking", false);
+                    RVOGameObject[i].GetComponent<Animator>().SetBool("isWalking", false);
                 }
             }
         }
@@ -639,17 +427,17 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void PrintPositions()
     {
-        for (int i = 0; i < particles.Length; i++)
+        for (int i = 0; i < RVOGameObject.Length; i++)
         {
-            if (particles[i].go != null)
+            if (TypeOfSimulation[i] == 1)
             {
-                if (particles[i].go.GetComponent<SPHProperties>().position.x == particles[i].go.transform.position.x && particles[i].go.GetComponent<SPHProperties>().position.z == particles[i].go.transform.position.z)
+                if (RVOGameObject[i].GetComponent<SPHProperties>().position.x == RVOGameObject[i].transform.position.x && RVOGameObject[i].GetComponent<SPHProperties>().position.z == RVOGameObject[i].transform.position.z)
                 {
                     Debug.Log("Same Position");
                 }
-                else if (particles[i].go.GetComponent<SPHProperties>().position.x != particles[i].go.transform.position.x || particles[i].go.GetComponent<SPHProperties>().position.z != particles[i].go.transform.position.z)
+                else if (RVOGameObject[i].GetComponent<SPHProperties>().position.x != RVOGameObject[i].transform.position.x || RVOGameObject[i].GetComponent<SPHProperties>().position.z != RVOGameObject[i].transform.position.z)
                 {
-                    Debug.Log("Diff position. SPH position: " + particles[i].go.GetComponent<SPHProperties>().position + ", GO position: " + particles[i].go.transform.position);
+                    Debug.Log("Diff position. SPH position: " + RVOGameObject[i].GetComponent<SPHProperties>().position + ", GO position: " + RVOGameObject[i].transform.position);
                 }
             }
         }

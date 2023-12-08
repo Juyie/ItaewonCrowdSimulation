@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DataStructures.ViliWonka.KDTree;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,15 +20,6 @@ public class SpawnAgents : MonoBehaviour
 
     [SerializeField]
     private SPHManagerSingleThread SPHManager;
-
-    public struct RVOAgent
-    {
-        public float density;
-        public float pressure;
-        public GameObject go;
-    }
-
-    public RVOAgent[] RVOAgents;
 
     private bool isReady = true;
     private Vector3 randPos;
@@ -50,7 +42,7 @@ public class SpawnAgents : MonoBehaviour
     {
         if (isReady && isOn)
         {
-            StartCoroutine(Spawn());
+            //StartCoroutine(Spawn());
             isReady = false;
         }
 
@@ -71,6 +63,7 @@ public class SpawnAgents : MonoBehaviour
 
     private void UpdateRVO()
     {
+        /*
         RVOAgents = new RVOAgent[GameObject.Find("RVOAgents").transform.childCount];
 
         for (int i = 0; i < GameObject.Find("RVOAgents").transform.childCount; i++)
@@ -82,6 +75,7 @@ public class SpawnAgents : MonoBehaviour
             RVOAgents[i].pressure = sp.pressure;
             RVOAgents[i].go = go;
         }
+        */
     }
 
     IEnumerator Spawn()
@@ -102,9 +96,12 @@ public class SpawnAgents : MonoBehaviour
         sp.position = newAgent.transform.position;
         newAgent.SetActive(true);
 
-        NavagentSpawner.Instance.RVOAgents[count].density = 1.0f;
-        NavagentSpawner.Instance.RVOAgents[count].pressure = 0.0f;
-        NavagentSpawner.Instance.RVOAgents[count].go = newAgent;
+        NavagentSpawner.Instance.RVOGameObject[count] = newAgent;
+        NavagentSpawner.Instance.RVOPointCloud[count] = sp.position;
+        if(count % 10 == 0)
+        {
+            NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
+        }
 
         // color code
         //Color randColor = Random.ColorHSV(0, 1, 1, 1);

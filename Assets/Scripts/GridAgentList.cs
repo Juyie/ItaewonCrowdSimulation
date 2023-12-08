@@ -82,11 +82,26 @@ public class GridAgentList : MonoBehaviour
             agent.GetComponent<NavMeshObstacle>().enabled = true;
             agent.GetComponent<SPHProperties>().position = agent.transform.position;
             agent.transform.parent = GameObject.Find("SPHAgents").transform;
-            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].go = null;
-            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].pressure = 0.0f;
-            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].density = 1.0f;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 1;
             SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+        }
+    }
+
+    public void CheckAndTurnOnSPH()
+    {
+        for (int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)
+        {
+            GameObject agent = NavagentSpawner.Instance.RVOGameObject[i];
+            if (agent.GetComponent<SPHProperties>().density > 4)
+            {
+                agent.GetComponent <NavMeshAgent>().enabled = false;
+                agent.GetComponent<NavMeshObstacle>().enabled |= true;
+                agent.GetComponent<SPHProperties>().position = agent.transform.position;
+                agent.transform.parent = GameObject.Find("SPHAgents").transform;
+                NavagentSpawner.Instance.TypeOfSimulation[i] = 1;
+                agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            }
         }
     }
 
@@ -102,9 +117,7 @@ public class GridAgentList : MonoBehaviour
             agent.GetComponent<NavMeshObstacle>().enabled = false;
             agent.GetComponent<SPHProperties>().position = agent.transform.position;
             agent.transform.parent = GameObject.Find("RVOAgents").transform;
-            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].go = agent;
-            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].pressure = agent.GetComponent<SPHProperties>().pressure;
-            NavagentSpawner.Instance.RVOAgents[int.Parse(agent.name.Substring(23))].density = agent.GetComponent<SPHProperties>().density;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 0;
             InitSPH(int.Parse(agent.name.Substring(23)), agent);
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
         }

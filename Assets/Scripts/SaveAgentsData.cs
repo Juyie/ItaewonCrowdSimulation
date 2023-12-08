@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DataStructures.ViliWonka.KDTree;
 using UnityEngine;
 using System.IO;
 using UnityEngine.AI;
@@ -29,7 +30,7 @@ public class SaveAgentsData : MonoBehaviour
 
     private static SaveAgentsData instance;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
         if (load)
@@ -90,8 +91,8 @@ public class SaveAgentsData : MonoBehaviour
     {
         string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata3000.json";
 
-            string saveFile = File.ReadAllText(path);
-            AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
+        string saveFile = File.ReadAllText(path);
+        AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         for (int i = 0; i < data.positions.Length; i++)
         {
@@ -106,12 +107,49 @@ public class SaveAgentsData : MonoBehaviour
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
             newAgent.SetActive(true);
+
+            NavagentSpawner.Instance.RVOGameObject[i] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[i] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[i] = 0;
+
             displayAgentNumber.agentNumber++;
         }
+
+        for (int i = 0; i < data.positions.Length / 2 - 3; i++)
+        {
+            GameObject newAgent = Instantiate(agentPf);
+            newAgent.name += i + data.positions.Length;
+            newAgent.transform.position = data.positions[i];
+            newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
+            newAgent.GetComponent<PlayerMovement>().target = GameObject.Find(data.targetPosNames[i]).transform;
+            newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
+            newAgent.GetComponent<NavMeshAgent>().enabled = true;
+            newAgent.GetComponent<PlayerMovement>().enabled = true;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            newAgent.SetActive(true);
+
+            NavagentSpawner.Instance.RVOGameObject[i + data.positions.Length] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[i + data.positions.Length] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[i + data.positions.Length] = 0;
+
+            displayAgentNumber.agentNumber++;
+        }
+
+        //DebugRVOGameObject();
+        NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
     }
 
     private RecorderWindow GetRecorderWindow()
     {
         return (RecorderWindow)EditorWindow.GetWindow(typeof(RecorderWindow));
+    }
+
+    private void DebugRVOGameObject()
+    {
+        for(int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)
+        {
+            Debug.Log(NavagentSpawner.Instance.RVOGameObject[i]);
+        }
     }
 }
