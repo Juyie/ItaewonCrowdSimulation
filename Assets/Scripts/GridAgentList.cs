@@ -83,7 +83,7 @@ public class GridAgentList : MonoBehaviour
             agent.GetComponent<SPHProperties>().position = agent.transform.position;
             agent.transform.parent = GameObject.Find("SPHAgents").transform;
             NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 1;
-            SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
+            //SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
         }
     }
