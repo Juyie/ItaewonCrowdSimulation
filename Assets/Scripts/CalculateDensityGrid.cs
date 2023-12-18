@@ -30,9 +30,9 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
-        criteriaAgentNumSPH = Mathf.FloorToInt(area * 5);
+        criteriaAgentNumSPH = Mathf.FloorToInt(area * 6);
         criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 300);
-        criteriaSatisfyNum = Mathf.FloorToInt(area * 2);
+        criteriaSatisfyNum = Mathf.FloorToInt(area * 4);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
 
