@@ -408,7 +408,7 @@ public class SPHManagerSingleThread : MonoBehaviour
         {
             if (TypeOfSimulation[i] == 1)
             {
-                RVOGameObject[i].transform.position = RVOGameObject[i].GetComponent<SPHProperties>().position + new Vector3(0.0f, parameters[0].particleRadius / 2, 0.0f);
+                RVOGameObject[i].transform.position = RVOGameObject[i].GetComponent<SPHProperties>().position;// + new Vector3(0.0f, parameters[0].particleRadius / 2, 0.0f);
             }
         }
     }
