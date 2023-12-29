@@ -23,7 +23,10 @@ public class SaveAgentsData : MonoBehaviour
     private bool load;
 
     [SerializeField]
-    GameObject agentPf;
+    GameObject MAgentPf;
+
+    [SerializeField]
+    GameObject WMAgentPf;
 
     [SerializeField]
     private DisplayAgentNumber displayAgentNumber;
@@ -80,7 +83,7 @@ public class SaveAgentsData : MonoBehaviour
 
             string saveJson = JsonUtility.ToJson(data);
 
-            File.WriteAllText(path + "agentdata3000.json", saveJson);
+            File.WriteAllText(path + "agentdata9000.json", saveJson);
             RecorderWindow recorderWindow = GetRecorderWindow();
             recorderWindow.StopRecording();
             Debug.Log("data save");
@@ -89,14 +92,24 @@ public class SaveAgentsData : MonoBehaviour
 
     public void JsonLoad()
     {
-        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata3000.json";
+        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata9000.json";
 
         string saveFile = File.ReadAllText(path);
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
+        Debug.Log(data.positions.Length);
+
         for (int i = 0; i < data.positions.Length; i++)
         {
-            GameObject newAgent = Instantiate(agentPf);
+            GameObject newAgent;
+            if (i % 2 == 0)
+            {
+                newAgent = Instantiate(MAgentPf);
+            }
+            else
+            {
+                newAgent = Instantiate(WMAgentPf);
+            }
             newAgent.name += i;
             newAgent.transform.position = data.positions[i];
             newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
@@ -114,10 +127,19 @@ public class SaveAgentsData : MonoBehaviour
 
             displayAgentNumber.agentNumber++;
         }
-
-        for (int i = 0; i < data.positions.Length / 2 - 3; i++)
+        /*
+        //for (int i = 0; i < data.positions.Length / 2 - 3; i++)
+        for (int i = 0; i < data.positions.Length; i++)
         {
-            GameObject newAgent = Instantiate(agentPf);
+            GameObject newAgent;
+            if (i % 2 == 0)
+            {
+                newAgent = Instantiate(MAgentPf);
+            }
+            else
+            {
+                newAgent = Instantiate(WMAgentPf);
+            }
             newAgent.name += i + data.positions.Length;
             newAgent.transform.position = data.positions[i];
             newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
@@ -135,7 +157,7 @@ public class SaveAgentsData : MonoBehaviour
 
             displayAgentNumber.agentNumber++;
         }
-
+        */
         //DebugRVOGameObject();
         NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
     }
