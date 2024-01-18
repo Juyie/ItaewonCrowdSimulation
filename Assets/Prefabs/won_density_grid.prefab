@@ -102,7 +102,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6184539459191869098}
   - component: {fileID: 1640812861005709898}
-  - component: {fileID: 4689579706792385715}
   m_Layer: 0
   m_Name: Ch22_Pants
   m_TagString: Untagged
@@ -189,52 +188,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00046418607, y: -0.44272363, z: -0.026063375}
     m_Extent: {x: 0.17518546, y: 0.55862164, z: 0.18096513}
   m_DirtyAABB: 0
---- !u!114 &4689579706792385715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201831629139756389}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodies:
-  - {fileID: 6372579108285092590}
-  - {fileID: 6501263033744366245}
-  - {fileID: 636981621568426368}
-  - {fileID: 3455828172761583845}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 1, a: 1}
-    key1: {r: 0, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
-    key3: {r: 1, g: 1, b: 0, a: 0}
-    key4: {r: 1, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 16384
-    ctime2: 32768
-    ctime3: 49151
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 5
-    m_NumAlphaKeys: 2
 --- !u!1 &429823043040965735
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +232,7 @@ GameObject:
   - component: {fileID: 6910103179048688803}
   - component: {fileID: 6002418557990675726}
   - component: {fileID: 2727059032024251937}
+  - component: {fileID: 3950045032570197876}
   m_Layer: 0
   m_Name: mixamorig2:Head
   m_TagString: Head
@@ -312,8 +266,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.118923105
-  m_Center: {x: -4.0211746e-15, y: 0.1, z: 0.040723484}
+  m_Radius: 0.10099136
+  m_Center: {x: -0.0018875798, y: 0.099999994, z: 0.045442365}
 --- !u!54 &6910103179048688803
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -388,6 +342,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &3950045032570197876
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481581779689584916}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1009914, y: 0.0504957, z: 0.1009914}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.00188758, y: 0.09999999, z: 0.04544237}
+  m_TimeToStationary: 0.5
 --- !u!1 &612677855958944890
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +402,7 @@ GameObject:
   - component: {fileID: 7642072514400609121}
   - component: {fileID: 4494683726612883715}
   - component: {fileID: 876528548271190045}
+  - component: {fileID: 2042656638611690606}
   m_Layer: 0
   m_Name: mixamorig2:RightUpLeg
   m_TagString: Right Hips
@@ -464,8 +435,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.08
-  m_Height: 0.4286312
+  m_Radius: 0.06091024
+  m_Height: 0.4286501
   m_Direction: 1
   m_Center: {x: 0, y: 0.2143156, z: 0}
 --- !u!54 &7642072514400609121
@@ -542,6 +513,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &2042656638611690606
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636981621568426368}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.06091024, y: 0.21432506, z: 0.06091024}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.2143156, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &879948366530500865
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +783,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3735978056601449517}
   - component: {fileID: 5548488932375253027}
-  - component: {fileID: 1956181774118640864}
   m_Layer: 0
   m_Name: Ch22_Body
   m_TagString: Untagged
@@ -930,53 +916,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000044822693, y: -0.32329133, z: 0.03084375}
     m_Extent: {x: 0.83994347, y: 0.8641908, z: 0.1552519}
   m_DirtyAABB: 0
---- !u!114 &1956181774118640864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1943841767650091624}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodies:
-  - {fileID: 3418911056376373307}
-  - {fileID: 6148179703956465666}
-  - {fileID: 481581779689584916}
-  - {fileID: 6368063029469697229}
-  - {fileID: 7512361704748135520}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 1, a: 1}
-    key1: {r: 0, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
-    key3: {r: 1, g: 1, b: 0, a: 0}
-    key4: {r: 1, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 16384
-    ctime2: 32768
-    ctime3: 49151
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 5
-    m_NumAlphaKeys: 2
 --- !u!1 &2174835878296245142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,6 +1050,7 @@ GameObject:
   - component: {fileID: 270302977403472793}
   - component: {fileID: 2127598091931373756}
   - component: {fileID: 3415596692764407022}
+  - component: {fileID: 2402435689795144337}
   m_Layer: 0
   m_Name: mixamorig2:Hips
   m_TagString: Pelvis
@@ -1147,8 +1087,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3127985, y: 0.36298776, z: 0.226061}
-  m_Center: {x: -0.000008314848, y: 0.1317966, z: -0.007201202}
+  m_Size: {x: 0.257807, y: 0.36298776, z: 0.1576581}
+  m_Center: {x: -0.0055105947, y: 0.13179658, z: 0.027000293}
 --- !u!54 &2127598091931373756
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1178,6 +1118,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &2402435689795144337
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697788703191879550}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1289035, y: 0.1814939, z: 0.07882905}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.005510595, y: 0.1317966, z: 0.02700029}
+  m_TimeToStationary: 0.5
 --- !u!1 &2738330705526270224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1363,7 @@ GameObject:
   - component: {fileID: 9130932816479520493}
   - component: {fileID: 8049369916902105082}
   - component: {fileID: 29272418635390611}
+  - component: {fileID: 2064668632189265457}
   m_Layer: 0
   m_Name: mixamorig2:LeftArm
   m_TagString: Left Arm
@@ -1439,10 +1396,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
+  m_Radius: 0.038296614
   m_Height: 0.25510347
   m_Direction: 1
-  m_Center: {x: 0, y: 0.12755173, z: 0}
+  m_Center: {x: -0.0000000016701475, y: 0.12755169, z: 0.006605379}
 --- !u!54 &9130932816479520493
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1517,6 +1474,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &2064668632189265457
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3418911056376373307}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.03829661, y: 0.12755175, z: 0.03829661}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.000000001670147, y: 0.1275517, z: 0.006605379}
+  m_TimeToStationary: 0.5
 --- !u!1 &3434544020466269205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1534,7 @@ GameObject:
   - component: {fileID: 9220384405935299207}
   - component: {fileID: 1282841932990403780}
   - component: {fileID: 2479745783026311758}
+  - component: {fileID: 6638722338723837397}
   m_Layer: 0
   m_Name: mixamorig2:RightLeg
   m_TagString: Right Knee
@@ -1593,8 +1567,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.08
-  m_Height: 0.5042391
+  m_Radius: 0.04990599
+  m_Height: 0.5040466
   m_Direction: 1
   m_Center: {x: 0, y: 0.25211954, z: 0}
 --- !u!54 &9220384405935299207
@@ -1671,6 +1645,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &6638722338723837397
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455828172761583845}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.04990599, y: 0.2520233, z: 0.04990599}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.2521195, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3499280735905147579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,6 +1988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063301543419260743}
   - component: {fileID: 4970169627166590694}
+  - component: {fileID: 6696200339138750986}
   m_Layer: 0
   m_Name: Ch22_Hair
   m_TagString: Untagged
@@ -2077,6 +2068,66 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0027840994, y: 0.32931727, z: 0.022792459}
     m_Extent: {x: 0.09448545, y: 0.11216265, z: 0.13828427}
   m_DirtyAABB: 0
+--- !u!114 &6696200339138750986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4607873267184077458}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyParts:
+  - {fileID: 2697788703191879550}
+  - {fileID: 6372579108285092590}
+  - {fileID: 6501263033744366245}
+  - {fileID: 636981621568426368}
+  - {fileID: 3455828172761583845}
+  - {fileID: 8432030651704551419}
+  - {fileID: 3418911056376373307}
+  - {fileID: 6148179703956465666}
+  - {fileID: 481581779689584916}
+  - {fileID: 6368063029469697229}
+  - {fileID: 7512361704748135520}
+  colorParts:
+  - {fileID: 4607873267184077458}
+  - {fileID: 1943841767650091624}
+  - {fileID: 6821191596904646307}
+  - {fileID: 201831629139756389}
+  - {fileID: 5949712930125628001}
+  - {fileID: 1044441700328265263}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 1, a: 1}
+    key1: {r: 0, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 1, b: 0, a: 0}
+    key3: {r: 1, g: 1, b: 0, a: 0}
+    key4: {r: 1, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16384
+    ctime2: 32768
+    ctime3: 49151
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
 --- !u!1 &4772832974894005195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2323,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2011298120027824406}
   - component: {fileID: 208942910911489679}
-  - component: {fileID: 4039181148942465052}
   m_Layer: 0
   m_Name: Ch22_Shirt
   m_TagString: Untagged
@@ -2360,50 +2410,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0034113675, y: 0.2744546, z: 0.039683163}
     m_Extent: {x: 0.33474642, y: 0.23919404, z: 0.1262914}
   m_DirtyAABB: 0
---- !u!114 &4039181148942465052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949712930125628001}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodies:
-  - {fileID: 2697788703191879550}
-  - {fileID: 8432030651704551419}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 1, a: 1}
-    key1: {r: 0, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
-    key3: {r: 1, g: 1, b: 0, a: 0}
-    key4: {r: 1, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 16384
-    ctime2: 32768
-    ctime3: 49151
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 5
-    m_NumAlphaKeys: 2
 --- !u!1 &6094900579287778027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,6 +2453,7 @@ GameObject:
   - component: {fileID: 5149265935054857727}
   - component: {fileID: 2404738819668285309}
   - component: {fileID: 6487288448048281050}
+  - component: {fileID: 3616094933997412534}
   m_Layer: 0
   m_Name: mixamorig2:LeftForeArm
   m_TagString: Left Elbow
@@ -2479,10 +2486,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
+  m_Radius: 0.03546137
   m_Height: 0.42736286
   m_Direction: 1
-  m_Center: {x: 0, y: 0.21368143, z: 0}
+  m_Center: {x: -1.5186273e-10, y: 0.21368143, z: 0.00000005489801}
 --- !u!54 &5149265935054857727
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2557,6 +2564,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &3616094933997412534
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148179703956465666}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.03546137, y: 0.21368144, z: 0.03546137}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.518627e-10, y: 0.2136814, z: 0.00000005489801}
+  m_TimeToStationary: 0.5
 --- !u!1 &6314226564615120807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2623,7 @@ GameObject:
   - component: {fileID: 3009136545059037160}
   - component: {fileID: 3443508785859931351}
   - component: {fileID: 3975635324504035025}
+  - component: {fileID: 6515279456901312695}
   m_Layer: 0
   m_Name: mixamorig2:RightArm
   m_TagString: Right Arm
@@ -2632,8 +2656,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
-  m_Height: 0.25508934
+  m_Radius: 0.03829661
+  m_Height: 0.2551035
   m_Direction: 1
   m_Center: {x: 0, y: 0.12754467, z: 0}
 --- !u!54 &3009136545059037160
@@ -2710,6 +2734,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &6515279456901312695
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368063029469697229}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.03829661, y: 0.12755175, z: 0.03829661}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.1275447, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6372579108285092590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,6 +2763,7 @@ GameObject:
   - component: {fileID: 3911533225940143691}
   - component: {fileID: 7670639382116665851}
   - component: {fileID: 7016846118429617327}
+  - component: {fileID: 4834430036853098313}
   m_Layer: 0
   m_Name: mixamorig2:LeftUpLeg
   m_TagString: Left Hips
@@ -2755,10 +2796,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.08
-  m_Height: 0.4286503
+  m_Radius: 0.060910244
+  m_Height: 0.42865014
   m_Direction: 1
-  m_Center: {x: 0, y: 0.21432514, z: 0}
+  m_Center: {x: 0.0027174007, y: 0.21432461, z: 0.005467245}
 --- !u!54 &3911533225940143691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2833,6 +2874,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &4834430036853098313
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372579108285092590}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.06091024, y: 0.21432506, z: 0.06091024}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.002717401, y: 0.2143246, z: 0.005467245}
+  m_TimeToStationary: 0.5
 --- !u!1 &6501263033744366245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,6 +2903,7 @@ GameObject:
   - component: {fileID: 4427626598535178670}
   - component: {fileID: 7797766228250582779}
   - component: {fileID: 5873084232394354361}
+  - component: {fileID: 3927300640269821468}
   m_Layer: 0
   m_Name: mixamorig2:LeftLeg
   m_TagString: Left Knee
@@ -2878,10 +2936,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.08
+  m_Radius: 0.04990599
   m_Height: 0.50404656
   m_Direction: 1
-  m_Center: {x: 0, y: 0.25202328, z: 0}
+  m_Center: {x: 0.0082246605, y: 0.2520231, z: -0.000000011308059}
 --- !u!54 &4427626598535178670
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2956,6 +3014,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &3927300640269821468
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6501263033744366245}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.04990599, y: 0.2520233, z: 0.04990599}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.008224661, y: 0.2520231, z: -0.00000001130806}
+  m_TimeToStationary: 0.5
 --- !u!1 &6551176019926511681
 GameObject:
   m_ObjectHideFlags: 0
@@ -3335,6 +3409,7 @@ GameObject:
   - component: {fileID: 1673149429600537363}
   - component: {fileID: 2743679236678502545}
   - component: {fileID: 8213660311297831414}
+  - component: {fileID: 5544658168526821570}
   m_Layer: 0
   m_Name: mixamorig2:RightForeArm
   m_TagString: Right Elbow
@@ -3367,8 +3442,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
-  m_Height: 0.42670536
+  m_Radius: 0.03546137
+  m_Height: 0.4273629
   m_Direction: 1
   m_Center: {x: 0, y: 0.21335268, z: 0}
 --- !u!54 &1673149429600537363
@@ -3445,6 +3520,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &5544658168526821570
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512361704748135520}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.03546137, y: 0.21368144, z: 0.03546137}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.2133527, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7733331427677705473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,6 +3641,7 @@ GameObject:
   - component: {fileID: 7343173257414133514}
   - component: {fileID: 5848898686798345791}
   - component: {fileID: 5555228924906525944}
+  - component: {fileID: 7302845787491215274}
   m_Layer: 0
   m_Name: mixamorig2:Spine2
   m_TagString: Middle Spine
@@ -3585,8 +3677,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3127985, y: 0.12980081, z: 0.2260473}
-  m_Center: {x: 0.00000006622728, y: 0.0649004, z: -0.0055624545}
+  m_Size: {x: 0.3127985, y: 0.12980081, z: 0.17121539}
+  m_Center: {x: 0.00000006622713, y: 0.064900406, z: 0.018080287}
 --- !u!54 &7343173257414133514
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3661,6 +3753,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &7302845787491215274
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432030651704551419}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.15639925, y: 0.0649004, z: 0.0856077}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.00000006622713, y: 0.06490041, z: 0.01808029}
+  m_TimeToStationary: 0.5
 --- !u!1 &8709660287128925570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,19 +3924,15 @@ MonoBehaviour:
   - {fileID: 1673149429600537363}
   - {fileID: 0}
   colorBodies:
-  - {fileID: 1943841767650091624}
-  - {fileID: 6821191596904646307}
-  - {fileID: 201831629139756389}
-  - {fileID: 5949712930125628001}
-  - {fileID: 1044441700328265263}
+  - {fileID: 4607873267184077458}
   navObstacles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2402435689795144337}
+  - {fileID: 4834430036853098313}
+  - {fileID: 2042656638611690606}
+  - {fileID: 7302845787491215274}
+  - {fileID: 2064668632189265457}
+  - {fileID: 3950045032570197876}
+  - {fileID: 6515279456901312695}
 --- !u!114 &9160018124809068718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3852,8 +3956,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 1.3
-  m_Acceleration: 5
+  m_Speed: 1
+  m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

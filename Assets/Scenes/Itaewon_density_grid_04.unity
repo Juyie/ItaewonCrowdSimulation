@@ -246,6 +246,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &3479197
@@ -822,6 +825,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &61418042
@@ -1058,6 +1064,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &69642207
@@ -1882,6 +1891,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &110270453
@@ -2028,6 +2040,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &115689482
@@ -2173,6 +2188,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &119173554
@@ -2412,6 +2430,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &121411253
@@ -2556,6 +2577,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &127280479
@@ -2889,6 +2913,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &142011664
@@ -3035,6 +3062,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &144425323
@@ -3182,6 +3212,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &154372340
@@ -3329,6 +3362,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &164553232
@@ -3471,6 +3507,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &169526637
@@ -3804,6 +3843,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &187443287
@@ -4038,6 +4080,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &200434653
@@ -4122,6 +4167,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &204860106
@@ -4565,6 +4613,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &219504415
@@ -4895,6 +4946,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &233611939
@@ -5039,6 +5093,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &237533814
@@ -5607,6 +5664,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &256594408
@@ -5751,6 +5811,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &268995611
@@ -5955,6 +6018,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &286401397
@@ -6134,6 +6200,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &302721225
@@ -6519,6 +6588,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &315202398
@@ -6663,6 +6735,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &315946883
@@ -6807,6 +6882,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &327137800
@@ -7308,6 +7386,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &342867106
@@ -7452,6 +7533,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &346828067
@@ -7575,7 +7659,7 @@ GameObject:
   - component: {fileID: 364166325}
   m_Layer: 0
   m_Name: Camera3
-  m_TagString: Untagged
+  m_TagString: Cam3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7802,6 +7886,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &401211684
@@ -8505,6 +8592,36 @@ Transform:
   m_GameObject: {fileID: 423866472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.2708, y: -2.9597602, z: 4.0333295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &432137258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432137259}
+  m_Layer: 0
+  m_Name: WaitAgents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &432137259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432137258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.598032, y: 2.0158787, z: 3.657506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9255,6 +9372,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &490255868
@@ -9553,6 +9673,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &503782749
@@ -9823,6 +9946,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &515946763
@@ -9966,6 +10092,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &527898105
@@ -10110,6 +10239,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &538218215
@@ -10349,7 +10481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &554836932
 Transform:
   m_ObjectHideFlags: 0
@@ -10430,6 +10562,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &556190004
@@ -10716,7 +10851,7 @@ MonoBehaviour:
   - {fileID: 839757917}
   Step: 1
   Exponential: 0
-  stepSize: 0.1
+  stepSize: 1
   exponentialSize: 3
   agentNumber: {fileID: 2026858757}
   setGrid: 0
@@ -10826,7 +10961,7 @@ GameObject:
   - component: {fileID: 575638594}
   m_Layer: 0
   m_Name: SideCamera
-  m_TagString: Cam5
+  m_TagString: SideCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11053,6 +11188,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &588635754
@@ -11257,6 +11395,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &594306340
@@ -11524,6 +11665,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &615676532
@@ -11789,6 +11933,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &635762309
@@ -11984,6 +12131,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &642459966
@@ -12690,6 +12840,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &668188997
@@ -12880,7 +13033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &672540660
 Transform:
   m_ObjectHideFlags: 0
@@ -13037,6 +13190,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &672924472
@@ -13123,6 +13279,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &674529333
@@ -13232,7 +13391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd9288853fcd2345b7f0fe22029850b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPower: 0
+  goalPower: 1
   character0Prefab: {fileID: 9156292956586031252, guid: 55de6d6971e449a4aaf5ee3915aaf68b,
     type: 3}
   parameterID: 0
@@ -13248,7 +13407,7 @@ MonoBehaviour:
   amount: 0
   rowSize: 0
   RVO_SPH: 1
-  SPH_RAGDOLL: 0
+  SPH_RAGDOLL: 1
 --- !u!4 &676814385
 Transform:
   m_ObjectHideFlags: 0
@@ -13327,6 +13486,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &684796976
@@ -13710,6 +13872,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &694042044
@@ -14098,6 +14263,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &703244425
@@ -14289,7 +14457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &708627592
 Transform:
   m_ObjectHideFlags: 0
@@ -14432,7 +14600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &710685963
 Transform:
   m_ObjectHideFlags: 0
@@ -14515,6 +14683,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &715024361
@@ -14659,6 +14830,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &725536116
@@ -15193,6 +15367,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &749439140
@@ -15429,6 +15606,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &767621022
@@ -15792,6 +15972,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &793168610
@@ -16325,6 +16508,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &810559945
@@ -16472,6 +16658,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &816544175
@@ -16822,6 +17011,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &839757922
@@ -16948,6 +17140,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &847562332
@@ -17251,6 +17446,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &853395695
@@ -17377,7 +17575,7 @@ GameObject:
   - component: {fileID: 858279338}
   m_Layer: 0
   m_Name: Camera4
-  m_TagString: Untagged
+  m_TagString: Cam4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17697,6 +17895,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &884090914
@@ -18300,6 +18501,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &895385640
@@ -18333,7 +18537,7 @@ GameObject:
   - component: {fileID: 896458356}
   m_Layer: 0
   m_Name: Camera5
-  m_TagString: Cam3
+  m_TagString: Cam5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18841,6 +19045,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &925860701
@@ -19018,6 +19225,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &933512569
@@ -19348,6 +19558,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &962047744
@@ -19552,6 +19765,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &962302113
@@ -19978,7 +20194,7 @@ GameObject:
   - component: {fileID: 972900808}
   m_Layer: 0
   m_Name: Camera6
-  m_TagString: Untagged
+  m_TagString: Cam6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20136,7 +20352,7 @@ PrefabInstance:
     - target: {fileID: 8690564730811554610, guid: 55de6d6971e449a4aaf5ee3915aaf68b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 8690564730811554610, guid: 55de6d6971e449a4aaf5ee3915aaf68b,
         type: 3}
@@ -21044,6 +21260,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1042006977
@@ -21286,6 +21505,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1052343090
@@ -21460,6 +21682,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1056932749
@@ -21604,6 +21829,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1062508137
@@ -21748,6 +21976,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1070217930
@@ -22593,6 +22824,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1183285596
@@ -23015,6 +23249,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1213207010
@@ -23159,6 +23396,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1221455052
@@ -23626,7 +23866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1287348245
 Transform:
   m_ObjectHideFlags: 0
@@ -23699,7 +23939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1295000516
 Transform:
   m_ObjectHideFlags: 0
@@ -23920,6 +24160,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1311286751
@@ -24067,6 +24310,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1314230004
@@ -24214,6 +24460,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1315574330
@@ -24356,6 +24605,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1319620976
@@ -24562,6 +24814,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1337526176
@@ -25022,6 +25277,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1379455597
@@ -25169,6 +25427,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1389915772
@@ -25313,6 +25574,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1397933469
@@ -25551,6 +25815,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1402664771
@@ -25695,6 +25962,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1403117502
@@ -35858,7 +36128,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410382220}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a76a3c728933e4b49987a71da3cc622c, type: 3}
   m_Name: 
@@ -36041,6 +36311,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1419485693
@@ -36278,6 +36551,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1440937000
@@ -36548,6 +36824,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1442060196
@@ -36641,7 +36920,7 @@ GameObject:
   - component: {fileID: 1447749490}
   m_Layer: 0
   m_Name: Camera8
-  m_TagString: Cam6
+  m_TagString: Cam8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36775,6 +37054,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1448049148
@@ -37079,6 +37361,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1463601462
@@ -37408,6 +37693,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1497483020
@@ -37645,6 +37933,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1505735749
@@ -37792,6 +38083,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1535016684
@@ -37934,6 +38228,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1538084356
@@ -38229,6 +38526,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1551755328
@@ -39064,7 +39364,7 @@ PrefabInstance:
     - target: {fileID: 8690564730811554610, guid: db35f692dcd450f47886f80f142700d6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 8690564730811554610, guid: db35f692dcd450f47886f80f142700d6,
         type: 3}
@@ -39500,6 +39800,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1603460673
@@ -40366,6 +40669,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1636530289
@@ -40512,6 +40818,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1644569522
@@ -40749,6 +41058,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1648428471
@@ -41110,7 +41422,7 @@ Transform:
   - {fileID: 602852616}
   - {fileID: 1130972403}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1677614139
 MonoBehaviour:
@@ -41288,6 +41600,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1700114539
@@ -41525,6 +41840,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1709103318
@@ -42090,7 +42408,7 @@ Transform:
   - {fileID: 1762937353}
   - {fileID: 644379733}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1734970481
 PrefabInstance:
@@ -42731,6 +43049,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1754915772
@@ -43059,6 +43380,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &1765805135
@@ -43143,6 +43467,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1768319694
@@ -43473,6 +43800,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1794898160
@@ -43677,6 +44007,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1830622616
@@ -43819,6 +44152,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1840130261
@@ -43966,6 +44302,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1844675473
@@ -44240,6 +44579,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1851720853
@@ -44615,7 +44957,7 @@ GameObject:
   - component: {fileID: 1874719086}
   m_Layer: 0
   m_Name: UnderCamera
-  m_TagString: Cam5
+  m_TagString: UnderCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44802,11 +45144,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883655507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.84, y: -12.963653, z: -3.185656}
+  m_LocalPosition: {x: -0.84, y: 50, z: -3.185656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887767780
 GameObject:
@@ -44965,6 +45307,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1887885669
@@ -45874,6 +46219,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1922199191
@@ -46297,6 +46645,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1965123192
@@ -46677,6 +47028,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1981404133
@@ -46821,6 +47175,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1984744419
@@ -46965,6 +47322,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &1989894500
@@ -47544,6 +47904,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2005991575
@@ -47691,7 +48054,7 @@ GameObject:
   - component: {fileID: 2021722238}
   m_Layer: 0
   m_Name: Camera7
-  m_TagString: Cam4
+  m_TagString: Cam7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47825,6 +48188,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2023045187
@@ -48029,6 +48395,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &2023486603
@@ -48270,6 +48639,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2034299700
@@ -48796,6 +49168,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2058773176
@@ -49567,6 +49942,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2112258359
@@ -49709,6 +50087,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2118005954
@@ -50006,6 +50387,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!114 &2124167284
@@ -50090,6 +50474,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2133960431
@@ -50288,7 +50675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2139872818
 Transform:
   m_ObjectHideFlags: 0
@@ -50402,6 +50789,9 @@ MonoBehaviour:
   checkNeighbor: 1
   satisfy: 0
   turnOn: 0
+  mySPH: 0
+  allSPH: 0
+  suffSPH: 0
   turnOnRagdoll: 0
   controller: {fileID: 570141720}
 --- !u!65 &2140295961

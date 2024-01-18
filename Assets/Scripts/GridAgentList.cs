@@ -118,7 +118,7 @@ public class GridAgentList : MonoBehaviour
             agent.GetComponent<SPHProperties>().position = agent.transform.position;
             agent.transform.parent = GameObject.Find("RVOAgents").transform;
             NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 0;
-            InitSPH(int.Parse(agent.name.Substring(23)), agent);
+            //InitSPH(int.Parse(agent.name.Substring(23)), agent);
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
         }
     }
@@ -145,7 +145,7 @@ public class GridAgentList : MonoBehaviour
             }
             agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
             agent.transform.parent = GameObject.Find("RagdollAgents").transform;
-            agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
+            //agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
         }
     }
 

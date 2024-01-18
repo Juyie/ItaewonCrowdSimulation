@@ -94,8 +94,8 @@ public class SPHManagerSingleThread : MonoBehaviour
     public float goalPower = 1000f;
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
-    private float maxAcceleration = 5.0f;
-    private float maxVelocity = 1.8f;
+    private float maxAcceleration = 3.0f;
+    private float maxVelocity = 1.0f;
 
     // Properties
     [Header("Import")]

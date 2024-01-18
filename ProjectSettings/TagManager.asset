@@ -27,6 +27,9 @@ TagManager:
   - Cam5
   - SPHCollider
   - Cam6
+  - Cam7
+  - UnderCam
+  - Cam8
   layers:
   - Default
   - TransparentFX

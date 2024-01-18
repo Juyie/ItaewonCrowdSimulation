@@ -99,7 +99,7 @@ public class SaveAgentsData : MonoBehaviour
 
         Debug.Log(data.positions.Length);
 
-        for (int i = 0; i < data.positions.Length; i++)
+        for (int i = 0; i < data.positions.Length / 3; i++)
         {
             GameObject newAgent;
             if (i % 2 == 0)
@@ -127,6 +127,35 @@ public class SaveAgentsData : MonoBehaviour
 
             displayAgentNumber.agentNumber++;
         }
+        
+        // waited agent
+        for (int i = data.positions.Length / 3; i < data.positions.Length; i++)
+        {
+            GameObject newAgent;
+            if (i % 2 == 0)
+            {
+                newAgent = Instantiate(MAgentPf);
+            }
+            else
+            {
+                newAgent = Instantiate(WMAgentPf);
+            }
+            newAgent.name += i;
+            newAgent.transform.position = data.positions[i] + new Vector3(0.0f, 100.0f, 0.0f);
+            newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
+            newAgent.GetComponent<PlayerMovement>().target = GameObject.Find(data.targetPosNames[i]).transform;
+            newAgent.transform.parent = GameObject.Find("WaitAgents").transform;
+            newAgent.GetComponent<NavMeshAgent>().enabled = false;
+            newAgent.GetComponent<PlayerMovement>().enabled = false;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            newAgent.SetActive(true);
+
+            NavagentSpawner.Instance.RVOGameObject[i] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[i] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[i] = 4; // waited agent
+        }
+        
         /*
         //for (int i = 0; i < data.positions.Length / 2 - 3; i++)
         for (int i = 0; i < data.positions.Length; i++)

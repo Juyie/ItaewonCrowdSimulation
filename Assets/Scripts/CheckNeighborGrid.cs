@@ -25,6 +25,14 @@ public class CheckNeighborGrid : MonoBehaviour
             GetComponent<CalculateDensityGrid>().turnOn = false;
         }
 
+        if (CheckNeighborSPH())
+        {
+            GetComponent<CalculateDensityGrid>().allSPH = true;
+        }
+        else
+        {
+            GetComponent<CalculateDensityGrid>().allSPH = false;
+        }
     }
 
     private bool CheckNeighbor()
@@ -33,6 +41,19 @@ public class CheckNeighborGrid : MonoBehaviour
         for(int i = 0; i < neighborGrids.Length; i++)
         {
             if (!neighborGrids[i].satisfy)
+            {
+                check = false;
+            }
+        }
+        return check;
+    }
+
+    private bool CheckNeighborSPH()
+    {
+        bool check = true;
+        for (int i = 0; i < neighborGrids.Length; i++)
+        {
+            if (!neighborGrids[i].mySPH)
             {
                 check = false;
             }

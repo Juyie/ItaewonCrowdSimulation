@@ -62,10 +62,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
+  m_Radius: 0.046491403
   m_Height: 0.2531465
   m_Direction: 1
-  m_Center: {x: 0, y: 0.12657325, z: 0}
+  m_Center: {x: 6.994855e-11, y: 0.12657325, z: 0.009609514}
 --- !u!144 &9156292956466221286
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -134,11 +134,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.06, y: 0.12657325, z: 0.06}
+  m_Extents: {x: 0.0464914, y: 0.12657325, z: 0.0464914}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0.1265732, z: 0}
+  m_Center: {x: 6.994855e-11, y: 0.1265732, z: 0.009609514}
   m_TimeToStationary: 0.5
 --- !u!1 &9156292956482347342
 GameObject:
@@ -356,10 +356,6 @@ MonoBehaviour:
   - {fileID: 0}
   colorBodies:
   - {fileID: 9156292958039447346}
-  - {fileID: 9156292957292879387}
-  - {fileID: 9156292957138524820}
-  - {fileID: 9156292957789355374}
-  - {fileID: 9156292956596943104}
   navObstacles:
   - {fileID: 2047012152061303427}
   - {fileID: 3022193923852494779}
@@ -391,8 +387,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 1.3
-  m_Acceleration: 5
+  m_Speed: 1
+  m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -513,7 +509,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9156292956596943359}
   - component: {fileID: 9156292956596943358}
-  - component: {fileID: 5494376933104535510}
   m_Layer: 0
   m_Name: Ch01_Sneakers
   m_TagString: Untagged
@@ -594,48 +589,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.09563564, y: 0.47106934, z: 0.087689586}
     m_Extent: {x: 0.21961738, y: 0.16612054, z: 0.19364664}
   m_DirtyAABB: 0
---- !u!114 &5494376933104535510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9156292956596943104}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodies: []
-  gradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
 --- !u!1 &9156292956659974408
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,8 +680,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12063726
-  m_Height: 0.48254904
+  m_Radius: 0.06346621
+  m_Height: 0.4895347
   m_Direction: 1
   m_Center: {x: 0, y: 0.24127452, z: 0}
 --- !u!144 &9156292956692611803
@@ -1207,10 +1160,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12853712
+  m_Radius: 0.08500413
   m_Height: 0.42845705
   m_Direction: 1
-  m_Center: {x: 0, y: 0.21422853, z: 0}
+  m_Center: {x: -0.003564537, y: 0.21422929, z: 0.020845352}
 --- !u!144 &9156292957061350419
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1279,11 +1232,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.1285371, y: 0.21422856, z: 0.1285371}
+  m_Extents: {x: 0.08500413, y: 0.21422856, z: 0.08500413}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0.2142285, z: 0}
+  m_Center: {x: -0.003564537, y: 0.2142293, z: 0.02084535}
   m_TimeToStationary: 0.5
 --- !u!1 &9156292957102336904
 GameObject:
@@ -1346,8 +1299,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
-  m_Height: 0.43121317
+  m_Radius: 0.03687658
+  m_Height: 0.43074
   m_Direction: 1
   m_Center: {x: 0, y: 0.21560659, z: 0}
 --- !u!144 &9156292957102336901
@@ -1480,7 +1433,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9156292957138524819}
   - component: {fileID: 9156292957138524817}
-  - component: {fileID: 9156292957138524818}
   m_Layer: 0
   m_Name: Ch01_Pants
   m_TagString: Untagged
@@ -1566,52 +1518,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00007049739, y: -0.48283705, z: -0.022833802}
     m_Extent: {x: 0.19463174, y: 0.4974189, z: 0.21917304}
   m_DirtyAABB: 0
---- !u!114 &9156292957138524818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9156292957138524820}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodies:
-  - {fileID: 9156292957061350423}
-  - {fileID: 9156292957242146915}
-  - {fileID: 9156292957950124503}
-  - {fileID: 9156292956692611806}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 1, a: 1}
-    key1: {r: 0, g: 1, b: 0, a: 1}
-    key2: {r: 1, g: 0, b: 0, a: 1}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 32960
-    atime2: 65535
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 3
 --- !u!1 &9156292957212738708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,10 +1645,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12238364
-  m_Height: 0.48953456
+  m_Radius: 0.06346621
+  m_Height: 0.48953468
   m_Direction: 1
-  m_Center: {x: 0, y: 0.24476728, z: 0}
+  m_Center: {x: 0.0018330495, y: 0.24476671, z: -0.0048262235}
 --- !u!144 &9156292957242146912
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1841,7 +1747,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9156292957292879386}
   - component: {fileID: 9156292957292879384}
-  - component: {fileID: 9156292957292879385}
   m_Layer: 0
   m_Name: Ch01_Eyelashes
   m_TagString: Untagged
@@ -1920,48 +1825,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.28916293, z: 0.15350884}
     m_Extent: {x: 0.04725247, y: 0.00888066, z: 0.007051274}
   m_DirtyAABB: 0
---- !u!114 &9156292957292879385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9156292957292879387}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodies: []
-  gradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
 --- !u!1 &9156292957297620349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,8 +1890,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42156926, y: 0.15337804, z: 0.28022408}
-  m_Center: {x: 0.000000014884141, y: 0.07668908, z: 0.011126756}
+  m_Size: {x: 0.42156926, y: 0.15337804, z: 0.23806846}
+  m_Center: {x: 0.0000000148841535, y: 0.07668908, z: 0.008451614}
 --- !u!144 &9156292957297620345
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2097,11 +1960,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.21078464, y: 0.076689, z: 0.14011206}
+  m_Extents: {x: 0.21078464, y: 0.076689, z: 0.11903425}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
-  m_Center: {x: 0.00000001488414, y: 0.07668908, z: 0.01112676}
+  m_Center: {x: 0.00000001488415, y: 0.07668908, z: 0.008451614}
   m_TimeToStationary: 0.5
 --- !u!1 &9156292957310553424
 GameObject:
@@ -2259,8 +2122,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.421569, y: 0.40775752, z: 0.28234902}
-  m_Center: {x: 0.0003872961, y: 0.14795445, z: -0.010238692}
+  m_Size: {x: 0.36543405, y: 0.40775752, z: 0.22662282}
+  m_Center: {x: 0.0006029085, y: 0.14795446, z: -0.004769832}
 --- !u!114 &9156292957430368294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2284,11 +2147,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.2107845, y: 0.20387875, z: 0.1411745}
+  m_Extents: {x: 0.18271706, y: 0.20387875, z: 0.1133114}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
-  m_Center: {x: 0.0003872961, y: 0.1479544, z: -0.01023869}
+  m_Center: {x: 0, y: 0.1479545, z: -0.004769832}
   m_TimeToStationary: 0.5
 --- !u!1 &9156292957451172861
 GameObject:
@@ -2669,7 +2532,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9156292957789355373}
   - component: {fileID: 9156292957789355371}
-  - component: {fileID: 9156292957789355372}
   m_Layer: 0
   m_Name: Ch01_Shirt
   m_TagString: Untagged
@@ -2758,50 +2620,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00089634955, y: 0.26095802, z: -0.01573275}
     m_Extent: {x: 0.40931875, y: 0.35060197, z: 0.17483445}
   m_DirtyAABB: 0
---- !u!114 &9156292957789355372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9156292957789355374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodies:
-  - {fileID: 9156292957297620349}
-  - {fileID: 9156292957430368297}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 1, a: 1}
-    key1: {r: 0, g: 1, b: 0, a: 1}
-    key2: {r: 1, g: 0, b: 0, a: 1}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 32960
-    atime2: 65535
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 3
 --- !u!1 &9156292957881549754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3017,8 +2835,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12848827
-  m_Height: 0.42829424
+  m_Radius: 0.08500413
+  m_Height: 0.4284571
   m_Direction: 1
   m_Center: {x: 0, y: 0.21414712, z: 0}
 --- !u!144 &9156292957950124499
@@ -3089,7 +2907,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.1284883, y: 0.2141471, z: 0.1284883}
+  m_Extents: {x: 0.08500413, y: 0.21422856, z: 0.08500413}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
@@ -3347,12 +3165,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodies:
+  bodyParts:
+  - {fileID: 9156292957430368297}
+  - {fileID: 9156292957061350423}
+  - {fileID: 9156292957242146915}
+  - {fileID: 9156292957950124503}
+  - {fileID: 9156292956692611806}
+  - {fileID: 9156292957297620349}
   - {fileID: 9156292956466221290}
   - {fileID: 9156292958374226077}
+  - {fileID: 9156292956893802721}
   - {fileID: 9156292958119917553}
   - {fileID: 9156292957102336904}
-  - {fileID: 9156292956893802721}
+  colorParts:
+  - {fileID: 9156292958039447346}
+  - {fileID: 9156292957292879387}
+  - {fileID: 9156292957138524820}
+  - {fileID: 9156292957789355374}
+  - {fileID: 9156292956596943104}
   gradient:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 1, a: 1}
@@ -3597,8 +3427,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06330881
-  m_Height: 0.25323525
+  m_Radius: 0.0464914
+  m_Height: 0.2531465
   m_Direction: 1
   m_Center: {x: 0, y: 0.12661763, z: 0}
 --- !u!144 &9156292958119917549
@@ -3669,7 +3499,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.06330881, y: 0.12661766, z: 0.06330881}
+  m_Extents: {x: 0.0464914, y: 0.12657325, z: 0.0464914}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
@@ -3890,10 +3720,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06
-  m_Height: 0.4307398
+  m_Radius: 0.03687658
+  m_Height: 0.43073997
   m_Direction: 1
-  m_Center: {x: 0, y: 0.2153699, z: 0}
+  m_Center: {x: 7.4156814e-10, y: 0.215372, z: -0.00204139}
 --- !u!144 &9156292958374226074
 CharacterJoint:
   m_ObjectHideFlags: 0

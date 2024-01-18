@@ -18,6 +18,7 @@ public class GridController : MonoBehaviour
 
     private bool once = true;
     private bool on = true;
+    private int count = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,7 +50,7 @@ public class GridController : MonoBehaviour
             }
         }
 
-        if (agentNumber.agentNumber > 3100 && on)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && on)
         {
             StartSimulation();
         }
@@ -58,6 +59,7 @@ public class GridController : MonoBehaviour
             on = false;
             StopSimulation();
         }
+        CountSPH();
     }
 
     private void StartSimulation()
@@ -73,6 +75,27 @@ public class GridController : MonoBehaviour
         for (int i = 0; i < grids.Length; i++)
         {
             grids[i].GetComponent<CalculateDensityGrid>().enabled = false;
+        }
+    }
+
+    private void CountSPH()
+    {
+        count = 0;
+        for (int i = 0; i < grids.Length; i++)
+        {
+            if (grids[i].GetComponent<CalculateDensityGrid>().mySPH)
+            {
+                count++;
+            }
+        }
+
+        if(count > 15)
+        {
+            Debug.Log("Sufficient Grid");
+            for (int i = 0; i < grids.Length; i++)
+            {
+                grids[i].GetComponent<CalculateDensityGrid>().suffSPH = true;
+            }
         }
     }
 }
