@@ -62,7 +62,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.046491403
+  m_Radius: 0.04
   m_Height: 0.2531465
   m_Direction: 1
   m_Center: {x: 6.994855e-11, y: 0.12657325, z: 0.009609514}
@@ -134,7 +134,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.0464914, y: 0.12657325, z: 0.0464914}
+  m_Extents: {x: 0.04, y: 0.12657325, z: 0.04}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
@@ -386,8 +386,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 9156292956586031252}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.3
-  m_Speed: 1
+  m_Radius: 0.45
+  m_Speed: 0.6
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1299,7 +1299,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.03687658
+  m_Radius: 0.03
   m_Height: 0.43074
   m_Direction: 1
   m_Center: {x: 0, y: 0.21560659, z: 0}
@@ -3427,7 +3427,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.0464914
+  m_Radius: 0.04
   m_Height: 0.2531465
   m_Direction: 1
   m_Center: {x: 0, y: 0.12661763, z: 0}
@@ -3499,7 +3499,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.0464914, y: 0.12657325, z: 0.0464914}
+  m_Extents: {x: 0.04, y: 0.12657325, z: 0.04}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 0
@@ -3720,7 +3720,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.03687658
+  m_Radius: 0.03
   m_Height: 0.43073997
   m_Direction: 1
   m_Center: {x: 7.4156814e-10, y: 0.215372, z: -0.00204139}

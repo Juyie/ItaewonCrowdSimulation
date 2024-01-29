@@ -1396,7 +1396,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.038296614
+  m_Radius: 0.03
   m_Height: 0.25510347
   m_Direction: 1
   m_Center: {x: -0.0000000016701475, y: 0.12755169, z: 0.006605379}
@@ -1484,7 +1484,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.03829661, y: 0.12755175, z: 0.03829661}
+  m_Extents: {x: 0.03, y: 0.12755175, z: 0.03}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -1534,7 +1534,6 @@ GameObject:
   - component: {fileID: 9220384405935299207}
   - component: {fileID: 1282841932990403780}
   - component: {fileID: 2479745783026311758}
-  - component: {fileID: 6638722338723837397}
   m_Layer: 0
   m_Name: mixamorig2:RightLeg
   m_TagString: Right Knee
@@ -1645,22 +1644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
---- !u!208 &6638722338723837397
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3455828172761583845}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.04990599, y: 0.2520233, z: 0.04990599}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.2521195, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &3499280735905147579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,7 +2436,6 @@ GameObject:
   - component: {fileID: 5149265935054857727}
   - component: {fileID: 2404738819668285309}
   - component: {fileID: 6487288448048281050}
-  - component: {fileID: 3616094933997412534}
   m_Layer: 0
   m_Name: mixamorig2:LeftForeArm
   m_TagString: Left Elbow
@@ -2486,7 +2468,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.03546137
+  m_Radius: 0.03
   m_Height: 0.42736286
   m_Direction: 1
   m_Center: {x: -1.5186273e-10, y: 0.21368143, z: 0.00000005489801}
@@ -2564,22 +2546,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
---- !u!208 &3616094933997412534
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6148179703956465666}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.03546137, y: 0.21368144, z: 0.03546137}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -1.518627e-10, y: 0.2136814, z: 0.00000005489801}
-  m_TimeToStationary: 0.5
 --- !u!1 &6314226564615120807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2656,7 +2622,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.03829661
+  m_Radius: 0.03
   m_Height: 0.2551035
   m_Direction: 1
   m_Center: {x: 0, y: 0.12754467, z: 0}
@@ -2744,7 +2710,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.03829661, y: 0.12755175, z: 0.03829661}
+  m_Extents: {x: 0.03, y: 0.12755175, z: 0.03}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -2903,7 +2869,6 @@ GameObject:
   - component: {fileID: 4427626598535178670}
   - component: {fileID: 7797766228250582779}
   - component: {fileID: 5873084232394354361}
-  - component: {fileID: 3927300640269821468}
   m_Layer: 0
   m_Name: mixamorig2:LeftLeg
   m_TagString: Left Knee
@@ -3014,22 +2979,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
---- !u!208 &3927300640269821468
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6501263033744366245}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.04990599, y: 0.2520233, z: 0.04990599}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.008224661, y: 0.2520231, z: -0.00000001130806}
-  m_TimeToStationary: 0.5
 --- !u!1 &6551176019926511681
 GameObject:
   m_ObjectHideFlags: 0
@@ -3409,7 +3358,6 @@ GameObject:
   - component: {fileID: 1673149429600537363}
   - component: {fileID: 2743679236678502545}
   - component: {fileID: 8213660311297831414}
-  - component: {fileID: 5544658168526821570}
   m_Layer: 0
   m_Name: mixamorig2:RightForeArm
   m_TagString: Right Elbow
@@ -3442,7 +3390,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.03546137
+  m_Radius: 0.03
   m_Height: 0.4273629
   m_Direction: 1
   m_Center: {x: 0, y: 0.21335268, z: 0}
@@ -3520,22 +3468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
---- !u!208 &5544658168526821570
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7512361704748135520}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.03546137, y: 0.21368144, z: 0.03546137}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.2133527, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &7733331427677705473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3955,8 +3887,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 9156292956586031252}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
-  m_Speed: 1
+  m_Radius: 0.45
+  m_Speed: 0.6
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 120

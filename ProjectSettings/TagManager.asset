@@ -30,6 +30,8 @@ TagManager:
   - Cam7
   - UnderCam
   - Cam8
+  - CCTV5-2
+  - CCTV4-1
   layers:
   - Default
   - TransparentFX

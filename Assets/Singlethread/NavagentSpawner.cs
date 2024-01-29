@@ -22,9 +22,9 @@ public class NavagentSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        RVOGameObject = new GameObject[9000];
-        RVOPointCloud = new Vector3[9000];
-        TypeOfSimulation = new int[9000];
+        RVOGameObject = new GameObject[4500];
+        RVOPointCloud = new Vector3[4500];
+        TypeOfSimulation = new int[4500];
 
         if (instance == null)
         {

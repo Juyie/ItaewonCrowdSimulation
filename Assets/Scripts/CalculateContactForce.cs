@@ -19,7 +19,7 @@ public class CalculateContactForce : MonoBehaviour
     {
         if(forcePower > 30000.0f)
         {
-            Debug.Log("force: " + forcePower);
+            //Debug.Log("force: " + forcePower);
         }
     }
     private void OnCollisionEnter(Collision collision)

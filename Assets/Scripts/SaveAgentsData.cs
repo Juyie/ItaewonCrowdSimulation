@@ -83,7 +83,7 @@ public class SaveAgentsData : MonoBehaviour
 
             string saveJson = JsonUtility.ToJson(data);
 
-            File.WriteAllText(path + "agentdata9000.json", saveJson);
+            File.WriteAllText(path + "agentdata4500_v2.json", saveJson);
             RecorderWindow recorderWindow = GetRecorderWindow();
             recorderWindow.StopRecording();
             Debug.Log("data save");
@@ -92,17 +92,18 @@ public class SaveAgentsData : MonoBehaviour
 
     public void JsonLoad()
     {
-        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata9000.json";
+        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata4500_v2.json";
 
         string saveFile = File.ReadAllText(path);
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         Debug.Log(data.positions.Length);
-
-        for (int i = 0; i < data.positions.Length / 3; i++)
+        
+        for (int i = 0; i < data.positions.Length / 4; i++)
         {
             GameObject newAgent;
-            if (i % 2 == 0)
+            int prefabNum = Random.Range(0, 2);
+            if (prefabNum == 0)
             {
                 newAgent = Instantiate(MAgentPf);
             }
@@ -129,10 +130,11 @@ public class SaveAgentsData : MonoBehaviour
         }
         
         // waited agent
-        for (int i = data.positions.Length / 3; i < data.positions.Length; i++)
+        for (int i = data.positions.Length / 4; i < data.positions.Length; i++)
         {
             GameObject newAgent;
-            if (i % 2 == 0)
+            int prefabNum = Random.Range(0, 2);
+            if (prefabNum == 0)
             {
                 newAgent = Instantiate(MAgentPf);
             }

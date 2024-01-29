@@ -45,7 +45,7 @@ public class SpawnAgents : MonoBehaviour
         {
             //StartCoroutine(Spawn());
             count = displayAgentNumber.agentNumber;
-            if (count < 9000)
+            if (count < 4500)
             {
                 StartCoroutine(SpawnWaitAgent());
             }
@@ -128,7 +128,6 @@ public class SpawnAgents : MonoBehaviour
         isReady = false;
         yield return new WaitForSeconds(intervalTime);
         count = displayAgentNumber.agentNumber;
-        displayAgentNumber.agentNumber++;
         GameObject newAgent = GameObject.Find("WaitAgents").transform.GetChild(0).gameObject;
         newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
         randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
@@ -144,6 +143,7 @@ public class SpawnAgents : MonoBehaviour
         NavagentSpawner.Instance.RVOPointCloud[int.Parse(newAgent.name.Substring(23))] = sp.position;
         NavagentSpawner.Instance.TypeOfSimulation[int.Parse(newAgent.name.Substring(23))] = 0;
 
+        displayAgentNumber.agentNumber++;
         isReady = true;
     }
 

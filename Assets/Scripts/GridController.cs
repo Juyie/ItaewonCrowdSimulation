@@ -41,7 +41,7 @@ public class GridController : MonoBehaviour
             Exponential = true;
         }
 
-        if(agentNumber.agentNumber >= 6000 && once)
+        if(agentNumber.agentNumber >= 4500 && once)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -89,7 +89,7 @@ public class GridController : MonoBehaviour
             }
         }
 
-        if(count > 15)
+        if(count > 0)
         {
             Debug.Log("Sufficient Grid");
             for (int i = 0; i < grids.Length; i++)

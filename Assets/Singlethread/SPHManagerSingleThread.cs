@@ -95,7 +95,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
     private float maxAcceleration = 3.0f;
-    private float maxVelocity = 1.0f;
+    private float maxVelocity = 0.6f;
 
     // Properties
     [Header("Import")]
@@ -161,7 +161,9 @@ public class SPHManagerSingleThread : MonoBehaviour
             
         }
         if (SPH_RAGDOLL)
-            RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
+        {
+            //RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -282,17 +284,11 @@ public class SPHManagerSingleThread : MonoBehaviour
             if (TypeOfSimulation[i] == 1)
             {
                 SPHProperties sp = RVOGameObject[i].GetComponent<SPHProperties>();
-                //sp.velocity += DT * sp.forcePhysic;
-                //sp.position += DT * sp.velocity;
-
-                //sp.velocity += sp.forcePhysic * Time.fixedDeltaTime;
-                //sp.position += sp.velocity * Time.fixedDeltaTime;
 
                 Vector3 f = Vector3.ClampMagnitude(sp.forcePhysic, maxAcceleration);
                 sp.velocity += f * Time.fixedDeltaTime;
                 Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
                 sp.position += v * Time.fixedDeltaTime;
-                //Debug.Log("Calc v and p) v: " + v + ", p: " + sp.position);
             }
         }
     }
@@ -306,7 +302,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             spi.density = 0.0f;
 
             List<int> results = new List<int>();
-            query.Radius(RVOKDTree, spi.position, parameters[parameterID].smoothingRadiusSq, results);
+            query.Radius(RVOKDTree, spi.position, parameters[parameterID].smoothingRadius, results);
 
             for (int k = 0; k < results.Count; k++)
             {
@@ -337,8 +333,7 @@ public class SPHManagerSingleThread : MonoBehaviour
 
             // Physics
             List<int> results = new List<int>();
-            query.Radius(RVOKDTree, spi.position, parameters[parameterID].smoothingRadius / 2, results);
-            //Debug.Log("results count: " + results.Count + ", density: " + spi.density);
+            query.Radius(RVOKDTree, spi.position, parameters[parameterID].smoothingRadius, results);
           
             for (int k = 0; k < results.Count; k++)
             {
