@@ -71,6 +71,7 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private struct SPHCollider
     {
+        public GameObject go;
         public Vector3 position;
         public Vector3 right;
         public Vector3 up;
@@ -78,6 +79,7 @@ public class SPHManagerSingleThread : MonoBehaviour
 
         public void Init(Transform _transform)
         {
+            go = _transform.gameObject;
             position = _transform.position;
             right = _transform.right;
             up = _transform.up;
@@ -346,7 +348,7 @@ public class SPHManagerSingleThread : MonoBehaviour
 
                     SPHProperties spk = RVOGameObject[results[k]].GetComponent<SPHProperties>();
                     forcePressure += (parameters[spi.parameterID].particleMass * (spi.pressure + spk.pressure) / (2.0f * spk.density) * (-30.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist * rangeMinDist / dist * new Vector2(spk.position.x - spi.position.x, spk.position.z - spi.position.z));
-                    forceViscosity += (parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (360.0f / (29.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist / spk.density * (new Vector2(RVOGameObject[k].GetComponent<NavMeshAgent>().velocity.x - spi.velocity.x, RVOGameObject[k].GetComponent<NavMeshAgent>().velocity.z - spi.velocity.z)));
+                    forceViscosity += (parameters[spi.parameterID].particleViscosity * parameters[spi.parameterID].particleMass * (360.0f / (29.0f * Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 5.0f))) * rangeMinDist / spk.density * (new Vector2(RVOGameObject[k].GetComponent<PlayerMovement>().velocity.x - spi.velocity.x, RVOGameObject[k].GetComponent<PlayerMovement>().velocity.z - spi.velocity.z)));
                 }
             }
 

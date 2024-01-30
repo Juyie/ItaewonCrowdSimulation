@@ -14,6 +14,7 @@ public class GridAgentList : MonoBehaviour
     Dictionary<GameObject, float> agentSpeedDictionary = new Dictionary<GameObject, float>();
 
     private float exponentialNum = 3.0f;
+    private SPHManagerSingleThread SPHManager;
 
     public void SetExponentialNum(float num)
     {
@@ -23,7 +24,7 @@ public class GridAgentList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SPHManager = GameObject.Find("SPHManager").GetComponent<SPHManagerSingleThread>();
     }
 
     // Update is called once per frame
@@ -85,6 +86,7 @@ public class GridAgentList : MonoBehaviour
             NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 1;
             //SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            //agent.transform.position -= new Vector3(0, SPHManager.parameters[0].particleRadius / 2, 0);
         }
     }
 
@@ -145,6 +147,7 @@ public class GridAgentList : MonoBehaviour
             }
             agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
             agent.transform.parent = GameObject.Find("RagdollAgents").transform;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 2;
             //agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
         }
     }

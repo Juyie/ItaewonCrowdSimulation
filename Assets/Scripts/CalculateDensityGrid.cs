@@ -109,7 +109,7 @@ public class CalculateDensityGrid : MonoBehaviour
         {
             if (controller.Step)
             {
-                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<NavMeshAgent>().velocity.sqrMagnitude < controller.stepSize)
+                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<PlayerMovement>().velocity.sqrMagnitude < controller.stepSize)
                 {
                     agentList.AddAgent(other.gameObject);
                 }
@@ -140,7 +140,7 @@ public class CalculateDensityGrid : MonoBehaviour
                 }
                 else
                 {
-                    if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<NavMeshAgent>().velocity.sqrMagnitude < controller.stepSize)
+                    if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<PlayerMovement>().velocity.sqrMagnitude < controller.stepSize)
                     {
                         agentList.AddAgent(other.gameObject);
                     }

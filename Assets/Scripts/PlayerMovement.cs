@@ -17,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     private GameObject targetsParent;
     private Transform startTrans;
 
+    public Vector3 velocity;
+    private Vector3 posBefore;
+    private Vector3 posAfter;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -70,12 +74,17 @@ public class PlayerMovement : MonoBehaviour
         {
             startTrans = targetsParent.transform.GetChild(randInt);
         }
+
+        posBefore = transform.position;
+        posAfter = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!addTag)
+        CalculateVelocity();
+
+        if (!addTag)
         {
             Invoke("AddTag", 3f);
             addTag = true;
@@ -84,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (navMeshAgent.isOnNavMesh)
             {
-                if (navMeshAgent.velocity.sqrMagnitude <= 0.1)
+                if (velocity.sqrMagnitude <= 0.1)
                 {
                     animator.SetBool("isWalking", false);
                 }
@@ -133,5 +142,13 @@ public class PlayerMovement : MonoBehaviour
     private void AddTag()
     {
         gameObject.tag = "agent";
+    }
+
+    private void CalculateVelocity()
+    {
+        posBefore = posAfter;
+        posAfter = transform.position;
+
+        velocity = (posAfter - posBefore) / Time.deltaTime;
     }
 }
