@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.AI;
@@ -154,17 +155,27 @@ public class SPHManagerSingleThread : MonoBehaviour
         Integrate();
 
         ComputeColliders();
+        //ComputeCollisions();
         ApplyPosition();
 
         CheckVelocityForAnimation();
 
         if (RVO_SPH)
         {
-            
+
         }
         if (SPH_RAGDOLL)
         {
-            //RagdollAgents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
+            for (int i = 0; i < RVOGameObject.Length; i++)
+            {
+                if (TypeOfSimulation[i] == 1)
+                {
+                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > 100000)
+                    {
+                        TurnOnRagdolls(RVOGameObject[i]);
+                    }
+                }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -242,6 +253,13 @@ public class SPHManagerSingleThread : MonoBehaviour
         return newVelocity;
     }
 
+    private static Vector3 DampVelocity(Vector3 velocity, Vector3 penetrationNormal, float drag)
+    {
+        Vector3 newVelocity = Vector3.Dot(velocity, penetrationNormal) * penetrationNormal * BOUND_DAMPING
+                            + Vector3.Dot(velocity, Vector3.right) * Vector3.right * drag
+                            + Vector3.Dot(velocity, Vector3.up) * Vector3.up * drag;
+        return newVelocity;
+    }
 
 
     private void ComputeColliders()
@@ -276,7 +294,28 @@ public class SPHManagerSingleThread : MonoBehaviour
         }
     }
 
+    private void ComputeCollisions()
+    {
+        for (int i = 0; i < RVOGameObject.Length; i++)
+        {
+            if (TypeOfSimulation[i] == 1)
+            {
+                SPHProperties spi = RVOGameObject[i].GetComponent<SPHProperties>();
+                List<int> results = new List<int>();
+                query.Radius(RVOKDTree, spi.position, parameters[parameterID].particleRadius / 2, results);
+                for (int j = 0; j < results.Count; j++)
+                {
+                    SPHProperties spj = RVOGameObject[j].GetComponent<SPHProperties>();
 
+                    Vector3 penetrationNormal = (spj.position - spi.position).normalized;
+                    float penetrationLength = -(spj.position - spi.position).magnitude + parameters[parameterID].particleRadius / 2;
+                    Debug.Log(penetrationLength);
+                    //spi.velocity = DampVelocity(spi.velocity, penetrationNormal, 1.0f - parameters[spi.parameterID].particleDrag);
+                    spi.position -= penetrationNormal * Mathf.Abs(penetrationLength) * Time.fixedDeltaTime / results.Count;
+                }
+            }
+        }
+    }
 
     private void Integrate()
     {
@@ -336,7 +375,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             // Physics
             List<int> results = new List<int>();
             query.Radius(RVOKDTree, spi.position, parameters[parameterID].smoothingRadius, results);
-          
+
             for (int k = 0; k < results.Count; k++)
             {
                 Vector2 rij = new Vector2(RVOPointCloud[results[k]].x - spi.position.x, RVOPointCloud[results[k]].z - spi.position.z);
@@ -352,7 +391,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                 }
             }
 
-            Vector3 forceGravity = GRAVITY * parameters[spi.parameterID].gravityMult * spi.density;
+            Vector3 forceGravity = GRAVITY * parameters[spi.parameterID].gravityMult * spi.density * parameters[spi.parameterID].particleMass;
             Vector3 goalNorm;
             Vector3 rotation;
 
@@ -446,4 +485,10 @@ public class SPHManagerSingleThread : MonoBehaviour
         }
     }
 
+    public void TurnOnRagdolls(GameObject agent)
+    {
+        agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
+        agent.transform.parent = GameObject.Find("RagdollAgents").transform;
+        NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 2;
+    }
 }

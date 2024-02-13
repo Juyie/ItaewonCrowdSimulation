@@ -7526,7 +7526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342867102}
   m_LocalRotation: {x: -0.024066603, y: -0.0004503621, z: 0.008229162, w: 0.99967647}
-  m_LocalPosition: {x: 46.39, y: 2.79, z: 23.96}
+  m_LocalPosition: {x: 46.46, y: 2.79, z: 23.96}
   m_LocalScale: {x: 0.2, y: 1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 2139872818}
@@ -10672,7 +10672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 542054581}
   agent: {fileID: 2040427846}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &542054581
@@ -11170,7 +11170,7 @@ MonoBehaviour:
   - {fileID: 839757917}
   Step: 1
   Exponential: 0
-  stepSize: 0.4
+  stepSize: 0.55
   exponentialSize: 3
   agentNumber: {fileID: 2026858757}
   setGrid: 0
@@ -12366,7 +12366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 637471932}
   agent: {fileID: 1892348132}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &637471932
@@ -13719,8 +13719,16 @@ MonoBehaviour:
     smoothingRadius: 1
     smoothingRadiusSq: 1
     restDensity: 3.141592
-    gravityMult: 5
-    particleMass: 1
+    gravityMult: 1
+    particleMass: 56
+    particleViscosity: 1
+    particleDrag: 0.025
+  - particleRadius: 0.5
+    smoothingRadius: 1
+    smoothingRadiusSq: 1
+    restDensity: 3.141592
+    gravityMult: 1
+    particleMass: 70
     particleViscosity: 1
     particleDrag: 0.025
   amount: 0
@@ -16404,7 +16412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 794376918}
   agent: {fileID: 794576990}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &794376918
@@ -25442,7 +25450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1342209779}
   agent: {fileID: 703000001}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1346406701
@@ -36853,7 +36861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1417532232}
   agent: {fileID: 412260551}
-  intervalTime: 1
+  intervalTime: 2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1419485686
@@ -41644,7 +41652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1629524390}
   agent: {fileID: 416741923}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1631746906
@@ -45105,7 +45113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 1827111894}
   agent: {fileID: 1621137839}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &1830622612
@@ -49203,7 +49211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 2017738770}
   agent: {fileID: 25993707}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &2021722236
@@ -51754,7 +51762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 2136772908}
   agent: {fileID: 311784022}
-  intervalTime: 1
+  intervalTime: 0.8
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!4 &2136772908
@@ -51822,7 +51830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTf: {fileID: 2137127499}
   agent: {fileID: 23406930}
-  intervalTime: 1
+  intervalTime: 2
   displayAgentNumber: {fileID: 2026858757}
   SPHManager: {fileID: 676814384}
 --- !u!1 &2139872817

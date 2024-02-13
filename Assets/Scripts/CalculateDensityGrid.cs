@@ -60,7 +60,7 @@ public class CalculateDensityGrid : MonoBehaviour
             {
                 if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy && allSPH && suffSPH)
                 {
-                    agentList.TurnOnRagdolls();
+                    //agentList.TurnOnRagdolls();
                 }
                 else if (agentList.GetListLength() >= criteriaAgentNumSPH && turnOn && satisfy)
                 {
@@ -80,7 +80,7 @@ public class CalculateDensityGrid : MonoBehaviour
                 if (agentList.GetListLength() >= criteriaAgentNumRagdoll)
                 {
                     turnOn = true;
-                    agentList.TurnOnRagdolls();
+                    //agentList.TurnOnRagdolls();
                 }
                 else if (agentList.GetListLength() >= criteriaAgentNumSPH)
                 {
