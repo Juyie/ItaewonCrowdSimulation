@@ -125,6 +125,10 @@ public class SPHManagerSingleThread : MonoBehaviour
     private KDQuery query;
     private int[] TypeOfSimulation;
 
+    private float friction = 3.2f;
+    private float torqueForce = 30.622f;
+    private float tempForce = 8000f;
+
     [Header("Interaction")]
     [SerializeField] public bool RVO_SPH;
     [SerializeField] public bool SPH_RAGDOLL;
@@ -170,7 +174,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             {
                 if (TypeOfSimulation[i] == 1)
                 {
-                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > 100000)
+                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > tempForce && RVOGameObject[i].GetComponent<SPHProperties>().ragdollDensity == true) 
                     {
                         TurnOnRagdolls(RVOGameObject[i]);
                     }
@@ -326,8 +330,8 @@ public class SPHManagerSingleThread : MonoBehaviour
             {
                 SPHProperties sp = RVOGameObject[i].GetComponent<SPHProperties>();
 
-                Vector3 f = Vector3.ClampMagnitude(sp.forcePhysic, maxAcceleration);
-                sp.velocity += f * Time.fixedDeltaTime;
+                Vector3 a = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
+                sp.velocity += a * Time.fixedDeltaTime;
                 Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
                 sp.position += v * Time.fixedDeltaTime;
             }
@@ -358,7 +362,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             spi.density += parameters[spi.parameterID].particleMass * (4.0f / (Mathf.PI * Mathf.Pow(parameters[spi.parameterID].smoothingRadius, 8.0f))) * Mathf.Pow(parameters[spi.parameterID].smoothingRadiusSq, 3.0f);
 
             // compute pressure
-            spi.pressure = GAS_CONST * (spi.density - parameters[spi.parameterID].restDensity);
+            spi.pressure = GAS_CONST * (spi.density - parameters[spi.parameterID].restDensity * (parameters[0].particleMass + parameters[1].particleMass) / 2);
         }
     }
 
@@ -425,10 +429,25 @@ public class SPHManagerSingleThread : MonoBehaviour
             }
             else
             {
-                float forceX = forcePressure.x + forceViscosity.x + forceGoal.x + forceGravity.x;
-                float forceZ = forcePressure.y + forceViscosity.y + forceGoal.z + forceGravity.z;
+                float forceX = forcePressure.x + forceViscosity.x + forceGravity.x;
+                float forceZ = forcePressure.y + forceViscosity.y + forceGravity.z;
 
                 spi.forcePhysic = (new Vector3(forceX, forceGravity.y, forceZ) / spi.density);
+                if(spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x < 0)
+                {
+                    if (Mathf.Abs(spi.forcePhysic.x) > friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2))
+                    {
+                        spi.forcePhysic += new Vector3(friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2), 0.0f, 0.0f);
+                    }
+                    else
+                    {
+                        spi.forcePhysic = new Vector3(0.0f, spi.forcePhysic.y, spi.forcePhysic.z);
+                    }
+                }
+                else if(spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x > 0)
+                {
+                    spi.forcePhysic += new Vector3(forceGoal.x, 0.0f, 0.0f);
+                }
                 //Debug.Log("Y: " + spi.forcePhysic.y);
             }
 
@@ -490,5 +509,6 @@ public class SPHManagerSingleThread : MonoBehaviour
         agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
         agent.transform.parent = GameObject.Find("RagdollAgents").transform;
         NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 2;
+        agent.GetComponent<SPHProperties>().parameterID = 2;
     }
 }

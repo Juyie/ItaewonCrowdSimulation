@@ -33,7 +33,7 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
-        criteriaAgentNumSPH = Mathf.FloorToInt(area * 3);
+        criteriaAgentNumSPH = Mathf.FloorToInt(area * 6);
         criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 12);
         criteriaSatisfyNum = Mathf.FloorToInt(area * 4);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
@@ -61,11 +61,16 @@ public class CalculateDensityGrid : MonoBehaviour
                 if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy && allSPH && suffSPH)
                 {
                     //agentList.TurnOnRagdolls();
+                    agentList.TurnOnRagdollDensity();
                 }
                 else if (agentList.GetListLength() >= criteriaAgentNumSPH && turnOn && satisfy)
                 {
                     agentList.TurnOnSPH();
                     mySPH = true;
+                }
+                else if(agentList.GetListLength() < criteriaAgentNumRagdoll)
+                {
+                    agentList.TurnOffRagdollDensity();
                 }
                 /*
                 else

@@ -115,10 +115,10 @@ public class PlayerMovement : MonoBehaviour
 
                 if (!navMeshAgent.pathPending)
                 {
-                    if (navMeshAgent.remainingDistance <= 0.3)
+                    if (navMeshAgent.remainingDistance <= 0.5f)
                     {
-                        gameObject.GetComponent<SPHProperties>().position = startTrans.position;
                         gameObject.transform.position = startTrans.position;
+                        gameObject.GetComponent<SPHProperties>().position = startTrans.position;
                         //displayAgentNumber.agentNumber--;
                         //Destroy(gameObject);
                     }
@@ -131,10 +131,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else // SPH agent
         {
-            if(Vector3.Distance(target.position, gameObject.transform.position) <= 0.3f)
+            if(Vector3.Distance(target.position, gameObject.transform.position) <= 0.5f)
             {
-                gameObject.GetComponent<SPHProperties>().position = startTrans.position;
                 gameObject.transform.position = startTrans.position;
+                gameObject.GetComponent<SPHProperties>().position = startTrans.position;
             }
         }
     }

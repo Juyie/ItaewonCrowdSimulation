@@ -16,6 +16,8 @@ public class SPHProperties : MonoBehaviour
 
     public int parameterID;
 
+    public bool ragdollDensity = false;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -152,6 +152,30 @@ public class GridAgentList : MonoBehaviour
         }
     }
 
+    public void TurnOnRagdollDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().ragdollDensity = true;
+        }
+    }
+
+    public void TurnOffRagdollDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().ragdollDensity = false;
+        }
+    }
+
     public void TurnOffRagdolls()
     {
         foreach (GameObject agent in agentList)
