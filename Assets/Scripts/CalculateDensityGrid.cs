@@ -10,6 +10,7 @@ public class CalculateDensityGrid : MonoBehaviour
 
     private float area;
     private int criteriaAgentNumSPH;
+    private int criteriaAgentNumSPHZombie;
     private int criteriaAgentNumRagdoll;
     private int criteriaSatisfyNum;
 
@@ -34,7 +35,8 @@ public class CalculateDensityGrid : MonoBehaviour
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
         criteriaAgentNumSPH = Mathf.FloorToInt(area * 6);
-        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 12);
+        criteriaAgentNumSPHZombie = Mathf.FloorToInt(area * 12);
+        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 16);
         criteriaSatisfyNum = Mathf.FloorToInt(area * 4);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
@@ -61,16 +63,31 @@ public class CalculateDensityGrid : MonoBehaviour
                 if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy && allSPH && suffSPH)
                 {
                     //agentList.TurnOnRagdolls();
-                    agentList.TurnOnRagdollDensity();
+                    //agentList.TurnOnRagdollDensity();
+                }
+                else if(agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn && satisfy)
+                {
+                    //agentList.TurnOnSPHZombie();
+                    agentList.TurnOnSPHZombieDensity();
+
+                    if(agentList.GetListLength() < criteriaAgentNumRagdoll)
+                    {
+                        agentList.TurnOffRagdollDensity();
+                    }
                 }
                 else if (agentList.GetListLength() >= criteriaAgentNumSPH && turnOn && satisfy)
                 {
                     agentList.TurnOnSPH();
                     mySPH = true;
-                }
-                else if(agentList.GetListLength() < criteriaAgentNumRagdoll)
-                {
-                    agentList.TurnOffRagdollDensity();
+
+                    if (agentList.GetListLength() < criteriaAgentNumSPHZombie)
+                    {
+                        agentList.TurnOffSPHZombieDensity();
+                    }
+                    else if (agentList.GetListLength() < criteriaAgentNumRagdoll)
+                    {
+                        agentList.TurnOffRagdollDensity();
+                    }
                 }
                 /*
                 else

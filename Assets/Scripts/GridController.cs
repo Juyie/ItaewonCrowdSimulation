@@ -91,7 +91,6 @@ public class GridController : MonoBehaviour
 
         if(count > 0)
         {
-            Debug.Log("Sufficient Grid");
             for (int i = 0; i < grids.Length; i++)
             {
                 grids[i].GetComponent<CalculateDensityGrid>().suffSPH = true;

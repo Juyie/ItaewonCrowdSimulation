@@ -47,7 +47,8 @@ public class SpawnAgents : MonoBehaviour
             count = displayAgentNumber.agentNumber;
             if (count < 4500)
             {
-                StartCoroutine(SpawnWaitAgent());
+                //StartCoroutine(SpawnWaitAgent());
+                StartCoroutine(Spawn());
             }
         }
         
@@ -97,7 +98,7 @@ public class SpawnAgents : MonoBehaviour
         count = displayAgentNumber.agentNumber;
         displayAgentNumber.agentNumber++;
         GameObject newAgent = Instantiate(agent);
-        randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+        randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
         newAgent.name += count.ToString();
         newAgent.transform.position = spawnTf.position + randPos;
         newAgent.transform.rotation = agent.transform.rotation;
@@ -110,10 +111,7 @@ public class SpawnAgents : MonoBehaviour
 
         NavagentSpawner.Instance.RVOGameObject[count] = newAgent;
         NavagentSpawner.Instance.RVOPointCloud[count] = sp.position;
-        if(count % 10 == 0)
-        {
-            NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
-        }
+        NavagentSpawner.Instance.TypeOfSimulation[count] = 0;
 
         // color code
         //Color randColor = Random.ColorHSV(0, 1, 1, 1);

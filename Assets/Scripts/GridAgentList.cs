@@ -90,6 +90,19 @@ public class GridAgentList : MonoBehaviour
         }
     }
 
+    public void TurnOnSPHZombie()
+    {
+        foreach(GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().goalForce = 0;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+        }
+    }
+
     public void CheckAndTurnOnSPH()
     {
         for (int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)
@@ -122,6 +135,30 @@ public class GridAgentList : MonoBehaviour
             NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 0;
             //InitSPH(int.Parse(agent.name.Substring(23)), agent);
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+        }
+    }
+
+    public void TurnOnSPHZombieDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().SPHZombieDensity = true;
+        }
+    }
+
+    public void TurnOffSPHZombieDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().SPHZombieDensity = false;
         }
     }
 

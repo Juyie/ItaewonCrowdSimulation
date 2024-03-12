@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Entities.UniversalDelegates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,27 +36,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        int randInt = Random.Range(0, 3);
-        if (target.name == "Target1")
+        int randInt = Random.Range(0, 2);
+        if (target.name == "Target1" || target.name == "Target2")
         {
-            startTrans = targetsParent.transform.GetChild(randInt + 1);
-        }
-        else if (target.name == "Target2")
-        {
-            switch (randInt)
+            switch (randInt) 
             {
                 case 0:
-                    startTrans = targetsParent.transform.GetChild(0);
-                    break;
-                case 1:
                     startTrans = targetsParent.transform.GetChild(2);
                     break;
-                case 2:
+                case 1:
                     startTrans = targetsParent.transform.GetChild(3);
                     break;
             }
         }
-        else if (target.name == "Target3")
+        else if (target.name == "Target3" || target.name == "Target4")
         {
             switch (randInt)
             {
@@ -65,14 +59,7 @@ public class PlayerMovement : MonoBehaviour
                 case 1:
                     startTrans = targetsParent.transform.GetChild(1);
                     break;
-                case 2:
-                    startTrans = targetsParent.transform.GetChild(3);
-                    break;
             }
-        }
-        else if (target.name == "Target4")
-        {
-            startTrans = targetsParent.transform.GetChild(randInt);
         }
 
         posBefore = transform.position;
@@ -135,6 +122,31 @@ public class PlayerMovement : MonoBehaviour
             {
                 gameObject.transform.position = startTrans.position;
                 gameObject.GetComponent<SPHProperties>().position = startTrans.position;
+            }
+        }
+
+        // Rendering
+        if ((gameObject.transform.position.x > 30 && (gameObject.transform.position.z < -9.21 || gameObject.transform.position.z > 19.1))
+            || (gameObject.transform.position.x < 10 && (gameObject.transform.position.z < -7.29 || gameObject.transform.position.z > 14)))
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                gameObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            }
+            if (gameObject.name.StartsWith("w")) 
+            {
+                gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                gameObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = true;
+            }
+            if (gameObject.name.StartsWith("w"))
+            {
+                gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
         }
     }

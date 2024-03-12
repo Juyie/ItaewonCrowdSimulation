@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
-using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.AI;
@@ -94,7 +93,6 @@ public class SPHManagerSingleThread : MonoBehaviour
     private const float GAS_CONST = 100.0f;
     private const float DT = 0.0008f;
     private const float BOUND_DAMPING = -0.5f;
-    public float goalPower = 1000f;
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
     private float maxAcceleration = 3.0f;
@@ -116,6 +114,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     public SPHParticle[] particles = new SPHParticle[10000];
 
     private bool addForce = false;
+    private bool addForceFlag = true;
 
     private RagdollSpawner.RagdollAgent[] RagdollAgents;
 
@@ -125,9 +124,9 @@ public class SPHManagerSingleThread : MonoBehaviour
     private KDQuery query;
     private int[] TypeOfSimulation;
 
-    private float friction = 3.2f;
+    private float friction = 4.0f;
     private float torqueForce = 30.622f;
-    private float tempForce = 8000f;
+    private float tempForce = 3500f;
 
     [Header("Interaction")]
     [SerializeField] public bool RVO_SPH;
@@ -166,7 +165,20 @@ public class SPHManagerSingleThread : MonoBehaviour
 
         if (RVO_SPH)
         {
-
+            for (int i = 0; i < RVOGameObject.Length; i++)
+            {
+                if (TypeOfSimulation[i] == 1)
+                {
+                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > tempForce && RVOGameObject[i].GetComponent<SPHProperties>().SPHZombieDensity == true)
+                    {
+                        TurnOnSPHZombies(RVOGameObject[i]);
+                    }
+                    else if(RVOGameObject[i].GetComponent<SPHProperties>().SPHZombieDensity == false)
+                    {
+                        TurnOffSPHZombies(RVOGameObject[i]);
+                    }
+                }
+            }
         }
         if (SPH_RAGDOLL)
         {
@@ -182,6 +194,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             }
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.F))
         {
             addForce = true;
@@ -194,12 +207,19 @@ public class SPHManagerSingleThread : MonoBehaviour
         {
             PrintPositions();
         }
+        */
         /*
         if (particles.Length != GameObject.Find("SPHAgents").transform.childCount)
         {
             UpdateSPH();
         }
         */
+
+        if (addForceFlag)
+        {
+            addForceFlag = false;
+            StartCoroutine(WaitAndAddForce());
+        }
     }
 
     private void InitSPH()
@@ -329,11 +349,19 @@ public class SPHManagerSingleThread : MonoBehaviour
             if (TypeOfSimulation[i] == 1)
             {
                 SPHProperties sp = RVOGameObject[i].GetComponent<SPHProperties>();
-
+                RaycastHit raydata;
+                int layerMask = 1 << LayerMask.NameToLayer("NavCollider");
+                float yPos = sp.position.y;
+                if (Physics.Raycast(sp.gameObject.transform.position, -sp.gameObject.transform.up, out raydata, 10.0f, layerMask))
+                {
+                    yPos = raydata.point.y;
+                }
                 Vector3 a = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
                 sp.velocity += a * Time.fixedDeltaTime;
                 Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
                 sp.position += v * Time.fixedDeltaTime;
+                sp.position.y = yPos;
+                //Debug.Log("Pos after: " + sp.position + ", Y pos: " + yPos);
             }
         }
     }
@@ -403,52 +431,51 @@ public class SPHManagerSingleThread : MonoBehaviour
             rotation = new Vector3(0.0f, spi.forcePhysic.normalized.y + 180.0f, 0.0f);
 
 
-            //float randPower = UnityEngine.Random.Range(0.5f, 1.5f);
-            Vector3 forceGoal = goalNorm * goalPower * spi.density;// * randPower;
-            /*
-            if (spi.goalPosition.x < 0)
-            {
-                forceGoal = Vector3.zero;
-            }
-            */
+            Vector3 forceGoal = goalNorm * spi.goalForce * spi.density;
 
-            Vector3 Impulse = new Vector3(-10000.0f, 0.0f, 0.0f);
+            Vector3 Impulse1 = new Vector3(0.0f, 0.0f, 0.0f);//(-1000.0f, 0.0f, -1000.0f);
+            Vector3 Impulse2 = new Vector3(0.0f, 0.0f, 0.0f);// (-1000.0f, 0.0f, 1000.0f);
 
             // Apply
 
-            if (addForce)
+            float forceX = forcePressure.x + forceViscosity.x + forceGoal.x + forceGravity.x;
+            float forceZ = forcePressure.y + forceViscosity.y +forceGoal.z + forceGravity.z;
+
+            //spi.forcePhysic = (new Vector3(forceX, forceGravity.y, forceZ) / spi.density);
+                
+
+            spi.forcePhysic = new Vector3(forceX, 0.0f, forceZ) / spi.density;
+            //spi.forcePhysic = new Vector3(forceX, 0.0f, forceZ) / spi.density;
+            /*
+            if (spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x < 0)
             {
-                if (spi.position.x >= 40.0f && spi.position.x <= 42.0f)
+                if (Mathf.Abs(spi.forcePhysic.x) > friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2))
                 {
-                    spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density + Impulse;
+                    spi.forcePhysic += new Vector3(friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2), 0.0f, 0.0f);
                 }
                 else
                 {
-                    spi.forcePhysic = (new Vector3(forcePressure.x + forceViscosity.x + forceGoal.x, 0.0f, forcePressure.y + forceViscosity.y + forceGoal.z) + forceGravity) / spi.density;
+                    spi.forcePhysic = new Vector3(0.0f, spi.forcePhysic.y, spi.forcePhysic.z);
                 }
             }
-            else
+            else if(spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x > 0)
             {
-                float forceX = forcePressure.x + forceViscosity.x + forceGravity.x;
-                float forceZ = forcePressure.y + forceViscosity.y + forceGravity.z;
+                spi.forcePhysic += new Vector3(forceGoal.x, 0.0f, 0.0f);
+            }
+            */
+            //Debug.Log("Y: " + spi.forcePhysic.y);
 
-                spi.forcePhysic = (new Vector3(forceX, forceGravity.y, forceZ) / spi.density);
-                if(spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x < 0)
+            if (addForce && spi.position.x > 10.0f)
+            {
+                //Debug.Log("Force");
+                if (spi.position.z > 8.0f && spi.position.z < 10.0f)
                 {
-                    if (Mathf.Abs(spi.forcePhysic.x) > friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2))
-                    {
-                        spi.forcePhysic += new Vector3(friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2), 0.0f, 0.0f);
-                    }
-                    else
-                    {
-                        spi.forcePhysic = new Vector3(0.0f, spi.forcePhysic.y, spi.forcePhysic.z);
-                    }
+                    spi.forcePhysic += Impulse1;
                 }
-                else if(spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x > 0)
+                else if(spi.position.z < -1.5f && spi.position.z > -3.5f)
                 {
-                    spi.forcePhysic += new Vector3(forceGoal.x, 0.0f, 0.0f);
+                    spi.forcePhysic += Impulse2;
                 }
-                //Debug.Log("Y: " + spi.forcePhysic.y);
             }
 
             //Debug.Log("Force: " + spi.forcePhysic);
@@ -510,5 +537,25 @@ public class SPHManagerSingleThread : MonoBehaviour
         agent.transform.parent = GameObject.Find("RagdollAgents").transform;
         NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 2;
         agent.GetComponent<SPHProperties>().parameterID = 2;
+    }
+
+    public void TurnOnSPHZombies(GameObject agent)
+    {
+        agent.GetComponent<SPHProperties>().goalForce = 0;
+        agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+    }
+    public void TurnOffSPHZombies(GameObject agent)
+    {
+        agent.GetComponent<SPHProperties>().goalForce = 30;
+        agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+    }
+
+    IEnumerator WaitAndAddForce()
+    {
+        addForce = true;
+        yield return new WaitForSeconds(0.5f);
+        addForce = false;
+        yield return new WaitForSeconds(10.0f);
+        addForceFlag = true;
     }
 }
