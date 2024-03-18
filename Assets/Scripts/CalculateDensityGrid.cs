@@ -34,10 +34,10 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
-        criteriaAgentNumSPH = Mathf.FloorToInt(area * 6);
+        criteriaAgentNumSPH = Mathf.FloorToInt(area * 4);
         criteriaAgentNumSPHZombie = Mathf.FloorToInt(area * 12);
-        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 16);
-        criteriaSatisfyNum = Mathf.FloorToInt(area * 4);
+        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 12);
+        criteriaSatisfyNum = Mathf.FloorToInt(area * 3);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
 
@@ -63,12 +63,11 @@ public class CalculateDensityGrid : MonoBehaviour
                 if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy && allSPH && suffSPH)
                 {
                     //agentList.TurnOnRagdolls();
-                    //agentList.TurnOnRagdollDensity();
+                    agentList.TurnOnRagdollDensity();
                 }
                 else if(agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn && satisfy)
                 {
-                    //agentList.TurnOnSPHZombie();
-                    agentList.TurnOnSPHZombieDensity();
+                    agentList.TurnOnSPHZombie();
 
                     if(agentList.GetListLength() < criteriaAgentNumRagdoll)
                     {
@@ -82,7 +81,7 @@ public class CalculateDensityGrid : MonoBehaviour
 
                     if (agentList.GetListLength() < criteriaAgentNumSPHZombie)
                     {
-                        agentList.TurnOffSPHZombieDensity();
+                        agentList.TurnOffSPHZombie();
                     }
                     else if (agentList.GetListLength() < criteriaAgentNumRagdoll)
                     {
@@ -90,7 +89,7 @@ public class CalculateDensityGrid : MonoBehaviour
                     }
                 }
                 /*
-                else
+                else if (agentList.GetListLength() < criteriaAgentNumSPH)
                 {
                     agentList.TurnOffSPH();
                     mySPH = false;

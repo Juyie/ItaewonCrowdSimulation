@@ -100,8 +100,8 @@ public class SaveAgentsData : MonoBehaviour
         Debug.Log(data.positions.Length);
         int dataLength = 4500;
         
-        //for (int i = 0; i < data.positions.Length / 4; i++)
-        for(int i = dataLength * 3 / 4; i < dataLength; i++)
+        for (int i = dataLength * 4 / 5; i < dataLength; i++)
+        //for(int i = 0; i < dataLength * 1 / 6; i++)
         {
             GameObject newAgent;
             int prefabNum = Random.Range(0, 2);
@@ -132,8 +132,8 @@ public class SaveAgentsData : MonoBehaviour
         }
         
         // waited agent
-        //for (int i = data.positions.Length / 4; i < data.positions.Length; i++)
-        for(int i = 0; i < dataLength * 3 / 4; i++)
+        for (int i = 0; i < dataLength * 4 / 5; i++)
+        //for(int i = dataLength * 1 / 6; i < dataLength; i++)
         {
             GameObject newAgent;
             int prefabNum = Random.Range(0, 2);

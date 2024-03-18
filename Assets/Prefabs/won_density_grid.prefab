@@ -3780,6 +3780,7 @@ GameObject:
   - component: {fileID: 7409848913313441398}
   - component: {fileID: 7224867085170324193}
   - component: {fileID: 6631741392569080661}
+  - component: {fileID: 6440461535667761887}
   m_Layer: 0
   m_Name: won_density_grid
   m_TagString: agent
@@ -3941,7 +3942,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.2
+  m_Radius: 0.4
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
@@ -3966,3 +3967,19 @@ MonoBehaviour:
   pressure: 0
   parameterID: 0
   ragdollDensity: 0
+  SPHZombieDensity: 0
+  goalForce: 50
+--- !u!136 &6440461535667761887
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292956586031252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.16
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}

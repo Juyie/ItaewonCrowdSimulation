@@ -103,6 +103,19 @@ public class GridAgentList : MonoBehaviour
         }
     }
 
+    public void TurnOffSPHZombie()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().goalForce = 30;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+        }
+    }
+
     public void CheckAndTurnOnSPH()
     {
         for (int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)

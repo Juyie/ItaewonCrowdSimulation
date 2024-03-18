@@ -47,8 +47,8 @@ public class SpawnAgents : MonoBehaviour
             count = displayAgentNumber.agentNumber;
             if (count < 4500)
             {
-                //StartCoroutine(SpawnWaitAgent());
-                StartCoroutine(Spawn());
+                StartCoroutine(SpawnWaitAgent());
+                //StartCoroutine(Spawn());
             }
         }
         

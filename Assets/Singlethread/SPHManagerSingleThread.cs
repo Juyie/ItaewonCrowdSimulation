@@ -126,7 +126,9 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private float friction = 4.0f;
     private float torqueForce = 30.622f;
-    private float tempForce = 3500f;
+    // 3500 is too low
+    // 4500 is low too
+    private float tempForce = 5500f;
 
     [Header("Interaction")]
     [SerializeField] public bool RVO_SPH;
@@ -165,20 +167,6 @@ public class SPHManagerSingleThread : MonoBehaviour
 
         if (RVO_SPH)
         {
-            for (int i = 0; i < RVOGameObject.Length; i++)
-            {
-                if (TypeOfSimulation[i] == 1)
-                {
-                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > tempForce && RVOGameObject[i].GetComponent<SPHProperties>().SPHZombieDensity == true)
-                    {
-                        TurnOnSPHZombies(RVOGameObject[i]);
-                    }
-                    else if(RVOGameObject[i].GetComponent<SPHProperties>().SPHZombieDensity == false)
-                    {
-                        TurnOffSPHZombies(RVOGameObject[i]);
-                    }
-                }
-            }
         }
         if (SPH_RAGDOLL)
         {
@@ -433,8 +421,8 @@ public class SPHManagerSingleThread : MonoBehaviour
 
             Vector3 forceGoal = goalNorm * spi.goalForce * spi.density;
 
-            Vector3 Impulse1 = new Vector3(0.0f, 0.0f, 0.0f);//(-1000.0f, 0.0f, -1000.0f);
-            Vector3 Impulse2 = new Vector3(0.0f, 0.0f, 0.0f);// (-1000.0f, 0.0f, 1000.0f);
+            Vector3 Impulse1 = new Vector3(-1000.0f, 0.0f, -1000.0f);
+            Vector3 Impulse2 = new Vector3(-1000.0f, 0.0f, 1000.0f);
 
             // Apply
 
