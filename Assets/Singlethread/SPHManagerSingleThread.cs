@@ -128,7 +128,8 @@ public class SPHManagerSingleThread : MonoBehaviour
     private float torqueForce = 30.622f;
     // 3500 is too low
     // 4500 is low too
-    private float tempForce = 5500f;
+    // 1000is too high
+    private float tempForce = 500f;
 
     [Header("Interaction")]
     [SerializeField] public bool RVO_SPH;
@@ -174,7 +175,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             {
                 if (TypeOfSimulation[i] == 1)
                 {
-                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > tempForce && RVOGameObject[i].GetComponent<SPHProperties>().ragdollDensity == true) 
+                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude * Time.deltaTime > tempForce && RVOGameObject[i].GetComponent<SPHProperties>().ragdollDensity == true && RVOGameObject[i].GetComponent<SPHProperties>().goalForce == 0) 
                     {
                         TurnOnRagdolls(RVOGameObject[i]);
                     }
@@ -344,6 +345,10 @@ public class SPHManagerSingleThread : MonoBehaviour
                 {
                     yPos = raydata.point.y;
                 }
+                else if (Physics.Raycast(sp.gameObject.transform.position, sp.gameObject.transform.up, out raydata, 10.0f, layerMask))
+                {
+                    yPos = raydata.point.y;
+                }
                 Vector3 a = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
                 sp.velocity += a * Time.fixedDeltaTime;
                 Vector3 v = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
@@ -421,8 +426,14 @@ public class SPHManagerSingleThread : MonoBehaviour
 
             Vector3 forceGoal = goalNorm * spi.goalForce * spi.density;
 
+            /*
             Vector3 Impulse1 = new Vector3(-1000.0f, 0.0f, -1000.0f);
             Vector3 Impulse2 = new Vector3(-1000.0f, 0.0f, 1000.0f);
+            Vector3 Impulse3 = new Vector3(-1000.0f, 0.0f, 0.0f);
+            */
+            Vector3 Impulse1 = new Vector3(0.0f, 0.0f, 0.0f);
+            Vector3 Impulse2 = new Vector3(0.0f, 0.0f, 0.0f);
+            Vector3 Impulse3 = new Vector3(0.0f, 0.0f, 0.0f);
 
             // Apply
 
@@ -463,6 +474,13 @@ public class SPHManagerSingleThread : MonoBehaviour
                 else if(spi.position.z < -1.5f && spi.position.z > -3.5f)
                 {
                     spi.forcePhysic += Impulse2;
+                }
+            }
+            if (addForce && spi.position.x > 45.0f)
+            {
+                if (spi.position.z < 7.42 && spi.position.z > 2.74)
+                {
+                    spi.forcePhysic += Impulse3;
                 }
             }
 

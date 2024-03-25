@@ -127,7 +127,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Rendering
         if ((gameObject.transform.position.x > 30 && (gameObject.transform.position.z < -9.21 || gameObject.transform.position.z > 19.1))
-            || (gameObject.transform.position.x < 10 && (gameObject.transform.position.z < -7.29 || gameObject.transform.position.z > 14)))
+            || (gameObject.transform.position.x < 10 && (gameObject.transform.position.z < -7.29 || gameObject.transform.position.z > 14))
+            || gameObject.transform.position.x < -4.3f)
         {
             for (int i = 0; i < 5; i++)
             {
