@@ -31,6 +31,7 @@ public class SpawnAgents : MonoBehaviour
     void Awake()
     {
         //isOn = true;
+        Invoke("TurnOn", 10f);
     }
 
     private void Start()
@@ -45,7 +46,7 @@ public class SpawnAgents : MonoBehaviour
         {
             //StartCoroutine(Spawn());
             count = displayAgentNumber.agentNumber;
-            if (count < 4500)
+            if (count < 6000)
             {
                 StartCoroutine(SpawnWaitAgent());
                 //StartCoroutine(Spawn());
@@ -54,11 +55,12 @@ public class SpawnAgents : MonoBehaviour
         
         count = displayAgentNumber.agentNumber;
 
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             isOn = true;
         }
-
+        */
         /*
         if (Input.GetKeyDown(KeyCode.Return) || count > 3800)
         {
@@ -89,6 +91,11 @@ public class SpawnAgents : MonoBehaviour
             RVOAgents[i].go = go;
         }
         */
+    }
+
+    private void TurnOn()
+    {
+        isOn = true;
     }
 
     IEnumerator Spawn()

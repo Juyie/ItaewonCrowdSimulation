@@ -80,12 +80,21 @@ public class GridAgentList : MonoBehaviour
                 RemoveAgent(agent);
             }
             agent.GetComponent<NavMeshAgent>().enabled = false;
+            /*speed component
+            agent.GetComponent<NavMeshAgent>().speed = 0;
+            agent.GetComponent<NavMeshAgent>().angularSpeed = 0;
+            agent.GetComponent<NavMeshAgent>().acceleration = 0;
+            */
             agent.GetComponent<NavMeshObstacle>().enabled = true;
             agent.GetComponent<SPHProperties>().position = agent.transform.position;
             agent.transform.parent = GameObject.Find("SPHAgents").transform;
             NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 1;
             //SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
-            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow; 
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            }
             //agent.transform.position -= new Vector3(0, SPHManager.parameters[0].particleRadius / 2, 0);
         }
     }
@@ -100,6 +109,10 @@ public class GridAgentList : MonoBehaviour
             }
             agent.GetComponent<SPHProperties>().goalForce = 0;
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+            }
         }
     }
 
@@ -111,8 +124,12 @@ public class GridAgentList : MonoBehaviour
             {
                 RemoveAgent(agent);
             }
-            agent.GetComponent<SPHProperties>().goalForce = 30;
+            agent.GetComponent<SPHProperties>().goalForce = agent.GetComponent<SPHProperties>().goalForceBefore;
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            }
         }
     }
 
@@ -147,7 +164,11 @@ public class GridAgentList : MonoBehaviour
             agent.transform.parent = GameObject.Find("RVOAgents").transform;
             NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 0;
             //InitSPH(int.Parse(agent.name.Substring(23)), agent);
-            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white; 
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+            }
         }
     }
 

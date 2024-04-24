@@ -144,6 +144,7 @@ public class SPHManagerSingleThread1 : MonoBehaviour
 
         CheckVelocityForAnimation();
 
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             addForce = true;
@@ -152,6 +153,7 @@ public class SPHManagerSingleThread1 : MonoBehaviour
         {
             addForce = false;
         }
+        */
     }
 
 

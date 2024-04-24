@@ -39,6 +39,7 @@ public class SimpleSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.A))
         {
             if (activeRVO)
@@ -50,7 +51,7 @@ public class SimpleSceneManager : MonoBehaviour
                 addSPHAgents();
             }
         }
-
+        */
         if (ready)
         {
             Invoke("addRVOAgent", 3f);

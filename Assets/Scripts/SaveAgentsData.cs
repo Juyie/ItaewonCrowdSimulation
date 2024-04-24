@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine.AI;
 using UnityEditor.Recorder;
 using UnityEditor;
+using Unity.Transforms;
 
 public class AgentData
 {
@@ -122,6 +123,14 @@ public class SaveAgentsData : MonoBehaviour
             newAgent.GetComponent<PlayerMovement>().enabled = true;
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
+            if (newAgent.name.StartsWith("w"))
+            {
+                newAgent.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            else
+            {
+                newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
             newAgent.SetActive(true);
 
             NavagentSpawner.Instance.RVOGameObject[i] = newAgent;
@@ -154,13 +163,57 @@ public class SaveAgentsData : MonoBehaviour
             newAgent.GetComponent<PlayerMovement>().enabled = false;
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
+            if (newAgent.name.StartsWith("w"))
+            {
+                newAgent.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            else
+            {
+                newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
             newAgent.SetActive(true);
 
             NavagentSpawner.Instance.RVOGameObject[i] = newAgent;
             NavagentSpawner.Instance.RVOPointCloud[i] = sp.position;
             NavagentSpawner.Instance.TypeOfSimulation[i] = 4; // waited agent
         }
-        
+
+        for (int i = 0; i < dataLength * 1 / 3; i++)
+        //for(int i = dataLength * 1 / 6; i < dataLength; i++)
+        {
+            GameObject newAgent;
+            int prefabNum = Random.Range(0, 2);
+            if (prefabNum == 0)
+            {
+                newAgent = Instantiate(MAgentPf);
+            }
+            else
+            {
+                newAgent = Instantiate(WMAgentPf);
+            }
+            newAgent.name += 4500 + i;
+            newAgent.transform.position = data.positions[i] + new Vector3(0.0f, 100.0f, 0.0f);
+            newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
+            newAgent.GetComponent<PlayerMovement>().target = GameObject.Find(data.targetPosNames[i]).transform;
+            newAgent.transform.parent = GameObject.Find("WaitAgents").transform;
+            newAgent.GetComponent<NavMeshAgent>().enabled = false;
+            newAgent.GetComponent<PlayerMovement>().enabled = false;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            if (newAgent.name.StartsWith("w"))
+            {
+                newAgent.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            else
+            {
+                newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            newAgent.SetActive(true);
+
+            NavagentSpawner.Instance.RVOGameObject[4500 + i] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[4500 + i] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[4500 + i] = 4; // waited agent
+        }
         /*
         //for (int i = 0; i < data.positions.Length / 2 - 3; i++)
         for (int i = 0; i < data.positions.Length; i++)

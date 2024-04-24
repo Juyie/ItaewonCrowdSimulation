@@ -29,11 +29,12 @@ public class TypeOfSimulationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if ((Input.GetKeyDown(KeyCode.Alpha2)))// || recorderWindow.IsRecording()) && !start)
         {
             start = true;
         }
-
+        */
         if (start)
         {
             for (int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)

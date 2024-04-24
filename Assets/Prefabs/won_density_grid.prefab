@@ -435,7 +435,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.06091024
+  m_Radius: 0.06
   m_Height: 0.4286501
   m_Direction: 1
   m_Center: {x: 0, y: 0.2143156, z: 0}
@@ -523,7 +523,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.06091024, y: 0.21432506, z: 0.06091024}
+  m_Extents: {x: 0.06, y: 0.21432506, z: 0.06}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -1087,8 +1087,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.257807, y: 0.36298776, z: 0.1576581}
-  m_Center: {x: -0.0055105947, y: 0.13179658, z: 0.027000293}
+  m_Size: {x: 0.257807, y: 0.36298776, z: 0.1399349}
+  m_Center: {x: -0.005510599, y: 0.13179658, z: 0.035861913}
 --- !u!54 &2127598091931373756
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1128,11 +1128,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.1289035, y: 0.1814939, z: 0.07882905}
+  m_Extents: {x: 0.1289035, y: 0.1814939, z: 0.06996745}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.005510595, y: 0.1317966, z: 0.02700029}
+  m_Center: {x: -0.005510599, y: 0.1317966, z: 0.03586191}
   m_TimeToStationary: 0.5
 --- !u!1 &2738330705526270224
 GameObject:
@@ -2762,7 +2762,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.060910244
+  m_Radius: 0.06
   m_Height: 0.42865014
   m_Direction: 1
   m_Center: {x: 0.0027174007, y: 0.21432461, z: 0.005467245}
@@ -2850,7 +2850,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.06091024, y: 0.21432506, z: 0.06091024}
+  m_Extents: {x: 0.06, y: 0.21432506, z: 0.06}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -3609,8 +3609,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3127985, y: 0.12980081, z: 0.17121539}
-  m_Center: {x: 0.00000006622713, y: 0.064900406, z: 0.018080287}
+  m_Size: {x: 0.3127985, y: 0.12980081, z: 0.13283555}
+  m_Center: {x: 0.00000006622714, y: 0.064900406, z: 0.019556439}
 --- !u!54 &7343173257414133514
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3695,11 +3695,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.15639925, y: 0.0649004, z: 0.0856077}
+  m_Extents: {x: 0.15639925, y: 0.0649004, z: 0.0664178}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0.00000006622713, y: 0.06490041, z: 0.01808029}
+  m_Center: {x: 0.00000006622714, y: 0.06490041, z: 0.01955644}
   m_TimeToStationary: 0.5
 --- !u!1 &8709660287128925570
 GameObject:
@@ -3864,6 +3864,9 @@ MonoBehaviour:
   - {fileID: 2064668632189265457}
   - {fileID: 3950045032570197876}
   - {fileID: 6515279456901312695}
+  capsuleColliders:
+  - {fileID: 7224867085170324193}
+  - {fileID: 6440461535667761887}
 --- !u!114 &9160018124809068718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3910,7 +3913,7 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.35, y: 0.8, z: 0.35}
+  m_Extents: {x: 0.16, y: 0.8, z: 0.16}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -3942,7 +3945,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.35
+  m_Radius: 0.32
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
@@ -3963,12 +3966,14 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   forcePhysic: {x: 0, y: 0, z: 0}
   forceHeading: {x: 0, y: 0, z: 0}
+  totalForce: 0
   density: 0
   pressure: 0
   parameterID: 0
   ragdollDensity: 0
   SPHZombieDensity: 0
-  goalForce: 50
+  goalForce: 10
+  goalForceBefore: 0
 --- !u!136 &6440461535667761887
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3978,7 +3983,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 9156292956586031252}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.16
   m_Height: 1.6
   m_Direction: 1

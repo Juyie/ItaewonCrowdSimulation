@@ -23,6 +23,8 @@ public class CalculateDensityGrid : MonoBehaviour
 
     public bool turnOnRagdoll = false;
 
+    public bool printDensity = false;
+
     // weight calculation ver.
     private float criteriaWeight = 0.95f;
     private float criteriaWeightNum;
@@ -35,8 +37,8 @@ public class CalculateDensityGrid : MonoBehaviour
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
         criteriaAgentNumSPH = Mathf.FloorToInt(area * 4);
-        criteriaAgentNumSPHZombie = Mathf.FloorToInt(area * 10);
-        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 10);
+        criteriaAgentNumSPHZombie = Mathf.FloorToInt(area * 1.75f * 12);
+        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 1.75f * 12);
         criteriaSatisfyNum = Mathf.FloorToInt(area * 3);
         criteriaWeightNum = Mathf.FloorToInt(area * 4);
     }
@@ -65,7 +67,7 @@ public class CalculateDensityGrid : MonoBehaviour
                     //agentList.TurnOnRagdolls();
                     agentList.TurnOnRagdollDensity();
                 }
-                else if(agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn && satisfy)
+                if(agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn && satisfy)
                 {
                     agentList.TurnOnSPHZombie();
 

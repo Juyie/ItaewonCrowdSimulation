@@ -50,9 +50,11 @@ public class GridController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && on)
+        //if (Input.GetKeyDown(KeyCode.Alpha2) && on)
+        if(agentNumber.agentNumber >= 1500 && on)
         {
             StartSimulation();
+            on = false;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

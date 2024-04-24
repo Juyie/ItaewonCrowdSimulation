@@ -18,6 +18,9 @@ public class OnOffRagdoll : MonoBehaviour
     [SerializeField]
     private NavMeshObstacle[] navObstacles;
 
+    [SerializeField]
+    private CapsuleCollider[] capsuleColliders;
+
     private NavMeshAgent navAgent;
 
     private Animator animator;
@@ -46,6 +49,7 @@ public class OnOffRagdoll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(isRagdollOn && Input.GetKeyDown(KeyCode.Space))
         {
             TurnOffRagdoll();
@@ -54,7 +58,7 @@ public class OnOffRagdoll : MonoBehaviour
         {
             TurnOnRagdoll();
         }
-
+        */
         /*
         if (isStop)
         {
@@ -75,6 +79,11 @@ public class OnOffRagdoll : MonoBehaviour
         {
             rigidbodies[i].useGravity = true;
             rigidbodies[i].isKinematic = false;
+        }
+
+        for(int j = 0; j < capsuleColliders.Length; j++)
+        {
+            capsuleColliders[j].enabled = false;
         }
     }
 

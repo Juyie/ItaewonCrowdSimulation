@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 velocity;
     private Vector3 posBefore;
     private Vector3 posAfter;
+    private Vector3 midPosition = new Vector3(24.2f, 0.0f, 5.0f);
+    private Vector3 topPosition = new Vector3(44.3f, 2.7f, 5.0f);
+    private Vector3 bottomPosition = new Vector3(-1.1f, -2.2f, 5.0f);
 
     // Start is called before the first frame update
     void Awake()
@@ -48,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
                     startTrans = targetsParent.transform.GetChild(3);
                     break;
             }
+            gameObject.GetComponent<SPHProperties>().goalPosition = bottomPosition;
         }
         else if (target.name == "Target3" || target.name == "Target4")
         {
@@ -60,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
                     startTrans = targetsParent.transform.GetChild(1);
                     break;
             }
+            gameObject.GetComponent<SPHProperties>().goalPosition = topPosition;
         }
 
         posBefore = transform.position;
@@ -97,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (!isRagdollOn && navMeshAgent.destination != null)
                 {
                     navMeshAgent.SetDestination(target.position);
-                    gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
+                    //gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
                 }
 
                 if (!navMeshAgent.pathPending)
@@ -113,7 +118,9 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                gameObject.transform.position = startTrans.position;
+                gameObject.GetComponent<SPHProperties>().position = startTrans.position;
             }
         }
         else // SPH agent
@@ -122,6 +129,38 @@ public class PlayerMovement : MonoBehaviour
             {
                 gameObject.transform.position = startTrans.position;
                 gameObject.GetComponent<SPHProperties>().position = startTrans.position;
+            }
+        }
+
+        // navigation
+        if (target.name == "Target1" || target.name == "Target2")
+        {
+            if (Vector3.Distance(bottomPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == bottomPosition)
+            {
+                gameObject.GetComponent<SPHProperties>().goalPosition = midPosition;
+            }
+            else if (Vector3.Distance(midPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == midPosition)
+            {
+                gameObject.GetComponent<SPHProperties>().goalPosition = topPosition;
+            }
+            else if (Vector3.Distance(topPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == topPosition)
+            {
+                gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
+            }
+        }
+        else if (target.name == "Target3" || target.name == "Target4")
+        {
+            if (Vector3.Distance(topPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == topPosition)
+            {
+                gameObject.GetComponent<SPHProperties>().goalPosition = midPosition;
+            }
+            else if (Vector3.Distance(midPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == midPosition)
+            {
+                gameObject.GetComponent<SPHProperties>().goalPosition = bottomPosition;
+            }
+            else if (Vector3.Distance(bottomPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == bottomPosition)
+            {
+                gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
             }
         }
 
