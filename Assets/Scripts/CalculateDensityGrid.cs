@@ -67,7 +67,7 @@ public class CalculateDensityGrid : MonoBehaviour
                     //agentList.TurnOnRagdolls();
                     agentList.TurnOnRagdollDensity();
                 }
-                if(agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn && satisfy)
+                if (agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn && satisfy)
                 {
                     agentList.TurnOnSPHZombie();
 
@@ -130,20 +130,9 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         if (this.enabled)
         {
-            if (controller.Step)
+            if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<PlayerMovement>().velocity.sqrMagnitude < controller.stepSize)
             {
-                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<PlayerMovement>().velocity.sqrMagnitude < controller.stepSize)
-                {
-                    agentList.AddAgent(other.gameObject);
-                }
-            }
-            else if (controller.Exponential)
-            {
-                if (other.CompareTag("agent") && !agentList.FindAgentDic(other.gameObject))
-                {
-                    agentList.AddAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
-                    Debug.Log(other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
-                }
+                agentList.AddAgent(other.gameObject);
             }
         }
     }
@@ -152,32 +141,22 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         if (this.enabled)
         {
-            if (controller.Step)
+            if (turnOn)
             {
-                if (turnOn)
+                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject))
                 {
-                    if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject))
-                    {
-                        agentList.AddAgent(other.gameObject);
-                    }
-                }
-                else
-                {
-                    if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<PlayerMovement>().velocity.sqrMagnitude < controller.stepSize)
-                    {
-                        agentList.AddAgent(other.gameObject);
-                    }
-                    else if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
-                    {
-                        agentList.RemoveAgent(other.gameObject);
-                    }
+                    agentList.AddAgent(other.gameObject);
                 }
             }
-            else if (controller.Exponential)
+            else
             {
-                if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
+                if (other.CompareTag("agent") && !agentList.FindAgent(other.gameObject) && other.GetComponent<PlayerMovement>().velocity.sqrMagnitude < controller.stepSize)
                 {
-                    agentList.FixAgentDic(other.gameObject, other.GetComponent<NavMeshAgent>().desiredVelocity.magnitude);
+                    agentList.AddAgent(other.gameObject);
+                }
+                else if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
+                {
+                    agentList.RemoveAgent(other.gameObject);
                 }
             }
         }
@@ -187,20 +166,11 @@ public class CalculateDensityGrid : MonoBehaviour
     {
         if (this.enabled)
         {
-            if (controller.Step)
+            if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
             {
-                if (other.CompareTag("agent") && agentList.FindAgent(other.gameObject))
-                {
-                    agentList.RemoveAgent(other.gameObject);
-                }
+                agentList.RemoveAgent(other.gameObject);
             }
-            else if (controller.Exponential)
-            {
-                if (other.CompareTag("agent") && agentList.FindAgentDic(other.gameObject))
-                {
-                    agentList.RemoveAgentDic(other.gameObject);
-                }
-            }
+            
         }
     }
 }

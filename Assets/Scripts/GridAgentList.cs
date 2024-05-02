@@ -16,6 +16,9 @@ public class GridAgentList : MonoBehaviour
     private float exponentialNum = 3.0f;
     private SPHManagerSingleThread SPHManager;
 
+    public bool densityColor = true;
+    public bool allSPH = true;
+
     public void SetExponentialNum(float num)
     {
         exponentialNum = num;
@@ -33,6 +36,22 @@ public class GridAgentList : MonoBehaviour
         if (printList)
         {
             PrintList();
+        }
+        if (densityColor)
+        {
+            DensityColor();
+        }
+        if (allSPH)
+        {
+            TurnOnSPHNoColor();
+        }
+    }
+
+    public void DensityColor()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            agent.transform.GetChild(0).GetComponent<ChangeDensityColor>().density = GetListLength();
         }
     }
 
@@ -95,6 +114,25 @@ public class GridAgentList : MonoBehaviour
             {
                 agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
             }
+            //agent.transform.position -= new Vector3(0, SPHManager.parameters[0].particleRadius / 2, 0);
+        }
+    }
+
+    public void TurnOnSPHNoColor()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<NavMeshAgent>().enabled = false;
+            agent.GetComponent<NavMeshObstacle>().enabled = true;
+            agent.GetComponent<SPHProperties>().position = agent.transform.position;
+            agent.transform.parent = GameObject.Find("SPHAgents").transform;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 1;
+            //SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
+        
             //agent.transform.position -= new Vector3(0, SPHManager.parameters[0].particleRadius / 2, 0);
         }
     }

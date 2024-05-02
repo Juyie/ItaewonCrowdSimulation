@@ -14,6 +14,11 @@ public class AgentRatio
     public int[] RagdollW;
 }
 
+public class Force
+{
+    public float[] forces;
+}
+
 public class SaveAgentsTypeRatio : MonoBehaviour
 {
     [SerializeField]
@@ -23,6 +28,9 @@ public class SaveAgentsTypeRatio : MonoBehaviour
     private int count = 0;
     private AgentRatio agentRatio = null;
     private bool once = true;
+    private DisplayAgentNumber agentNumber;
+    private Force force = null;
+    private bool forceOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +42,10 @@ public class SaveAgentsTypeRatio : MonoBehaviour
         agentRatio.Ragdolls = new int[101];
         agentRatio.RagdollM = new int[101];
         agentRatio.RagdollW = new int[101];
+
+        force.forces = new float[6000];
+
+        agentNumber = GameObject.Find("Canvas").GetComponent<DisplayAgentNumber>();
     }
 
     // Update is called once per frame
@@ -49,8 +61,31 @@ public class SaveAgentsTypeRatio : MonoBehaviour
             JsonSave();
             once = false;
         }
+
+        if(agentNumber.agentNumber == 6000 && forceOnce)
+        {
+            JsonSaveForce();
+        }
     }
 
+    private void JsonSaveForce()
+    {
+        for (int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)
+        {
+            force.forces[i] = NavagentSpawner.Instance.RVOGameObject[i].transform.GetChild(0).GetComponent<CalculateForce>().maxForce;
+        }
+
+        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\";
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        string saveJson = JsonUtility.ToJson(force);
+
+        File.WriteAllText(path + "maxForce" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".json", saveJson);
+    }
     IEnumerator JsonAppend()
     {
         ready = false;

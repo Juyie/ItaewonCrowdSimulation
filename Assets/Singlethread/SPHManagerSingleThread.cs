@@ -115,6 +115,8 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private bool addForce = false;
     private bool addForceFlag = true;
+    private bool addForceShort = false;
+    private bool addForceFlagShort = true;
 
     private RagdollSpawner.RagdollAgent[] RagdollAgents;
 
@@ -209,6 +211,12 @@ public class SPHManagerSingleThread : MonoBehaviour
         {
             addForceFlag = false;
             StartCoroutine(WaitAndAddForce());
+        }
+
+        if (addForceFlagShort)
+        {
+            addForceFlagShort = false;
+            StartCoroutine(WaitAndAddForceShort());
         }
     }
 
@@ -443,12 +451,13 @@ public class SPHManagerSingleThread : MonoBehaviour
             
             //Vector3 Impulse1 = new Vector3(0.0f, 0.0f, -50.0f);
             //Vector3 Impulse2 = new Vector3(0.0f, 0.0f, 50.0f);
-            //Vector3 Impulse3 = new Vector3(-50.0f, 0.0f, 0.0f);
+            Vector3 Impulse3 = new Vector3(-50.0f, 0.0f, 0.0f);
             Vector3 Impulse4 = new Vector3(-10.0f, 0.0f, 0.0f);
+            Vector3 Impulse5 = new Vector3(-300.0f, 0.0f, 0.0f);
 
             Vector3 Impulse1 = new Vector3(0.0f, 0.0f, 0.0f);
             Vector3 Impulse2 = new Vector3(0.0f, 0.0f, 0.0f);
-            Vector3 Impulse3 = new Vector3(0.0f, 0.0f, 0.0f);
+            //Vector3 Impulse3 = new Vector3(0.0f, 0.0f, 0.0f);
 
             // Apply
 
@@ -497,9 +506,18 @@ public class SPHManagerSingleThread : MonoBehaviour
                 {
                     spi.forcePhysic += Impulse3;
                 }
-                if(spi.position.x > 43.5f && spi.position.x < 45.5f)
+
+                //if (spi.position.z < 5.8 && spi.position.z > 3.3 && spi.position.x < 34.0f)
+                //{
+                    //spi.forcePhysic += Impulse5;
+                //}
+            }
+
+            if (addForceShort)
+            {
+                if (spi.position.x > 43.5f && spi.position.x < 45.5f && spi.position.z > 2.0f && spi.position.z < 6.0f)
                 {
-                    spi.forcePhysic += Impulse3;
+                    spi.forcePhysic += Impulse4;
                 }
             }
 
@@ -580,7 +598,16 @@ public class SPHManagerSingleThread : MonoBehaviour
         addForce = true;
         yield return new WaitForSeconds(0.5f);
         addForce = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(4.5f);
         addForceFlag = true;
+    }
+
+    IEnumerator WaitAndAddForceShort()
+    {
+        addForceShort = true;
+        yield return new WaitForSeconds(1.0f);
+        addForceShort = false;
+        yield return new WaitForSeconds(0.5f);
+        addForceFlagShort = true;
     }
 }

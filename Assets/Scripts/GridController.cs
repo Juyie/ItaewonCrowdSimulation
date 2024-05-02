@@ -32,6 +32,7 @@ public class GridController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Step)
         {
             Exponential = false;
@@ -40,6 +41,7 @@ public class GridController : MonoBehaviour
         {
             Exponential = true;
         }
+        */
 
         if(agentNumber.agentNumber >= 4500 && once)
         {
