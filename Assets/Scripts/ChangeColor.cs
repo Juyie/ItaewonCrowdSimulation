@@ -16,10 +16,18 @@ public class ChangeColor : MonoBehaviour
     [Range(0f, 1f)]
     private float t;
 
+    [SerializeField]
+    private CalculateForce calculateForce;
+
     private float force = 0f;
     private float maxForce = 0;
     private float totalWeight = 0;
     private float dangerForce = 5000f;
+
+    private void OnEnable()
+    {
+        calculateForce.enabled = true;
+    }
 
     private void Awake()
     {

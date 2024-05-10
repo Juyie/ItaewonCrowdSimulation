@@ -24,11 +24,13 @@ public class SaveAgentsTypeRatio : MonoBehaviour
     [SerializeField]
     private bool save;
 
+    [SerializeField]
+    private DisplayAgentNumber agentNumber;
+
     private bool ready = true;
     private int count = 0;
     private AgentRatio agentRatio = null;
     private bool once = true;
-    private DisplayAgentNumber agentNumber;
     private Force force = null;
     private bool forceOnce = true;
 
@@ -43,9 +45,8 @@ public class SaveAgentsTypeRatio : MonoBehaviour
         agentRatio.RagdollM = new int[101];
         agentRatio.RagdollW = new int[101];
 
+        force = new Force();
         force.forces = new float[6000];
-
-        agentNumber = GameObject.Find("Canvas").GetComponent<DisplayAgentNumber>();
     }
 
     // Update is called once per frame
@@ -65,6 +66,7 @@ public class SaveAgentsTypeRatio : MonoBehaviour
         if(agentNumber.agentNumber == 6000 && forceOnce)
         {
             JsonSaveForce();
+            forceOnce = false;
         }
     }
 
@@ -86,6 +88,7 @@ public class SaveAgentsTypeRatio : MonoBehaviour
 
         File.WriteAllText(path + "maxForce" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".json", saveJson);
     }
+
     IEnumerator JsonAppend()
     {
         ready = false;
