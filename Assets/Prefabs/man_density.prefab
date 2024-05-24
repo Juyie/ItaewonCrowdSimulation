@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5768389600165008489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.4, y: 1, z: 0.4}
   m_Children: []
   m_Father: {fileID: 8690564730811554610}
   m_RootOrder: 6
@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768389600165008489}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -94,6 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   densityUIText: {fileID: 0}
+  useUI: 0
+  onOffRagdoll: {fileID: 1512458823020794624}
+  agentList: {fileID: 5008673638363264254}
 --- !u!65 &6783905130989829176
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -102,11 +105,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768389600165008489}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 1.22, z: 0}
 --- !u!1 &9156292956466221290
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +123,7 @@ GameObject:
   - component: {fileID: 9156292956466221285}
   - component: {fileID: 9156292956466221286}
   - component: {fileID: 9156292956466221287}
+  - component: {fileID: 8100462028831356461}
   m_Layer: 0
   m_Name: mixamorig12:LeftArm
   m_TagString: Left Arm
@@ -157,7 +161,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292956466221285
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -230,6 +234,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &8100462028831356461
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292956466221290}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.06, y: 0.12657325, z: 0.06}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.1265732, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292956482347342
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,9 +388,11 @@ GameObject:
   - component: {fileID: 1955143765916930162}
   - component: {fileID: 7224867085170324193}
   - component: {fileID: 8577235090074135402}
+  - component: {fileID: 5510118113503800176}
+  - component: {fileID: 5008673638363264254}
   m_Layer: 0
   m_Name: man_density
-  m_TagString: Untagged
+  m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,7 +404,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292956586031252}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -439,6 +461,21 @@ MonoBehaviour:
   - {fileID: 9156292956893802716}
   - {fileID: 9156292958119917551}
   - {fileID: 9156292957102336899}
+  - {fileID: 8577235090074135402}
+  colorBodies:
+  - {fileID: 9156292958039447346}
+  - {fileID: 9156292957292879387}
+  - {fileID: 9156292957138524820}
+  - {fileID: 9156292957789355374}
+  - {fileID: 9156292956596943104}
+  navObstacles:
+  - {fileID: 2047012152061303427}
+  - {fileID: 3022193923852494779}
+  - {fileID: 4185979295218438843}
+  - {fileID: 8835339111819513022}
+  - {fileID: 8100462028831356461}
+  - {fileID: 1875160693769915588}
+  - {fileID: 7495936606386503906}
 --- !u!114 &9160018124809068718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +540,44 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
+--- !u!114 &5510118113503800176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292956586031252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6a7560b453cf7479990464cb907fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xCoordinates: {x: 5, y: 42}
+  zCoordinates: {x: 0, y: 10}
+  bodyCollider: {fileID: 7224867085170324193}
+  bodies:
+  - {fileID: 9156292958039447346}
+  - {fileID: 9156292957292879387}
+  - {fileID: 9156292957138524820}
+  - {fileID: 9156292957789355374}
+  - {fileID: 9156292956596943104}
+  densityPlane: {fileID: 5768389600165008489}
+--- !u!114 &5008673638363264254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292956586031252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc399ba22d4ceb347ba036e96ca9f533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onOffRagdoll: {fileID: 1512458823020794624}
+  useUI: 0
+  UIText: {fileID: 0}
 --- !u!1 &9156292956596943104
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +628,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 20e81dc8fa7a9c14d81d693d6c8e2392, type: 2}
+  - {fileID: 2100000, guid: f1306d1d0d0a12f4d80dbc58de7543c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -602,7 +676,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292956596943104}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
   m_Name: 
@@ -717,7 +791,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292956692611802
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -927,6 +1001,7 @@ GameObject:
   - component: {fileID: 9156292956893802717}
   - component: {fileID: 9156292956893802718}
   - component: {fileID: 9156292956893802719}
+  - component: {fileID: 1875160693769915588}
   m_Layer: 0
   m_Name: mixamorig12:Head
   m_TagString: Untagged
@@ -964,7 +1039,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!135 &9156292956893802717
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1036,6 +1111,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &1875160693769915588
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292956893802721}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1109828, y: 0.0554914, z: 0.1109828}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.338722e-11, y: 0.08116883, z: 0.03}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292956922693110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1233,7 @@ GameObject:
   - component: {fileID: 9156292957061350418}
   - component: {fileID: 9156292957061350419}
   - component: {fileID: 9156292957061350420}
+  - component: {fileID: 3022193923852494779}
   m_Layer: 0
   m_Name: mixamorig12:LeftUpLeg
   m_TagString: Left Hips
@@ -1179,7 +1271,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292957061350418
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1252,6 +1344,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &3022193923852494779
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957061350423}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1285371, y: 0.21422856, z: 0.1285371}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.2142285, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292957102336904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1410,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292957102336900
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1487,7 +1595,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3502645084136841012, guid: 32ed8de4252e2c049bcf75dd781e51d0, type: 3}
+  - {fileID: 2100000, guid: f1306d1d0d0a12f4d80dbc58de7543c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1540,7 +1648,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292957138524820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
   m_Name: 
@@ -1695,7 +1803,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292957242146911
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1848,7 +1956,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4989172880197403051, guid: 32ed8de4252e2c049bcf75dd781e51d0, type: 3}
+  - {fileID: 2100000, guid: f1306d1d0d0a12f4d80dbc58de7543c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1894,7 +2002,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292957292879387}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
   m_Name: 
@@ -1942,6 +2050,7 @@ GameObject:
   - component: {fileID: 9156292957297620344}
   - component: {fileID: 9156292957297620345}
   - component: {fileID: 9156292957297620346}
+  - component: {fileID: 8835339111819513022}
   m_Layer: 0
   m_Name: mixamorig12:Spine2
   m_TagString: Middle Spine
@@ -1981,7 +2090,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!65 &9156292957297620344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2053,6 +2162,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &8835339111819513022
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957297620349}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.21078464, y: 0.076689, z: 0.14011206}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.00000001488414, y: 0.07668908, z: 0.01112676}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292957310553424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,6 +2282,7 @@ GameObject:
   - component: {fileID: 9156292957430368295}
   - component: {fileID: 9156292957430368293}
   - component: {fileID: 9156292957430368294}
+  - component: {fileID: 2047012152061303427}
   m_Layer: 0
   m_Name: mixamorig12:Hips
   m_TagString: Pelvis
@@ -2196,7 +2322,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!65 &9156292957430368293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2223,6 +2349,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &2047012152061303427
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957430368297}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.2107845, y: 0.20387875, z: 0.1411745}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.0003872961, y: 0.1479544, z: -0.01023869}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292957451172861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,7 +2784,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3502645084136841012, guid: 32ed8de4252e2c049bcf75dd781e51d0, type: 3}
+  - {fileID: 2100000, guid: f1306d1d0d0a12f4d80dbc58de7543c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2698,7 +2840,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292957789355374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
   m_Name: 
@@ -2901,6 +3043,7 @@ GameObject:
   - component: {fileID: 9156292957950124498}
   - component: {fileID: 9156292957950124499}
   - component: {fileID: 9156292957950124500}
+  - component: {fileID: 4185979295218438843}
   m_Layer: 0
   m_Name: mixamorig12:RightUpLeg
   m_TagString: Right Hips
@@ -2938,7 +3081,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292957950124498
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3011,6 +3154,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &4185979295218438843
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292957950124503}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1284883, y: 0.2141471, z: 0.1284883}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.2141471, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292958010326754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,7 +3316,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3502645084136841012, guid: 32ed8de4252e2c049bcf75dd781e51d0, type: 3}
+  - {fileID: 2100000, guid: f1306d1d0d0a12f4d80dbc58de7543c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3258,7 +3417,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292958039447346}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5ae137a93748e49a75240513c3b3e3, type: 3}
   m_Name: 
@@ -3464,6 +3623,7 @@ GameObject:
   - component: {fileID: 9156292958119917548}
   - component: {fileID: 9156292958119917549}
   - component: {fileID: 9156292958119917550}
+  - component: {fileID: 7495936606386503906}
   m_Layer: 0
   m_Name: mixamorig12:RightArm
   m_TagString: Right Arm
@@ -3501,7 +3661,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292958119917548
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3574,6 +3734,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePower: 0
+--- !u!208 &7495936606386503906
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292958119917553}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.06330881, y: 0.12661766, z: 0.06330881}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.1266176, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9156292958156763686
 GameObject:
   m_ObjectHideFlags: 0
@@ -3778,7 +3954,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &9156292958374226073
 CapsuleCollider:
   m_ObjectHideFlags: 0
