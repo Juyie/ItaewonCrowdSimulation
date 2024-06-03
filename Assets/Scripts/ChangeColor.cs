@@ -79,5 +79,21 @@ public class ChangeColor : MonoBehaviour
             GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
         */
+
+        if (force > 5000f)
+        {
+            bodyParts[0].GetComponent<Rigidbody>().freezeRotation = false;
+            bodyParts[0].GetComponent<Rigidbody>().isKinematic = false;
+            for (int i = 1; i < bodyParts.Length; i++)
+            {
+                JointDrive drive = new JointDrive();
+                drive.positionSpring = 0;
+                drive.positionDamper = 0;
+
+                bodyParts[i].GetComponent<ConfigurableJoint>().angularXDrive = drive;
+
+                bodyParts[i].GetComponent<ConfigurableJoint>().angularYZDrive = drive;
+            }
+        }
     }
 }

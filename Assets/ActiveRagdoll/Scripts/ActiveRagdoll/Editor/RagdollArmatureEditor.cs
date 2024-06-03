@@ -15,6 +15,7 @@ namespace CollieLab.ActiveRagdoll
         private SerializedProperty headBoneProperty = null;
         private SerializedProperty bodyBoneProperty = null;
         private SerializedProperty legBoneProperty = null;
+        private SerializedProperty armBoneProperty = null;
         private SerializedProperty tailBoneProperty = null;
         private SerializedProperty ignoreCollidersProperty = null;
 
@@ -28,6 +29,7 @@ namespace CollieLab.ActiveRagdoll
             headBoneProperty = serializedObject.FindProperty("head");
             bodyBoneProperty = serializedObject.FindProperty("bodies");
             legBoneProperty = serializedObject.FindProperty("legs");
+            armBoneProperty = serializedObject.FindProperty("arms");
             tailBoneProperty = serializedObject.FindProperty("tail");
             ignoreCollidersProperty = serializedObject.FindProperty("ignoreColliderGroup");
         }
@@ -74,6 +76,7 @@ namespace CollieLab.ActiveRagdoll
                     EditorGUILayout.PropertyField(headBoneProperty);
                     EditorGUILayout.PropertyField(bodyBoneProperty);
                     EditorGUILayout.PropertyField(legBoneProperty);
+                    EditorGUILayout.PropertyField(armBoneProperty);
                     EditorGUILayout.PropertyField(tailBoneProperty);
 
                     EditorGUILayout.Space(VERTICALELEMENTSPACE);
@@ -107,6 +110,12 @@ namespace CollieLab.ActiveRagdoll
                 GetLimbBoneComponents(armature.Legs[i].rightLeg);
             }
 
+            for(int i = 0; i < armature.Arms.Length; i++)
+            {
+                GetLimbBoneComponents(armature.Arms[i].leftLeg);
+                GetLimbBoneComponents(armature.Arms[i].rightLeg);
+            }
+
             for (int i = 0; i < armature.Tail.Length; i++)
             {
                 GetBoneComponents(armature.Tail[i]);
@@ -117,7 +126,7 @@ namespace CollieLab.ActiveRagdoll
         {
             GetBoneComponents(limb.upper);
             GetBoneComponents(limb.lower);
-            GetBoneComponents(limb.end);
+            //GetBoneComponents(limb.end);
         }
 
         private void GetBoneComponents(BoneInfo bone)

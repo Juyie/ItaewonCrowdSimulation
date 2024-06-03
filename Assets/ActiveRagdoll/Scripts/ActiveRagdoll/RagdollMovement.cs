@@ -112,12 +112,12 @@ namespace CollieLab.ActiveRagdoll
 
                     lim.upper.joint.targetRotation = Quaternion.Lerp(lim.upper.joint.targetRotation, targetRot.UpperRot, perc);
                     lim.lower.joint.targetRotation = Quaternion.Lerp(lim.lower.joint.targetRotation, targetRot.LowerRot, perc);
-                    lim.end.joint.targetRotation = Quaternion.Lerp(lim.end.joint.targetRotation, targetRot.EndRot, perc);
+                    //lim.end.joint.targetRotation = Quaternion.Lerp(lim.end.joint.targetRotation, targetRot.EndRot, perc);
                     yield return new WaitForFixedUpdate();
                 }
                 lim.upper.joint.targetRotation = targetRot.UpperRot;
                 lim.lower.joint.targetRotation = targetRot.LowerRot;
-                lim.end.joint.targetRotation = targetRot.EndRot;
+                //lim.end.joint.targetRotation = targetRot.EndRot;
             }
             movement.isExecuting = false;
             executed?.Invoke();

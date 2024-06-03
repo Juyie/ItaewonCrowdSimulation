@@ -29,6 +29,13 @@ namespace CollieLab.ActiveRagdoll
             set => legs = value;
         }
 
+        [SerializeField] private LegInfo[] arms = null;
+        public LegInfo[] Arms
+        {
+            get => arms;
+            set => arms = value;
+        }
+
         [SerializeField] private BoneInfo[] tail = null;
         public BoneInfo[] Tail
         {
@@ -70,7 +77,12 @@ namespace CollieLab.ActiveRagdoll
                 AddLimbs(allBones, legs[i].leftLeg);
                 AddLimbs(allBones, legs[i].rightLeg);
             }
-            allBones.AddRange(tail.ToList());
+            for(int j = 0; j < arms.Length; j++)
+            {
+                AddLimbs(allBones, arms[j].leftLeg);
+                AddLimbs(allBones, arms[j].rightLeg);
+            }
+            //allBones.AddRange(tail.ToList());
 
             this.allBones = allBones.ToArray();
         }
@@ -81,7 +93,7 @@ namespace CollieLab.ActiveRagdoll
 
             bones.Add(limb.upper);
             bones.Add(limb.lower);
-            bones.Add(limb.end);
+            //bones.Add(limb.end);
         }
 
         /// <summary>
@@ -146,7 +158,7 @@ namespace CollieLab.ActiveRagdoll
     {
         public BoneInfo upper = null;
         public BoneInfo lower = null;
-        public BoneInfo end = null;
+        //public BoneInfo end = null;
     }
 
     [Serializable]
@@ -154,6 +166,12 @@ namespace CollieLab.ActiveRagdoll
     {
         public LimbInfo leftLeg = null;
         public LimbInfo rightLeg = null;
+    }
+
+    public class ArmInfo
+    {
+        public LimbInfo leftArm = null;
+        public LimbInfo rightArm = null;
     }
 
     [Serializable]
