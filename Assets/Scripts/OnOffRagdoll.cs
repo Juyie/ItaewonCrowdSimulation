@@ -44,6 +44,8 @@ public class OnOffRagdoll : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
 
         playerMovement = GetComponent<PlayerMovement>();
+
+        TurnOnRigidBody();
     }
 
     // Update is called once per frame

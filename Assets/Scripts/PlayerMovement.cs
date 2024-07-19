@@ -39,36 +39,43 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        int randInt = Random.Range(0, 2);
-        if (target.name == "Target1" || target.name == "Target2")
+        if (target == null)
         {
-            switch (randInt) 
-            {
-                case 0:
-                    startTrans = targetsParent.transform.GetChild(2);
-                    break;
-                case 1:
-                    startTrans = targetsParent.transform.GetChild(3);
-                    break;
-            }
-            gameObject.GetComponent<SPHProperties>().goalPosition = bottomPosition;
+            this.enabled = false;
         }
-        else if (target.name == "Target3" || target.name == "Target4")
+        else
         {
-            switch (randInt)
+            int randInt = Random.Range(0, 2);
+            if (target.name == "Target1" || target.name == "Target2")
             {
-                case 0:
-                    startTrans = targetsParent.transform.GetChild(0);
-                    break;
-                case 1:
-                    startTrans = targetsParent.transform.GetChild(1);
-                    break;
+                switch (randInt)
+                {
+                    case 0:
+                        startTrans = targetsParent.transform.GetChild(2);
+                        break;
+                    case 1:
+                        startTrans = targetsParent.transform.GetChild(3);
+                        break;
+                }
+                gameObject.GetComponent<SPHProperties>().goalPosition = bottomPosition;
             }
-            gameObject.GetComponent<SPHProperties>().goalPosition = topPosition;
-        }
+            else if (target.name == "Target3" || target.name == "Target4")
+            {
+                switch (randInt)
+                {
+                    case 0:
+                        startTrans = targetsParent.transform.GetChild(0);
+                        break;
+                    case 1:
+                        startTrans = targetsParent.transform.GetChild(1);
+                        break;
+                }
+                gameObject.GetComponent<SPHProperties>().goalPosition = topPosition;
+            }
 
-        posBefore = transform.position;
-        posAfter = transform.position;
+            posBefore = transform.position;
+            posAfter = transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -119,6 +126,10 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 //Destroy(gameObject);
+                if(startTrans == null)
+                {
+                    this.enabled = false;
+                }
                 gameObject.transform.position = startTrans.position;
                 gameObject.GetComponent<SPHProperties>().position = startTrans.position;
             }

@@ -76,7 +76,9 @@ namespace Unity.MLAgentsExamples
             currentYNormalizedRot = Mathf.InverseLerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, yRot);
             currentZNormalizedRot = Mathf.InverseLerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, zRot);
 
-            joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
+            //joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
+            Rigidbody rb = joint.gameObject.GetComponent<Rigidbody>();
+            rb.AddTorque(new Vector3(xRot, yRot, zRot) * currentStrength * rb.mass);
             currentEularJointRotation = new Vector3(xRot, yRot, zRot);
         }
 
@@ -89,8 +91,15 @@ namespace Unity.MLAgentsExamples
                 positionDamper = thisJdController.jointDampen,
                 maximumForce = rawVal
             };
-            joint.slerpDrive = jd;
+            //joint.slerpDrive = jd;
             currentStrength = jd.maximumForce;
+        }
+
+        public void SetTorque(float x, float y, float z, float strength)
+        {
+            currentStrength = (strength + 1f) * 0.5f * thisJdController.maxJointForceLimit;
+            Rigidbody rb = joint.gameObject.GetComponent<Rigidbody>();
+            rb.AddTorque(new Vector3(x, y, z) * currentStrength * rb.mass);
         }
     }
 
@@ -159,7 +168,7 @@ namespace Unity.MLAgentsExamples
                     positionDamper = jointDampen,
                     maximumForce = maxJointForceLimit
                 };
-                bp.joint.slerpDrive = jd;
+                //bp.joint.slerpDrive = jd;
             }
 
             bp.thisJdController = this;

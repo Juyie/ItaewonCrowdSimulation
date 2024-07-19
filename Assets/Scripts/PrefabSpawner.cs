@@ -16,7 +16,10 @@ namespace JKress.AITrainer
 
         void Awake()
         {
-            scenePrefab = GameObject.FindWithTag("agentPrefab");
+            if (scenePrefab == null)
+            {
+                scenePrefab = GameObject.FindWithTag("agentPrefab");
+            }
             if (scenePrefab != null) Destroy(scenePrefab); //If prefab is in the scene, remove it
 
             float behaviorOffset = 0;
@@ -28,8 +31,10 @@ namespace JKress.AITrainer
                 {
                     for (int j = 0; j < zCount; j++)
                     {
-                        Instantiate(basePrefab[k], new Vector3(i * offsetX + behaviorOffset, 0, j * offsetZ),
+                        GameObject go = Instantiate(basePrefab[k], new Vector3(i * offsetX + behaviorOffset, 0, j * offsetZ),
                             Quaternion.identity);
+                        go.transform.GetChild(1).GetComponent<WalkerAgent>().enabled = true;
+                        go.transform.GetChild(4).GetComponent<MovingGround>().enabled = true;
                     }
                 }
             }

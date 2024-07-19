@@ -21,10 +21,6 @@ namespace JKress.AITrainer
         [Header("Training Type")] //If true, agent is penalized for moving away from target
         public bool earlyTraining = false;
 
-        [Header("Target Goal")]
-        [SerializeField] Transform targetT; //Target the agent will walk towards during training
-        [SerializeField] TargetController targetController;
-
         [Header("Body Parts")]
         [SerializeField] Transform hips;
         [SerializeField] Transform spine;
@@ -40,30 +36,10 @@ namespace JKress.AITrainer
         [SerializeField] Transform armR;
         [SerializeField] Transform forearmR;
 
-        [Header("Stabilizer")]
-        [Range(0, 4000)] [SerializeField] float m_stabilizerTorque = 4000f;
-        float m_minStabilizerTorque = 0;
-        float m_maxStabilizerTorque = 4000; 
-        [SerializeField] Stabilizer hipsStabilizer;
-        [SerializeField] Stabilizer spineStabilizer;
-
-        [Header("Walk Speed")] //The walking speed to try and achieve
-        [Range(0.1f, 4)] [SerializeField] float m_TargetWalkingSpeed = 2; 
-        float m_minWalkingSpeed = 0.1f; 
-        float m_maxWalkingSpeed = 4; 
-
-        public float MTargetWalkingSpeed // property
-        {
-            get { return m_TargetWalkingSpeed; }
-            set { m_TargetWalkingSpeed = Mathf.Clamp(value, m_minWalkingSpeed, m_maxWalkingSpeed); }
-        }
-
-        public float MStabilizerTorque 
-        {
-            get { return m_stabilizerTorque; }
-            set { m_stabilizerTorque = Mathf.Clamp(value, m_minStabilizerTorque, m_maxStabilizerTorque); }
-        }
-
+        private float maxAngle = 5;
+        private float maxVelocity = 0.5f;
+        private float maxAngularVelocity = 0.6f;
+        private float maxHead = 1.0f;
         //Should the agent sample a new goal velocity each episode?
         //If true, walkSpeed will be randomly set between zero and m_maxWalkingSpeed in OnEpisodeBegin()
         //If false, the goal velocity will be walkingSpeed
@@ -97,9 +73,6 @@ namespace JKress.AITrainer
             m_JdController.SetupBodyPart(forearmL);
             m_JdController.SetupBodyPart(armR);
             m_JdController.SetupBodyPart(forearmR);
-
-            hipsStabilizer.uprightTorque = m_stabilizerTorque;
-            spineStabilizer.uprightTorque = m_stabilizerTorque;
         }
 
         /// <summary>
@@ -107,8 +80,6 @@ namespace JKress.AITrainer
         /// </summary>
         public override void OnEpisodeBegin()
         {
-            targetController.MoveTargetToRandomPosition(); //method also fixes overlaps
-
             //Reset all of the body parts
             foreach (var bodyPart in m_JdController.bodyPartsDict.Values)
             {
@@ -117,26 +88,11 @@ namespace JKress.AITrainer
 
             //Random start rotation to help generalize
             hips.rotation = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
-
-            //Set our goal walking speed
-            MTargetWalkingSpeed =
-                randomizeWalkSpeedEachEpisode ? Random.Range(m_minWalkingSpeed, m_maxWalkingSpeed) : MTargetWalkingSpeed;
         }
 
         void FixedUpdate()
         {
-            //Penalty if feet cross over
-            var footSpacingReward = Vector3.Dot(footR.position - footL.position, footL.right);
-            if (footSpacingReward > 0.1f) footSpacingReward = 0.1f;
-            AddReward(footSpacingReward);
-
-            // Reward for straight standing
-            AddReward(head.position.y - spine.position.y);
-            AddReward(spine.position.y - hips.position.y);
-            AddReward(hips.position.y - footR.position.y);
-            AddReward(head.position.y);
-            AddReward(spine.position.y);
-            AddReward(hips.position.y);
+            AddRewards();
         }
 
         /// <summary>
@@ -148,18 +104,20 @@ namespace JKress.AITrainer
             sensor.AddObservation(bp.objectContact.touchingGround); // Is this bp touching the ground
             sensor.AddObservation(bp.objectContact.touchingWall); // Is this bp touching the wall
 
+            //Get positions
+            sensor.AddObservation(bp.rb.position);
+            sensor.AddObservation(bp.rb.transform.localPosition);
+
+            //Get rotations (including hips)
+            sensor.AddObservation(bp.rb.rotation);
+            sensor.AddObservation(bp.rb.transform.localRotation);
+
             //Get velocities
             sensor.AddObservation(bp.rb.velocity);
             sensor.AddObservation(bp.rb.angularVelocity);
 
             //Get position relative to hips
             sensor.AddObservation(bp.rb.position - hips.position);
-
-            //Get local rotations (including hips)
-            sensor.AddObservation(bp.rb.transform.localRotation);
-
-            //Skip body parts without a joint drive
-            if (bp.rb.transform != hips) sensor.AddObservation(bp.currentStrength / m_JdController.maxJointForceLimit);
         }
 
         /// <summary>
@@ -180,15 +138,33 @@ namespace JKress.AITrainer
             var continuousActions = actionBuffers.ContinuousActions;
             var i = -1;
 
+            bpDict[spine].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+
+            bpDict[thighL].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[thighR].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[shinL].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[shinR].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[footR].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[footL].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+
+            bpDict[armL].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[armR].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[forearmL].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[forearmR].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            bpDict[head].SetTorque(continuousActions[++i], continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+
+            /*
             bpDict[spine].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], continuousActions[++i]);
-            bpDict[thighL].SetJointTargetRotation(continuousActions[++i], 0, continuousActions[++i]);
-            bpDict[thighR].SetJointTargetRotation(continuousActions[++i], 0, continuousActions[++i]);
+
+            bpDict[thighL].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], 0);
+            bpDict[thighR].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], 0);
             bpDict[shinL].SetJointTargetRotation(continuousActions[++i], 0, 0);
             bpDict[shinR].SetJointTargetRotation(continuousActions[++i], 0, 0);
             bpDict[footR].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], continuousActions[++i]);
             bpDict[footL].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], continuousActions[++i]);
-            bpDict[armL].SetJointTargetRotation(continuousActions[++i], 0, continuousActions[++i]);
-            bpDict[armR].SetJointTargetRotation(continuousActions[++i], 0, continuousActions[++i]);
+
+            bpDict[armL].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], 0);
+            bpDict[armR].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], 0);
             bpDict[forearmL].SetJointTargetRotation(continuousActions[++i], 0, 0);
             bpDict[forearmR].SetJointTargetRotation(continuousActions[++i], 0, 0);
             bpDict[head].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], 0);
@@ -206,6 +182,7 @@ namespace JKress.AITrainer
             bpDict[forearmL].SetJointStrength(continuousActions[++i]);
             bpDict[armR].SetJointStrength(continuousActions[++i]);
             bpDict[forearmR].SetJointStrength(continuousActions[++i]);
+            */
         }
 
         public override void Heuristic(in ActionBuffers actionBuffers)
@@ -244,6 +221,142 @@ namespace JKress.AITrainer
             continuousActions[++i] = force;
             continuousActions[++i] = force;
             continuousActions[++i] = force;
+        }
+
+        void AddRewards()
+        {
+            //Stability Rewards
+            float uprightReward = CalculateUprightReward();
+            AddReward(uprightReward);
+
+            //Positional Rewards
+            float positionReward = CalculatePositionReward();
+            AddReward(positionReward);
+
+            //Balance Rewards
+            float balanceReward = CalculateBalanceReward();
+            AddReward(balanceReward);
+
+            //Foot Twist and distance Penalty
+            float footTwistPenalty = CalculateFootTwistPenalty();
+            AddReward(footTwistPenalty);
+            float footDistanceReward = CalculateFootDistanceReward();
+            AddReward(footDistanceReward);
+
+            //Penalty for Falling
+            if (HasFallen())
+            {
+                AddReward(-1.0f);
+                EndEpisode();
+            }
+
+            //Time-based rewards
+            AddReward(0.01f);
+        }
+
+        float CalculateUprightReward()
+        {
+            float reward = 0f;
+
+            float angle = Vector3.Angle(spine.transform.up, Vector3.up);
+            if (angle < maxAngle) reward += 0.1f;
+
+            return reward;
+        }
+
+        float CalculatePositionReward()
+        {
+            float reward = 0f;
+
+            var bpDict = m_JdController.bodyPartsDict;
+
+            float headDiff = bpDict[head].startingPos.y - head.position.y;
+            if (headDiff < 0.5f)
+            {
+                reward += Mathf.Exp(-headDiff);
+            }
+
+            float spineDiff = bpDict[spine].startingPos.y - spine.position.y;
+            if (spineDiff < 0.5f) reward += Mathf.Exp(-spineDiff);
+
+            float hipDiff = bpDict[hips].startingPos.y - hips.position.y;
+            if (hipDiff < 0.5f) reward += Mathf.Exp(-hipDiff);
+
+            return reward;
+        }
+
+        float CalculateBalanceReward()
+        {
+            float reward = 0f;
+
+            var bpDict = m_JdController.bodyPartsDict;
+
+            float headDiff = bpDict[head].startingPos.y - head.position.y;
+            
+            // 머리는 최대한 안흔들리도록
+            float headVelocity = bpDict[head].rb.velocity.magnitude;
+            if (headVelocity < maxVelocity) reward += 0.1f;
+            float heaAngVelocity = bpDict[head].rb.angularVelocity.magnitude;
+            if (heaAngVelocity < maxAngularVelocity) reward += 0.1f;
+
+            // 머리가 어느정도 올라가면 그 후로는 안정성에 reward
+            if (headDiff < 0.3f)
+            {
+                // spine
+                float velocity = bpDict[spine].rb.velocity.magnitude;
+                if (velocity < maxVelocity) reward += 0.1f;
+                float angularVelocity = bpDict[spine].rb.angularVelocity.magnitude;
+                if (angularVelocity < maxAngularVelocity) reward += 0.1f;
+
+                // arm
+                velocity = bpDict[armL].rb.velocity.magnitude;
+                if (velocity < maxVelocity) reward += 0.1f;
+                angularVelocity = bpDict[armL].rb.angularVelocity.magnitude;
+                if (angularVelocity < maxAngularVelocity) reward += 0.1f;
+                velocity = bpDict[armR].rb.velocity.magnitude;
+                if (velocity < maxVelocity) reward += 0.1f;
+                angularVelocity = bpDict[armR].rb.angularVelocity.magnitude;
+                if (angularVelocity < maxAngularVelocity) reward += 0.1f;
+
+                //forearm
+                velocity = bpDict[forearmL].rb.velocity.magnitude;
+                if (velocity < maxVelocity) reward += 0.1f;
+                angularVelocity = bpDict[forearmL].rb.angularVelocity.magnitude;
+                if (angularVelocity < maxAngularVelocity) reward += 0.1f;
+                velocity = bpDict[forearmR].rb.velocity.magnitude;
+                if (velocity < maxVelocity) reward += 0.1f;
+                angularVelocity = bpDict[forearmR].rb.angularVelocity.magnitude;
+                if (angularVelocity < maxAngularVelocity) reward += 0.1f;
+            }
+
+            return reward;
+        }
+
+        float CalculateFootTwistPenalty()
+        {
+            float reward = 0f;
+
+            reward = Vector3.Dot(footR.position - footL.position, -footL.right);
+
+            if (reward > 0.1f) reward = 0.1f;
+
+            return reward;
+        }
+
+        float CalculateFootDistanceReward()
+        {
+            float reward = 0f;
+
+            float distance = Vector3.Distance(footR.position, footL.position);
+            reward = -2 * Mathf.Pow(distance - 0.2f, 2) + 0.1f;
+
+            return reward;
+        }
+
+        bool HasFallen()
+        {
+            var bpDict = m_JdController.bodyPartsDict;
+            return spine.position.y < bpDict[spine].startingPos.y / 2f;
         }
 
         //Returns the average velocity of all of the body parts
