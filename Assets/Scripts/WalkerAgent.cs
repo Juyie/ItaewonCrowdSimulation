@@ -37,8 +37,8 @@ namespace JKress.AITrainer
         [SerializeField] Transform forearmR;
 
         private float maxAngle = 5;
-        private float maxVelocity = 0.5f;
-        private float maxAngularVelocity = 0.6f;
+        private float maxVelocity = 0.3f;
+        private float maxAngularVelocity = 0.3f;
         private float maxHead = 1.0f;
         //Should the agent sample a new goal velocity each episode?
         //If true, walkSpeed will be randomly set between zero and m_maxWalkingSpeed in OnEpisodeBegin()
@@ -348,7 +348,7 @@ namespace JKress.AITrainer
             float reward = 0f;
 
             float distance = Vector3.Distance(footR.position, footL.position);
-            reward = -2 * Mathf.Pow(distance - 0.2f, 2) + 0.1f;
+            reward = -Mathf.Pow(distance - 0.2f, 2) + 0.1f;
 
             return reward;
         }

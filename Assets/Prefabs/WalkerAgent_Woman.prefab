@@ -4291,7 +4291,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: won_density_ml
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3057185411606605062, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 1290249640875868420, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 6045027469643519152, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 452543171451496040, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 6065385163279119596, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 7944200264918190237, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 613738692223120185, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 8346432910645764294, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 304022005597941648, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 7612409094394180140, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 317090315941715927, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 3972380878096456391, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
+    - {fileID: 6426165689278451040, guid: 6b08ca67ed769c94e8c874f1e2c04c69, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

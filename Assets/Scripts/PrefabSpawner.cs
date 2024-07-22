@@ -33,8 +33,8 @@ namespace JKress.AITrainer
                     {
                         GameObject go = Instantiate(basePrefab[k], new Vector3(i * offsetX + behaviorOffset, 0, j * offsetZ),
                             Quaternion.identity);
-                        go.transform.GetChild(1).GetComponent<WalkerAgent>().enabled = true;
-                        go.transform.GetChild(4).GetComponent<MovingGround>().enabled = true;
+                        //go.transform.GetChild(1).GetComponent<WalkerAgent>().enabled = true;
+                        //go.transform.GetChild(4).GetComponent<MovingGround>().enabled = true;
                     }
                 }
             }

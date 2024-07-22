@@ -29,6 +29,11 @@ namespace Unity.MLAgentsExamples
         const string k_Wall = "wall";
         const string k_Target = "target";
 
+        private void Start()
+        {
+            
+        }
+
         void OnCollisionEnter(Collision col)
         {
             if (col.transform.CompareTag(k_Ground))
@@ -40,24 +45,18 @@ namespace Unity.MLAgentsExamples
             {
                 touchingWall = true;
             }
-
-            if (col.transform.CompareTag(k_Target))
-            {
-                touchingTarget = true;
-                agent.AddReward(targetReward);
-            }
         }
 
         void OnCollisionStay(Collision col)
         {
             if (col.transform.CompareTag(k_Ground))
             {
-                agent.AddReward(groundContactPenalty);
+                //agent.AddReward(groundContactPenalty);
             }
 
             if (col.transform.CompareTag(k_Wall))
             {
-                agent.AddReward(wallContactPenalty);
+                //agent.AddReward(wallContactPenalty);
             }
         }
 
@@ -71,11 +70,6 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Wall))
             {
                 touchingWall = false;
-            }
-
-            if (col.transform.CompareTag(k_Target))
-            {
-                touchingTarget = false;
             }
         }
     }

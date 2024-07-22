@@ -4,7 +4,7 @@ using DataStructures.ViliWonka.KDTree;
 using UnityEngine;
 using System.IO;
 using UnityEngine.AI;
-using UnityEditor.Recorder;
+using UnityEngine.Recorder;
 using UnityEditor;
 using Unity.Transforms;
 
@@ -85,8 +85,8 @@ public class SaveAgentsData : MonoBehaviour
             string saveJson = JsonUtility.ToJson(data);
 
             File.WriteAllText(path + "agentdata4500_v3.json", saveJson);
-            RecorderWindow recorderWindow = GetRecorderWindow();
-            recorderWindow.StopRecording();
+            //RecorderWindow recorderWindow = GetRecorderWindow();
+            //recorderWindow.StopRecording();
             Debug.Log("data save");
         }
     }
@@ -99,8 +99,9 @@ public class SaveAgentsData : MonoBehaviour
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         Debug.Log(data.positions.Length);
-        int dataLength = 4500;
-        
+        //int dataLength = 4500;
+        int dataLength = 45;
+
         for (int i = dataLength * 4 / 5; i < dataLength; i++)
         //for(int i = 0; i < dataLength * 1 / 6; i++)
         {
@@ -249,10 +250,12 @@ public class SaveAgentsData : MonoBehaviour
         NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
     }
 
+    /*
     private RecorderWindow GetRecorderWindow()
     {
         return (RecorderWindow)EditorWindow.GetWindow(typeof(RecorderWindow));
     }
+    */
 
     private void DebugRVOGameObject()
     {
