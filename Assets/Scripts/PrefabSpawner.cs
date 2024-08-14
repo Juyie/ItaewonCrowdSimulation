@@ -13,6 +13,7 @@ namespace JKress.AITrainer
         [SerializeField] float offsetZ = 20f;
 
         GameObject scenePrefab;
+        float hipRotation = 0f;
 
         void Awake()
         {
@@ -31,8 +32,10 @@ namespace JKress.AITrainer
                 {
                     for (int j = 0; j < zCount; j++)
                     {
-                        GameObject go = Instantiate(basePrefab[k], new Vector3(i * offsetX + behaviorOffset, 0, j * offsetZ),
+                        GameObject go = Instantiate(basePrefab[k], new Vector3(-10 + i * offsetX + behaviorOffset, 0, j * offsetZ),
                             Quaternion.identity);
+                        go.GetComponent<WalkerAgent>().hipRotation = hipRotation;
+                        hipRotation += 5.0f;
                         //go.transform.GetChild(1).GetComponent<WalkerAgent>().enabled = true;
                         //go.transform.GetChild(4).GetComponent<MovingGround>().enabled = true;
                     }

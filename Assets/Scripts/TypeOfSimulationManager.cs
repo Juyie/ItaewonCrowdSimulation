@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.Transforms;
-using UnityEditor.Recorder;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,12 +17,11 @@ public class TypeOfSimulationManager : MonoBehaviour
     private int criteriaAgentNumRagdoll;
 
     private bool start = false;
-    private RecorderWindow recorderWindow;
 
     // Start is called before the first frame update
     void Start()
     {
-        recorderWindow = GetRecorderWindow();
+        
     }
 
     // Update is called once per frame
@@ -109,10 +107,5 @@ public class TypeOfSimulationManager : MonoBehaviour
             }
             agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
         }
-    }
-
-    private RecorderWindow GetRecorderWindow()
-    {
-        return (RecorderWindow)EditorWindow.GetWindow(typeof(RecorderWindow));
     }
 }

@@ -41,6 +41,7 @@ namespace Unity.MLAgentsExamples
         public float currentJointTorqueSqrMag;
         public AnimationCurve jointForceCurve = new AnimationCurve();
         public AnimationCurve jointTorqueCurve = new AnimationCurve();
+        public Transform CoM;
 
         /// <summary>
         /// Reset body part to initial configuration.
@@ -99,7 +100,9 @@ namespace Unity.MLAgentsExamples
         {
             currentStrength = (strength + 1f) * 0.5f * thisJdController.maxJointForceLimit;
             Rigidbody rb = joint.gameObject.GetComponent<Rigidbody>();
-            rb.AddTorque(new Vector3(x, y, z) * currentStrength * rb.mass);
+            float distanceFromCoM = Vector3.Distance(rb.position, CoM.position);
+            //rb.AddRelativeTorque(new Vector3(x, y, z) * currentStrength * rb.mass * 9.81f * distanceFromCoM);
+            rb.AddRelativeTorque(new Vector3(x, y, z) * currentStrength);
         }
     }
 
@@ -116,6 +119,7 @@ namespace Unity.MLAgentsExamples
         float m_maxJointDampen = 5000;
 
         public float maxJointForceLimit;
+        public Transform CenterOfMass;
 
         public float MJointSpring // property
         {
@@ -146,6 +150,7 @@ namespace Unity.MLAgentsExamples
                 startingRot = t.rotation
             };
             bp.rb.maxAngularVelocity = k_MaxAngularVelocity;
+            bp.CoM = CenterOfMass;
 
             // Add & setup the ground contact script
             bp.objectContact = t.GetComponent<ObjectContact>();

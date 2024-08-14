@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingGround : MonoBehaviour
 {
     private Quaternion nextRotation;
-    private float speed = 1f;
+    private float speed = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -14,19 +14,19 @@ public class MovingGround : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Quaternion.Angle(transform.rotation, nextRotation) < 1f)
         {
             nextRotation = ChooseRandomRotation();
         }
-        transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, speed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, speed * Time.fixedDeltaTime);
     }
 
     Quaternion ChooseRandomRotation()
     {
-        float x = Random.Range(-15f, 15f);
-        float z = Random.Range(-15f, 15f);
+        float x = Random.Range(-10f, 10f);
+        float z = Random.Range(-10f, 10f);
 
         Quaternion rotation = Quaternion.Euler(x, 0f, z);
 
