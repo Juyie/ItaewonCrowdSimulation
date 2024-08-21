@@ -50,7 +50,7 @@ public class OnOffRagdoll : MonoBehaviour
 
         playerMovement = GetComponent<PlayerMovement>();
 
-        TurnOnRigidBody();
+        //TurnOnRigidBody();
     }
 
     // Update is called once per frame
@@ -177,8 +177,8 @@ public class OnOffRagdoll : MonoBehaviour
         TurnOnRigidBody();
         TurnOnChangeColor();
         TurnOnNavObstacles();
-        TurnOnWalkerML();
-        TurnOnContactDetectors();
+        //TurnOnWalkerML();
+        //TurnOnContactDetectors();
 
         isRagdollOn = true;
     }
@@ -188,8 +188,8 @@ public class OnOffRagdoll : MonoBehaviour
         TurnOffRigidBody();
         TurnOffChangeColor();
         TurnOffNavObstacles();
-        TurnOffWalkerML();
-        TurnOffContactDetectors();
+        //TurnOffWalkerML();
+        //TurnOffContactDetectors();
 
         isRagdollOn = false;
     }

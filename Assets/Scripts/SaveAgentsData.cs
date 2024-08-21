@@ -99,8 +99,8 @@ public class SaveAgentsData : MonoBehaviour
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         Debug.Log(data.positions.Length);
-        //int dataLength = 4500;
-        int dataLength = 45;
+        int dataLength = 4500;
+        //int dataLength = 45;
 
         for (int i = dataLength * 4 / 5; i < dataLength; i++)
         //for(int i = 0; i < dataLength * 1 / 6; i++)
