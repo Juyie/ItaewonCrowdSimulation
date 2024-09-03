@@ -81,7 +81,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.04
   m_Height: 0.2531465
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 7409848913313441398}
   - component: {fileID: 7224867085170324193}
   - component: {fileID: 6631741392569080661}
-  - component: {fileID: 4817522568166740010}
+  - component: {fileID: 3964749227162127742}
   m_Layer: 0
   m_Name: man_density_grid
   m_TagString: agent
@@ -382,6 +382,18 @@ MonoBehaviour:
   - {fileID: 9156292958119917551}
   - {fileID: 9156292957102336899}
   - {fileID: 0}
+  bodyColliders:
+  - {fileID: 9156292957430368293}
+  - {fileID: 9156292957297620344}
+  - {fileID: 9156292957061350418}
+  - {fileID: 9156292957242146911}
+  - {fileID: 9156292957950124498}
+  - {fileID: 9156292956692611802}
+  - {fileID: 9156292956466221285}
+  - {fileID: 9156292958374226073}
+  - {fileID: 9156292956893802717}
+  - {fileID: 9156292958119917548}
+  - {fileID: 9156292957102336900}
   colorBodies:
   - {fileID: 9156292958039447346}
   navObstacles:
@@ -392,9 +404,7 @@ MonoBehaviour:
   - {fileID: 8100462028831356461}
   - {fileID: 1875160693769915588}
   - {fileID: 7495936606386503906}
-  capsuleColliders:
-  - {fileID: 7224867085170324193}
-  - {fileID: 4817522568166740010}
+  hardCollider: {fileID: 4242323422040218120}
   contactDetectors: []
 --- !u!114 &9160018124809068718
 MonoBehaviour:
@@ -420,7 +430,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
-  m_Speed: 0.6
+  m_Speed: 1
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -471,7 +481,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
@@ -523,29 +533,18 @@ MonoBehaviour:
   SPHZombieDensity: 0
   goalForce: 10
   goalForceBefore: 0
---- !u!136 &4817522568166740010
-CapsuleCollider:
+--- !u!114 &3964749227162127742
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292956586031252}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 1.75
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.875, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25db856c99afb54daae35cc160b1034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9156292956596943104
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +749,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06346621
   m_Height: 0.4895347
@@ -1024,7 +1023,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.110982835
   m_Center: {x: -1.33872245e-11, y: 0.08116883, z: 0.03}
@@ -1280,7 +1279,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.07
   m_Height: 0.42845705
@@ -1441,7 +1440,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.03
   m_Height: 0.43074
@@ -1816,7 +1815,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06346621
   m_Height: 0.48953468
@@ -2086,7 +2085,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.42156926, y: 0.15337804, z: 0.20017074}
   m_Center: {x: 0.000000014884139, y: 0.07668909, z: 0.01160448}
@@ -2342,7 +2341,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.36543405, y: 0.40775752, z: 0.18482752}
   m_Center: {x: 0.00060291594, y: 0.14795445, z: 0.016127817}
@@ -3096,7 +3095,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.07
   m_Height: 0.4284571
@@ -3289,6 +3288,7 @@ GameObject:
   - component: {fileID: 9156292958039447344}
   - component: {fileID: 34187630537910560}
   - component: {fileID: 2584364200060459340}
+  - component: {fileID: 4242323422040218120}
   m_Layer: 0
   m_Name: Ch01_Body
   m_TagString: Untagged
@@ -3493,7 +3493,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292958039447346}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a62da3d934e559744ae2309dd0c8f1d9, type: 3}
   m_Name: 
@@ -3560,6 +3560,29 @@ MonoBehaviour:
   - {fileID: 9156292958119917553}
   - {fileID: 9156292957102336904}
   maxForce: 0
+--- !u!136 &4242323422040218120
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292958039447346}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.75
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.875, z: 0}
 --- !u!1 &9156292958045523442
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,7 +3822,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.04
   m_Height: 0.2531465
@@ -4119,7 +4142,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.03
   m_Height: 0.43073997

@@ -100,7 +100,7 @@ public class SaveAgentsData : MonoBehaviour
 
         Debug.Log(data.positions.Length);
         int dataLength = 4500;
-        //int dataLength = 45;
+        //int dataLength = 2400;
 
         for (int i = dataLength * 4 / 5; i < dataLength; i++)
         //for(int i = 0; i < dataLength * 1 / 6; i++)
@@ -143,7 +143,7 @@ public class SaveAgentsData : MonoBehaviour
         
         // waited agent
         for (int i = 0; i < dataLength * 4 / 5; i++)
-        //for(int i = dataLength * 1 / 6; i < dataLength; i++)
+        //for(int i = 0; i < dataLength; i++)
         {
             GameObject newAgent;
             int prefabNum = Random.Range(0, 2);
@@ -211,9 +211,9 @@ public class SaveAgentsData : MonoBehaviour
             }
             newAgent.SetActive(true);
 
-            NavagentSpawner.Instance.RVOGameObject[4500 + i] = newAgent;
-            NavagentSpawner.Instance.RVOPointCloud[4500 + i] = sp.position;
-            NavagentSpawner.Instance.TypeOfSimulation[4500 + i] = 4; // waited agent
+            NavagentSpawner.Instance.RVOGameObject[dataLength + i] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[dataLength + i] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[dataLength + i] = 4; // waited agent
         }
         /*
         //for (int i = 0; i < data.positions.Length / 2 - 3; i++)

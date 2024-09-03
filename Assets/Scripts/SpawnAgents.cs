@@ -30,8 +30,8 @@ public class SpawnAgents : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //isOn = true;
-        Invoke("TurnOn", 10f);
+        isOn = true;
+        //Invoke("TurnOn", 10f);
     }
 
     private void Start()
@@ -46,7 +46,7 @@ public class SpawnAgents : MonoBehaviour
         {
             //StartCoroutine(Spawn());
             count = displayAgentNumber.agentNumber;
-            if (count < 6000)
+            if (count < NavagentSpawner.Instance.RVOGameObject.Length)
             {
                 StartCoroutine(SpawnWaitAgent());
                 //StartCoroutine(Spawn());
@@ -105,7 +105,8 @@ public class SpawnAgents : MonoBehaviour
         count = displayAgentNumber.agentNumber;
         displayAgentNumber.agentNumber++;
         GameObject newAgent = Instantiate(agent);
-        randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
+        //randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
+        randPos = new Vector3(0, 0, 0);
         newAgent.name += count.ToString();
         newAgent.transform.position = spawnTf.position + randPos;
         newAgent.transform.rotation = agent.transform.rotation;

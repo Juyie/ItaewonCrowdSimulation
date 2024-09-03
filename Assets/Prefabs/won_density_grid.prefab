@@ -280,7 +280,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.10099136
   m_Center: {x: -0.0018875798, y: 0.099999994, z: 0.045442365}
@@ -472,7 +472,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.4286501
@@ -1160,7 +1160,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.257807, y: 0.36298776, z: 0.1399349}
   m_Center: {x: -0.005510599, y: 0.13179658, z: 0.035861913}
@@ -1497,7 +1497,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.03
   m_Height: 0.25510347
@@ -1690,7 +1690,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.04990599
   m_Height: 0.5040466
@@ -2122,6 +2122,7 @@ GameObject:
   - component: {fileID: 6696200339138750986}
   - component: {fileID: 5655184741100712292}
   - component: {fileID: 1290005005525759671}
+  - component: {fileID: 1402025275282077696}
   m_Layer: 0
   m_Name: Ch22_Hair
   m_TagString: Untagged
@@ -2273,7 +2274,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607873267184077458}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a62da3d934e559744ae2309dd0c8f1d9, type: 3}
   m_Name: 
@@ -2341,6 +2342,29 @@ MonoBehaviour:
   - {fileID: 6368063029469697229}
   - {fileID: 7512361704748135520}
   maxForce: 0
+--- !u!136 &1402025275282077696
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4607873267184077458}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.16
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!1 &4772832974894005195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,7 +2740,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.03
   m_Height: 0.42736286
@@ -2893,7 +2917,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.03
   m_Height: 0.2551035
@@ -3055,7 +3079,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.42865014
@@ -3216,7 +3240,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.04990599
   m_Height: 0.50404656
@@ -3739,7 +3763,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.03
   m_Height: 0.4273629
@@ -3982,7 +4006,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.3127985, y: 0.12980081, z: 0.13283555}
   m_Center: {x: 0.00000006622714, y: 0.064900406, z: 0.019556439}
@@ -4169,7 +4193,7 @@ GameObject:
   - component: {fileID: 7409848913313441398}
   - component: {fileID: 7224867085170324193}
   - component: {fileID: 6631741392569080661}
-  - component: {fileID: 6440461535667761887}
+  - component: {fileID: 2730666218415611439}
   m_Layer: 0
   m_Name: won_density_grid
   m_TagString: agent
@@ -4246,6 +4270,18 @@ MonoBehaviour:
   - {fileID: 3009136545059037160}
   - {fileID: 1673149429600537363}
   - {fileID: 0}
+  bodyColliders:
+  - {fileID: 270302977403472793}
+  - {fileID: 6565924059029969987}
+  - {fileID: 898926563159354481}
+  - {fileID: 8510159656633267786}
+  - {fileID: 1137771774993463502}
+  - {fileID: 1544614954972861358}
+  - {fileID: 7911152563732022061}
+  - {fileID: 8947425827704935581}
+  - {fileID: 4058282671636389521}
+  - {fileID: 644272759438583750}
+  - {fileID: 6587718735355419120}
   colorBodies:
   - {fileID: 4607873267184077458}
   navObstacles:
@@ -4256,9 +4292,7 @@ MonoBehaviour:
   - {fileID: 2064668632189265457}
   - {fileID: 3950045032570197876}
   - {fileID: 6515279456901312695}
-  capsuleColliders:
-  - {fileID: 7224867085170324193}
-  - {fileID: 6440461535667761887}
+  hardCollider: {fileID: 1402025275282077696}
   contactDetectors: []
 --- !u!114 &9160018124809068718
 MonoBehaviour:
@@ -4284,7 +4318,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
-  m_Speed: 0.6
+  m_Speed: 1
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -4335,7 +4369,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
@@ -4387,26 +4421,15 @@ MonoBehaviour:
   SPHZombieDensity: 0
   goalForce: 10
   goalForceBefore: 0
---- !u!136 &6440461535667761887
-CapsuleCollider:
+--- !u!114 &2730666218415611439
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292956586031252}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.16
-  m_Height: 1.6
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.85, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25db856c99afb54daae35cc160b1034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

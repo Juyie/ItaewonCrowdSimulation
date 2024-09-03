@@ -15,13 +15,16 @@ public class OnOffRagdoll : MonoBehaviour
     private Rigidbody[] rigidbodies;
 
     [SerializeField]
+    private Collider[] bodyColliders;
+
+    [SerializeField]
     private GameObject[] colorBodies;
 
     [SerializeField]
     private NavMeshObstacle[] navObstacles;
 
     [SerializeField]
-    private CapsuleCollider[] capsuleColliders;
+    private CapsuleCollider hardCollider;
 
     [SerializeField]
     private ObjectContact[] contactDetectors;
@@ -88,10 +91,12 @@ public class OnOffRagdoll : MonoBehaviour
             rigidbodies[i].isKinematic = false;
         }
 
-        for(int j = 0; j < capsuleColliders.Length; j++)
+        for(int j = 0; j < bodyColliders.Length; j++)
         {
-            capsuleColliders[j].enabled = false;
+            bodyColliders[j].enabled = true;
         }
+
+        //hardCollider.enabled = false;
     }
 
     private void TurnOffRigidBody()
@@ -103,6 +108,13 @@ public class OnOffRagdoll : MonoBehaviour
             rigidbodies[i].useGravity = false;
             rigidbodies[i].isKinematic = true;
         }
+
+        for (int j = 0; j < bodyColliders.Length; j++)
+        {
+            bodyColliders[j].enabled = false;
+        }
+
+        //hardCollider.enabled = true;
     }
 
     private void TurnOnChangeColor()
@@ -130,7 +142,7 @@ public class OnOffRagdoll : MonoBehaviour
         
         for (int i = 0; i < navObstacles.Length; i++)
         {
-            navObstacles[i].enabled = true;
+            //navObstacles[i].enabled = true;
         }
         //StopNavMeshAgent();
     }
@@ -141,7 +153,7 @@ public class OnOffRagdoll : MonoBehaviour
         
         for (int i = 0; i < navObstacles.Length; i++)
         {
-            navObstacles[i].enabled = false;
+            //navObstacles[i].enabled = false;
         }
         //RestartNavMeshAgent();
     }
@@ -176,7 +188,7 @@ public class OnOffRagdoll : MonoBehaviour
     {
         TurnOnRigidBody();
         TurnOnChangeColor();
-        TurnOnNavObstacles();
+        //TurnOnNavObstacles();
         //TurnOnWalkerML();
         //TurnOnContactDetectors();
 
@@ -187,7 +199,7 @@ public class OnOffRagdoll : MonoBehaviour
     {
         TurnOffRigidBody();
         TurnOffChangeColor();
-        TurnOffNavObstacles();
+        //TurnOffNavObstacles();
         //TurnOffWalkerML();
         //TurnOffContactDetectors();
 

@@ -30,6 +30,7 @@ public class AgentList : MonoBehaviour
             UIText.text = agentList.Count.ToString();
         }
 
+        /*
         if (agentList.Count >= 64) 
         {
             onOffRagdoll.TurnOnRagdoll();
@@ -38,6 +39,7 @@ public class AgentList : MonoBehaviour
         {
             onOffRagdoll.TurnOffRagdoll();
         }
+        */
     }
 
     public int GetListLength()
