@@ -96,6 +96,8 @@ public class OnOffRagdoll : MonoBehaviour
             bodyColliders[j].enabled = true;
         }
 
+        GetComponent<Rigidbody>().mass = 0;
+
         //hardCollider.enabled = false;
     }
 
@@ -142,7 +144,7 @@ public class OnOffRagdoll : MonoBehaviour
         
         for (int i = 0; i < navObstacles.Length; i++)
         {
-            //navObstacles[i].enabled = true;
+            navObstacles[i].enabled = true;
         }
         //StopNavMeshAgent();
     }
@@ -153,7 +155,7 @@ public class OnOffRagdoll : MonoBehaviour
         
         for (int i = 0; i < navObstacles.Length; i++)
         {
-            //navObstacles[i].enabled = false;
+            navObstacles[i].enabled = false;
         }
         //RestartNavMeshAgent();
     }
@@ -188,7 +190,7 @@ public class OnOffRagdoll : MonoBehaviour
     {
         TurnOnRigidBody();
         TurnOnChangeColor();
-        //TurnOnNavObstacles();
+        TurnOnNavObstacles();
         //TurnOnWalkerML();
         //TurnOnContactDetectors();
 
@@ -199,7 +201,7 @@ public class OnOffRagdoll : MonoBehaviour
     {
         TurnOffRigidBody();
         TurnOffChangeColor();
-        //TurnOffNavObstacles();
+        TurnOffNavObstacles();
         //TurnOffWalkerML();
         //TurnOffContactDetectors();
 

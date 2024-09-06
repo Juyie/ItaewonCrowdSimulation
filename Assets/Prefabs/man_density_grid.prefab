@@ -327,11 +327,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9156292958039447345}
-  - {fileID: 9156292957292879386}
-  - {fileID: 9156292957138524819}
-  - {fileID: 9156292957789355373}
-  - {fileID: 9156292956596943359}
   - {fileID: 9156292957430368296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -430,7 +425,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
-  m_Speed: 1
+  m_Speed: 0.6
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -498,7 +493,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -570,12 +565,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292956596943104}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000013301727, y: 0.00001823672, z: -0.00057647086, w: 0.9999998}
+  m_LocalPosition: {x: -0.0010815163, y: -0.9952245, z: -0.0027390772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8690564730811554610}
+  m_Father: {fileID: 9156292957430368296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &9156292956596943358
 SkinnedMeshRenderer:
@@ -620,7 +615,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -752966562239772186, guid: b5d1a9f6e2a36ed4596e0fbdded8f6a5, type: 3}
   m_Bones:
@@ -1594,12 +1589,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292957138524820}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000013301727, y: 0.00001823672, z: -0.00057647086, w: 0.9999998}
+  m_LocalPosition: {x: -0.0010815163, y: -0.9952245, z: -0.0027390772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8690564730811554610}
+  m_Father: {fileID: 9156292957430368296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &9156292957138524817
 SkinnedMeshRenderer:
@@ -1644,7 +1639,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 3341310022371194249, guid: 22b3efae9c2b78a459bf9434a5dc0348, type: 3}
   m_Bones:
@@ -1936,12 +1931,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292957292879387}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000013301727, y: 0.00001823672, z: -0.00057647086, w: 0.9999998}
+  m_LocalPosition: {x: -0.0010815163, y: -0.9952245, z: -0.0027390772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8690564730811554610}
+  m_Father: {fileID: 9156292957430368296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &9156292957292879384
 SkinnedMeshRenderer:
@@ -1986,7 +1981,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -1540598596148453053, guid: 22b3efae9c2b78a459bf9434a5dc0348, type: 3}
   m_Bones:
@@ -2292,6 +2287,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9156292958039447345}
+  - {fileID: 9156292957292879386}
+  - {fileID: 9156292957138524819}
+  - {fileID: 9156292957789355373}
+  - {fileID: 9156292956596943359}
   - {fileID: 9156292957061350422}
   - {fileID: 9156292957950124502}
   - {fileID: 9156292958389996024}
@@ -2780,12 +2780,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292957789355374}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000013301727, y: 0.00001823672, z: -0.00057647086, w: 0.9999998}
+  m_LocalPosition: {x: -0.0010815163, y: -0.9952245, z: -0.0027390772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8690564730811554610}
+  m_Father: {fileID: 9156292957430368296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &9156292957789355371
 SkinnedMeshRenderer:
@@ -2830,7 +2830,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 5098387271816458926, guid: 22b3efae9c2b78a459bf9434a5dc0348, type: 3}
   m_Bones:
@@ -3304,12 +3304,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156292958039447346}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000013301727, y: 0.00001823672, z: -0.00057647086, w: 0.9999998}
+  m_LocalPosition: {x: -0.0010815163, y: -0.9952245, z: -0.0027390772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8690564730811554610}
+  m_Father: {fileID: 9156292957430368296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &9156292958039447343
 SkinnedMeshRenderer:
@@ -3354,7 +3354,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -748097555922558690, guid: 6472d268e691bcd4c86bd5cc59f95b82, type: 3}
   m_Bones:
@@ -3573,7 +3573,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

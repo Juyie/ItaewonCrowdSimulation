@@ -32,6 +32,8 @@ TagManager:
   - Cam8
   - CCTV5-2
   - CCTV4-1
+  - ground
+  - wall
   layers:
   - Default
   - TransparentFX
@@ -44,7 +46,7 @@ TagManager:
   - agent
   - SPHCollider
   - NavCollider
-  - 
+  - RagdollCollider
   - 
   - 
   - 

@@ -182,22 +182,22 @@ public class PlayerMovement : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                gameObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = false;
+                gameObject.transform.GetChild(0).GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = false;
             }
             if (gameObject.name.StartsWith("w")) 
             {
-                gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = false;
+                gameObject.transform.GetChild(0).GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = false;
             }
         }
         else
         {
             for (int i = 0; i < 5; i++)
             {
-                gameObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = true;
+                gameObject.transform.GetChild(0).GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
             if (gameObject.name.StartsWith("w"))
             {
-                gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = true;
+                gameObject.transform.GetChild(0).GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
         }
     }

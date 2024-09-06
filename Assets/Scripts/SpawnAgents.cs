@@ -103,9 +103,8 @@ public class SpawnAgents : MonoBehaviour
         isReady = false;
         yield return new WaitForSeconds(intervalTime);
         count = displayAgentNumber.agentNumber;
-        displayAgentNumber.agentNumber++;
-        GameObject newAgent = Instantiate(agent);
-        //randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
+        GameObject newAgent;
+        newAgent = Instantiate(agent);
         randPos = new Vector3(0, 0, 0);
         newAgent.name += count.ToString();
         newAgent.transform.position = spawnTf.position + randPos;
@@ -114,7 +113,6 @@ public class SpawnAgents : MonoBehaviour
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
         SPHProperties sp = newAgent.GetComponent<SPHProperties>();
-        sp.position = newAgent.transform.position;
         newAgent.SetActive(true);
 
         NavagentSpawner.Instance.RVOGameObject[count] = newAgent;
@@ -126,6 +124,7 @@ public class SpawnAgents : MonoBehaviour
         //newAgent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
         //newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = randColor;
 
+        displayAgentNumber.agentNumber++;
         isReady = true;
     }
 
@@ -136,16 +135,13 @@ public class SpawnAgents : MonoBehaviour
         count = displayAgentNumber.agentNumber;
         GameObject newAgent = GameObject.Find("WaitAgents").transform.GetChild(0).gameObject;
         newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
-        randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
-        newAgent.transform.position = spawnTf.position + randPos;
-        newAgent.transform.rotation = agent.transform.rotation;
+        //randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
+        newAgent.transform.position = spawnTf.position;
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
         SPHProperties sp = newAgent.GetComponent<SPHProperties>();
         sp.position = newAgent.transform.position;
-        newAgent.SetActive(true);
 
-        NavagentSpawner.Instance.RVOGameObject[int.Parse(newAgent.name.Substring(23))] = newAgent;
         NavagentSpawner.Instance.RVOPointCloud[int.Parse(newAgent.name.Substring(23))] = sp.position;
         NavagentSpawner.Instance.TypeOfSimulation[int.Parse(newAgent.name.Substring(23))] = 0;
 

@@ -74,7 +74,7 @@ public class SaveAgentsTypeRatio : MonoBehaviour
     {
         for (int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)
         {
-            force.forces[i] = NavagentSpawner.Instance.RVOGameObject[i].transform.GetChild(0).GetComponent<CalculateForce>().maxForce;
+            force.forces[i] = NavagentSpawner.Instance.RVOGameObject[i].transform.GetChild(0).GetChild(0).GetComponent<CalculateForce>().maxForce;
         }
 
         string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\";
