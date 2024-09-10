@@ -96,7 +96,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
     private float maxAcceleration = 5.0f;
-    private float maxVelocity = 0.6f;
+    public float maxVelocity = 1.0f;
 
     // Properties
     [Header("Import")]
@@ -381,6 +381,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                 Vector3 maxAcc = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
                 RVOGameObject[i].GetComponent<Rigidbody>().AddForce(maxAcc * parameters[sp.parameterID].particleMass);
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(RVOGameObject[i].GetComponent<Rigidbody>().velocity, maxVelocity);
+                RVOGameObject[i].GetComponent<Rigidbody>().AddForce(0, -9.8f, 0);
                 sp.velocity = RVOGameObject[i].GetComponent<Rigidbody>().velocity;
 
                 /*
@@ -562,6 +563,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                 if (RVOGameObject[i].GetComponent<SPHProperties>().velocity.magnitude > 0.1f)
                 {
                     RVOGameObject[i].GetComponent<Animator>().SetBool("isWalking", true);
+                    RVOGameObject[i].GetComponent<Animator>().speed = RVOGameObject[i].GetComponent<SPHProperties>().velocity.magnitude / maxVelocity;
                 }
                 else
                 {
@@ -600,12 +602,12 @@ public class SPHManagerSingleThread : MonoBehaviour
     public void TurnOnSPHZombies(GameObject agent)
     {
         agent.GetComponent<SPHProperties>().goalForce = 0;
-        agent.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+        agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
     }
     public void TurnOffSPHZombies(GameObject agent)
     {
         agent.GetComponent<SPHProperties>().goalForce = 30;
-        agent.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+        agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
     }
 
     IEnumerator WaitAndAddForce()

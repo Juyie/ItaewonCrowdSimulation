@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.MLAgentsExamples;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -47,7 +48,7 @@ public class OnOffRagdoll : MonoBehaviour
         animator = GetComponent<Animator>();
 
         if(!isForTest)
-            TurnOffRigidBody();
+            //TurnOffRigidBody();
 
         navAgent = GetComponent<NavMeshAgent>();
 
@@ -85,7 +86,7 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator.enabled = false;
 
-        for (int i = 0; i < rigidbodies.Length - 1; i++)
+        for (int i = 0; i < rigidbodies.Length; i++)
         {
             rigidbodies[i].useGravity = true;
             rigidbodies[i].isKinematic = false;
@@ -95,10 +96,13 @@ public class OnOffRagdoll : MonoBehaviour
         {
             bodyColliders[j].enabled = true;
         }
-
+       
         GetComponent<Rigidbody>().mass = 0;
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().freezeRotation = false;
 
-        //hardCollider.enabled = false;
+
+        hardCollider.enabled = false;
     }
 
     private void TurnOffRigidBody()
