@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.MLAgentsExamples;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -48,7 +47,7 @@ public class OnOffRagdoll : MonoBehaviour
         animator = GetComponent<Animator>();
 
         if(!isForTest)
-            //TurnOffRigidBody();
+            TurnOffRigidBody();
 
         navAgent = GetComponent<NavMeshAgent>();
 

@@ -51,7 +51,7 @@ public class GridAgentList : MonoBehaviour
     {
         foreach (GameObject agent in agentList)
         {
-            agent.transform.GetChild(0).GetChild(0).GetComponent<ChangeDensityColor>().density = GetListLength();
+            agent.transform.GetChild(0).GetComponent<ChangeDensityColor>().density = GetListLength();
         }
     }
 

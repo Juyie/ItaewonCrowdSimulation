@@ -96,7 +96,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
     private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
     private float maxAcceleration = 5.0f;
-    public float maxVelocity = 1.0f;
+    public float maxVelocity = 0.6f;
 
     // Properties
     [Header("Import")]
@@ -351,7 +351,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             if (TypeOfSimulation[i] == 1)
             {
                 SPHProperties sp = RVOGameObject[i].GetComponent<SPHProperties>();
-                /*
+                
                 RaycastHit raydata;
                 int layerMask = 1 << LayerMask.NameToLayer("NavCollider");
                 float yPos = sp.position.y;
@@ -376,24 +376,23 @@ public class SPHManagerSingleThread : MonoBehaviour
                         RVOGameObject[i].transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = false;
                     }
                 }
-                */
 
+                
                 Vector3 maxAcc = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
-                RVOGameObject[i].GetComponent<Rigidbody>().AddForce(maxAcc * parameters[sp.parameterID].particleMass);
+                //RVOGameObject[i].GetComponent<Rigidbody>().AddForce(maxAcc, ForceMode.Acceleration);
+                RVOGameObject[i].GetComponent<Rigidbody>().velocity += maxAcc * Time.fixedDeltaTime;
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(RVOGameObject[i].GetComponent<Rigidbody>().velocity, maxVelocity);
-                RVOGameObject[i].GetComponent<Rigidbody>().AddForce(0, -9.8f, 0);
                 sp.velocity = RVOGameObject[i].GetComponent<Rigidbody>().velocity;
-
+                RVOGameObject[i].transform.position = new Vector3(RVOGameObject[i].transform.position.x, yPos, RVOGameObject[i].transform.position.z);
+                sp.position = RVOGameObject[i].transform.position;
                 /*
                 Vector3 a = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
                 sp.velocity += a * Time.fixedDeltaTime;
                 sp.velocity = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
-                RVOGameObject[i].GetComponent<Rigidbody>().velocity = sp.velocity;
-                RVOGameObject[i].transform.position = new Vector3(RVOGameObject[i].transform.position.x, yPos, RVOGameObject[i].transform.position.z);
+                sp.position += sp.velocity * Time.fixedDeltaTime;
+                sp.position.y = yPos;
+                RVOGameObject[i].GetComponent<Rigidbody>().position = sp.position;
                 */
-
-                //sp.position += v * Time.fixedDeltaTime;
-                sp.position = RVOGameObject[i].transform.position;
                 //Debug.Log("Pos after: " + sp.position + ", Y pos: " + yPos);
             }
         }
