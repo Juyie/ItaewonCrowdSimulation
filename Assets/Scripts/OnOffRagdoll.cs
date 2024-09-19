@@ -175,7 +175,7 @@ public class OnOffRagdoll : MonoBehaviour
     public void TurnOnRagdoll()
     {
         TurnOnRigidBody();
-        TurnOnChangeColor();
+       // TurnOnChangeColor();
         TurnOnNavObstacles();
         //TurnOnWalkerML();
         //TurnOnContactDetectors();
@@ -186,7 +186,7 @@ public class OnOffRagdoll : MonoBehaviour
     public void TurnOffRagdoll()
     {
         TurnOffRigidBody();
-        TurnOffChangeColor();
+        //TurnOffChangeColor();
         TurnOffNavObstacles();
         //TurnOffWalkerML();
         //TurnOffContactDetectors();

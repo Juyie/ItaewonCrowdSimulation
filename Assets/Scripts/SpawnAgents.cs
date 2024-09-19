@@ -11,6 +11,9 @@ public class SpawnAgents : MonoBehaviour
     private Transform spawnTf;
 
     [SerializeField]
+    private Transform targetTf;
+
+    [SerializeField]
     private GameObject agent;
 
     [SerializeField]
@@ -135,16 +138,16 @@ public class SpawnAgents : MonoBehaviour
         count = displayAgentNumber.agentNumber;
         GameObject newAgent = GameObject.Find("WaitAgents").transform.GetChild(0).gameObject;
         newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
-        randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
-        newAgent.transform.position = spawnTf.position + randPos;
+        newAgent.transform.position = spawnTf.position;
         newAgent.transform.rotation = agent.transform.rotation;
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
+        newAgent.GetComponent<PlayerMovement>().startTrans = spawnTf;
+        newAgent.GetComponent<PlayerMovement>().target = targetTf;
         SPHProperties sp = newAgent.GetComponent<SPHProperties>();
         sp.position = newAgent.transform.position;
         newAgent.SetActive(true);
 
-        NavagentSpawner.Instance.RVOGameObject[int.Parse(newAgent.name.Substring(23))] = newAgent;
         NavagentSpawner.Instance.RVOPointCloud[int.Parse(newAgent.name.Substring(23))] = sp.position;
         NavagentSpawner.Instance.TypeOfSimulation[int.Parse(newAgent.name.Substring(23))] = 0;
 

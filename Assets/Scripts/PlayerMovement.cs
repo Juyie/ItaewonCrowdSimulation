@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool addTag = false;
     private GameObject targetsParent;
-    private Transform startTrans;
+    public Transform startTrans;
 
     public Vector3 velocity;
     private Vector3 posBefore;
@@ -116,9 +116,15 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (navMeshAgent.remainingDistance <= 0.5f)
                     {
-                        gameObject.transform.position = startTrans.position;
-                        gameObject.GetComponent<SPHProperties>().position = startTrans.position;
-                        //displayAgentNumber.agentNumber--;
+                        transform.parent = GameObject.Find("WaitAgents").transform;
+                        GetComponent<NavMeshAgent>().enabled = false;
+                        GetComponent<PlayerMovement>().enabled = false;
+                        transform.position += new Vector3(0, 100, 0);
+                        SPHProperties sp = GetComponent<SPHProperties>();
+                        sp.position = transform.position;
+                        NavagentSpawner.Instance.RVOPointCloud[int.Parse(name.Substring(23))] = sp.position;
+                        NavagentSpawner.Instance.TypeOfSimulation[int.Parse(name.Substring(23))] = 4; // waited agent
+                        displayAgentNumber.agentNumber--;
                         //Destroy(gameObject);
                     }
                 }
@@ -138,8 +144,15 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Vector3.Distance(target.position, gameObject.transform.position) <= 0.5f)
             {
-                gameObject.transform.position = startTrans.position;
-                gameObject.GetComponent<SPHProperties>().position = startTrans.position;
+                transform.parent = GameObject.Find("WaitAgents").transform;
+                GetComponent<NavMeshAgent>().enabled = false;
+                GetComponent<PlayerMovement>().enabled = false;
+                transform.position += new Vector3(0, 100, 0);
+                SPHProperties sp = GetComponent<SPHProperties>();
+                sp.position = transform.position;
+                NavagentSpawner.Instance.RVOPointCloud[int.Parse(name.Substring(23))] = sp.position;
+                NavagentSpawner.Instance.TypeOfSimulation[int.Parse(name.Substring(23))] = 4; // waited agent
+                displayAgentNumber.agentNumber--;
             }
         }
 

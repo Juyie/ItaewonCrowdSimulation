@@ -41,6 +41,10 @@ public class SaveAgentsData : MonoBehaviour
         {
             JsonLoad();
         }
+        else
+        {
+            AllWaitAgents();
+        }
     }
 
     public static SaveAgentsData Instance
@@ -99,9 +103,9 @@ public class SaveAgentsData : MonoBehaviour
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         Debug.Log(data.positions.Length);
-        int dataLength = 4500;
+        int dataLength = 2160;
         //int dataLength = 45;
-
+        /*
         for (int i = dataLength * 4 / 5; i < dataLength; i++)
         //for(int i = 0; i < dataLength * 1 / 6; i++)
         {
@@ -140,9 +144,9 @@ public class SaveAgentsData : MonoBehaviour
 
             displayAgentNumber.agentNumber++;
         }
-        
+        */
         // waited agent
-        for (int i = 0; i < dataLength * 4 / 5; i++)
+        for (int i = 0; i < dataLength; i++)
         //for(int i = dataLength * 1 / 6; i < dataLength; i++)
         {
             GameObject newAgent;
@@ -178,7 +182,7 @@ public class SaveAgentsData : MonoBehaviour
             NavagentSpawner.Instance.RVOPointCloud[i] = sp.position;
             NavagentSpawner.Instance.TypeOfSimulation[i] = 4; // waited agent
         }
-
+        /*
         for (int i = 0; i < dataLength * 1 / 3; i++)
         //for(int i = dataLength * 1 / 6; i < dataLength; i++)
         {
@@ -211,10 +215,10 @@ public class SaveAgentsData : MonoBehaviour
             }
             newAgent.SetActive(true);
 
-            NavagentSpawner.Instance.RVOGameObject[4500 + i] = newAgent;
-            NavagentSpawner.Instance.RVOPointCloud[4500 + i] = sp.position;
-            NavagentSpawner.Instance.TypeOfSimulation[4500 + i] = 4; // waited agent
-        }
+            NavagentSpawner.Instance.RVOGameObject[dataLength + i] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[dataLength + i] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[dataLength + i] = 4; // waited agent
+        }*/
         /*
         //for (int i = 0; i < data.positions.Length / 2 - 3; i++)
         for (int i = 0; i < data.positions.Length; i++)
@@ -256,6 +260,44 @@ public class SaveAgentsData : MonoBehaviour
         return (RecorderWindow)EditorWindow.GetWindow(typeof(RecorderWindow));
     }
     */
+    private void AllWaitAgents()
+    {
+        int dataLength = 2160;
+        for (int i = 0; i < dataLength; i++)
+        {
+            GameObject newAgent;
+            int prefabNum = Random.Range(0, 2);
+            if (prefabNum == 0)
+            {
+                newAgent = Instantiate(MAgentPf);
+            }
+            else
+            {
+                newAgent = Instantiate(WMAgentPf);
+            }
+            newAgent.name += i;
+            newAgent.transform.position = new Vector3(0.0f, 100.0f, 0.0f);
+            newAgent.transform.parent = GameObject.Find("WaitAgents").transform;
+            newAgent.GetComponent<NavMeshAgent>().enabled = false;
+            newAgent.GetComponent<PlayerMovement>().enabled = false;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            if (newAgent.name.StartsWith("w"))
+            {
+                newAgent.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            else
+            {
+                newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            newAgent.SetActive(true);
+
+            NavagentSpawner.Instance.RVOGameObject[i] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[i] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[i] = 4; // waited agent
+        }
+        NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
+    }
 
     private void DebugRVOGameObject()
     {
