@@ -99,7 +99,7 @@ public class SaveAgentsData : MonoBehaviour
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         Debug.Log(data.positions.Length);
-        int dataLength = 4500;
+        int dataLength = 450;
         //int dataLength = 2400;
 
         for (int i = dataLength * 4 / 5; i < dataLength; i++)
@@ -192,7 +192,7 @@ public class SaveAgentsData : MonoBehaviour
             {
                 newAgent = Instantiate(WMAgentPf);
             }
-            newAgent.name += 4500 + i;
+            newAgent.name += dataLength + i;
             newAgent.transform.position = data.positions[i] + new Vector3(0.0f, 100.0f, 0.0f);
             newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
             newAgent.GetComponent<PlayerMovement>().target = GameObject.Find(data.targetPosNames[i]).transform;

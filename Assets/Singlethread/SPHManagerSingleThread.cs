@@ -504,7 +504,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             }
             */
             //Debug.Log("Y: " + spi.forcePhysic.y);
-            
+            /*
             if (addForce && spi.position.x > 10.0f)
             {
                 //Debug.Log("Force");
@@ -537,7 +537,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                     spi.forcePhysic += Impulse4;
                 }
             }
-            
+            */
             //Debug.Log("Force: " + spi.forcePhysic);
         }
     }
