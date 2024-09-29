@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool addTag = false;
     private GameObject targetsParent;
-    private Transform startTrans;
+    public Transform startTrans;
 
     public Vector3 velocity;
     private Vector3 posBefore;
@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         displayAgentNumber = FindObjectOfType<DisplayAgentNumber>();
 
         targetsParent = GameObject.Find("Targets");
+        target = targetsParent.transform.GetChild(0).transform;
     }
 
     private void Start()
@@ -45,36 +46,20 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            int randInt = Random.Range(0, 2);
-            if (target.name == "Target1" || target.name == "Target2")
-            {
-                switch (randInt)
-                {
-                    case 0:
-                        startTrans = targetsParent.transform.GetChild(2);
-                        break;
-                    case 1:
-                        startTrans = targetsParent.transform.GetChild(3);
-                        break;
-                }
-                gameObject.GetComponent<SPHProperties>().goalPosition = bottomPosition;
-            }
-            else if (target.name == "Target3" || target.name == "Target4")
-            {
-                switch (randInt)
-                {
-                    case 0:
-                        startTrans = targetsParent.transform.GetChild(0);
-                        break;
-                    case 1:
-                        startTrans = targetsParent.transform.GetChild(1);
-                        break;
-                }
-                gameObject.GetComponent<SPHProperties>().goalPosition = topPosition;
-            }
+            gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
 
             posBefore = transform.position;
             posAfter = transform.position;
+        }
+
+        // Rendering 
+        for (int i = 0; i < 5; i++)
+        {
+            gameObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = true;
+        }
+        if (gameObject.name.StartsWith("w"))
+        {
+            gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
     }
 
@@ -141,64 +126,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 gameObject.transform.position = startTrans.position;
                 gameObject.GetComponent<SPHProperties>().position = startTrans.position;
-            }
-        }
-
-        // navigation
-        if (target.name == "Target1" || target.name == "Target2")
-        {
-            if (Vector3.Distance(bottomPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == bottomPosition)
-            {
-                gameObject.GetComponent<SPHProperties>().goalPosition = midPosition;
-            }
-            else if (Vector3.Distance(midPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == midPosition)
-            {
-                gameObject.GetComponent<SPHProperties>().goalPosition = topPosition;
-            }
-            else if (Vector3.Distance(topPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == topPosition)
-            {
-                gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
-            }
-        }
-        else if (target.name == "Target3" || target.name == "Target4")
-        {
-            if (Vector3.Distance(topPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == topPosition)
-            {
-                gameObject.GetComponent<SPHProperties>().goalPosition = midPosition;
-            }
-            else if (Vector3.Distance(midPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == midPosition)
-            {
-                gameObject.GetComponent<SPHProperties>().goalPosition = bottomPosition;
-            }
-            else if (Vector3.Distance(bottomPosition, gameObject.transform.position) <= 5f && gameObject.GetComponent<SPHProperties>().goalPosition == bottomPosition)
-            {
-                gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
-            }
-        }
-
-        // Rendering
-        if ((gameObject.transform.position.x > 30 && (gameObject.transform.position.z < -9.21 || gameObject.transform.position.z > 19.1))
-            || (gameObject.transform.position.x < 10 && (gameObject.transform.position.z < -7.29 || gameObject.transform.position.z > 14))
-            || gameObject.transform.position.x < -4.3f)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                gameObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = false;
-            }
-            if (gameObject.name.StartsWith("w")) 
-            {
-                gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = false;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                gameObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().enabled = true;
-            }
-            if (gameObject.name.StartsWith("w"))
-            {
-                gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
         }
     }

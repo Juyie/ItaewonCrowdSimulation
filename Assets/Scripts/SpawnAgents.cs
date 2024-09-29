@@ -137,6 +137,7 @@ public class SpawnAgents : MonoBehaviour
         newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
         //randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
         newAgent.transform.position = spawnTf.position;
+        newAgent.GetComponent<PlayerMovement>().startTrans = spawnTf;
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
         SPHProperties sp = newAgent.GetComponent<SPHProperties>();

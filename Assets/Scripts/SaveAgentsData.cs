@@ -41,6 +41,10 @@ public class SaveAgentsData : MonoBehaviour
         {
             JsonLoad();
         }
+        else
+        {
+            AllWaitAgents();
+        }
     }
 
     public static SaveAgentsData Instance
@@ -99,7 +103,7 @@ public class SaveAgentsData : MonoBehaviour
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         Debug.Log(data.positions.Length);
-        int dataLength = 4500;
+        int dataLength = 1500;
         //int dataLength = 2400;
 
         for (int i = dataLength * 4 / 5; i < dataLength; i++)
@@ -192,7 +196,7 @@ public class SaveAgentsData : MonoBehaviour
             {
                 newAgent = Instantiate(WMAgentPf);
             }
-            newAgent.name += 4500 + i;
+            newAgent.name += dataLength + i;
             newAgent.transform.position = data.positions[i] + new Vector3(0.0f, 100.0f, 0.0f);
             newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
             newAgent.GetComponent<PlayerMovement>().target = GameObject.Find(data.targetPosNames[i]).transform;
@@ -247,6 +251,45 @@ public class SaveAgentsData : MonoBehaviour
         }
         */
         //DebugRVOGameObject();
+        NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
+    }
+
+    private void AllWaitAgents()
+    {
+        int dataLength = 6000;
+        for (int i = 0; i < dataLength; i++)
+        {
+            GameObject newAgent;
+            int prefabNum = i % 2;
+            if (prefabNum == 0)
+            {
+                newAgent = Instantiate(MAgentPf);
+            }
+            else
+            {
+                newAgent = Instantiate(WMAgentPf);
+            }
+            newAgent.name += i;
+            newAgent.transform.position = new Vector3(0.0f, 100.0f, 0.0f);
+            newAgent.transform.parent = GameObject.Find("WaitAgents").transform;
+            newAgent.GetComponent<NavMeshAgent>().enabled = false;
+            newAgent.GetComponent<PlayerMovement>().enabled = false;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            if (newAgent.name.StartsWith("w"))
+            {
+                newAgent.transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            else
+            {
+                newAgent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            }
+            newAgent.SetActive(true);
+
+            NavagentSpawner.Instance.RVOGameObject[i] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[i] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[i] = 4; // waited agent 
+        }
         NavagentSpawner.Instance.RVOKDTree = new KDTree(NavagentSpawner.Instance.RVOPointCloud, NavagentSpawner.Instance.maxPointsPerLeafNode);
     }
 

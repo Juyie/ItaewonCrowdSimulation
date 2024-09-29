@@ -1,4 +1,5 @@
 ﻿using DataStructures.ViliWonka.KDTree;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.Win32;
 using System;
 using System.Collections;
@@ -363,25 +364,18 @@ public class SPHManagerSingleThread : MonoBehaviour
                 {
                     yPos = raydata.point.y;
                 }
-                if(!Physics.Raycast(sp.gameObject.transform.position, -sp.gameObject.transform.up, out raydata, 10.0f, layerMask)
-                    && !Physics.Raycast(sp.gameObject.transform.position, sp.gameObject.transform.up, out raydata, 10.0f, layerMask))
-                    // if it is not on the ground, make it not render
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-                        RVOGameObject[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().enabled = false;
-                    }
-                    if (RVOGameObject[i].name.StartsWith("w"))
-                    {
-                        RVOGameObject[i].transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = false;
-                    }
-                }
 
                 
                 Vector3 maxAcc = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
                 //RVOGameObject[i].GetComponent<Rigidbody>().AddForce(maxAcc, ForceMode.Acceleration);
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity += maxAcc * Time.fixedDeltaTime;
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(RVOGameObject[i].GetComponent<Rigidbody>().velocity, maxVelocity);
+
+                if (addForce && RVOGameObject[i].transform.position.x >= -5f && RVOGameObject[i].transform.position.x <= 5f && RVOGameObject[i].transform.position.z >= -17f && RVOGameObject[i].transform.position.z <= -15f)
+                {
+                    RVOGameObject[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -500f), ForceMode.Impulse);
+                }
+
                 sp.velocity = RVOGameObject[i].GetComponent<Rigidbody>().velocity;
                 RVOGameObject[i].transform.position = new Vector3(RVOGameObject[i].transform.position.x, yPos, RVOGameObject[i].transform.position.z);
                 sp.position = RVOGameObject[i].transform.position;
@@ -486,25 +480,10 @@ public class SPHManagerSingleThread : MonoBehaviour
 
             //spi.forcePhysic = new Vector3(forceX, 0.0f, forceZ) / spi.density;
 
-            /*
-            if (spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x < 0)
-            {
-                if (Mathf.Abs(spi.forcePhysic.x) > friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2))
-                {
-                    spi.forcePhysic += new Vector3(friction * parameters[spi.parameterID].particleMass * (-GRAVITY.y) * Mathf.Pow(Mathf.Cos(10.0f), 2), 0.0f, 0.0f);
-                }
-                else
-                {
-                    spi.forcePhysic = new Vector3(0.0f, spi.forcePhysic.y, spi.forcePhysic.z);
-                }
-            }
-            else if(spi.position.x >= 1.55f && spi.position.x <= 43.58f && spi.velocity.x > 0)
-            {
-                spi.forcePhysic += new Vector3(forceGoal.x, 0.0f, 0.0f);
-            }
-            */
+            
             //Debug.Log("Y: " + spi.forcePhysic.y);
             
+            /*
             if (addForce && spi.position.x > 10.0f)
             {
                 //Debug.Log("Force");
@@ -537,7 +516,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                     spi.forcePhysic += Impulse4;
                 }
             }
-            
+            */
             //Debug.Log("Force: " + spi.forcePhysic);
         }
     }

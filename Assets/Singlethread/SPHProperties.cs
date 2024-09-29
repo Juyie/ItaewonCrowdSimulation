@@ -27,6 +27,7 @@ public class SPHProperties : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        goalForce = Random.Range(50.0f, 100.0f);
         goalForceBefore = goalForce;
     }
 
