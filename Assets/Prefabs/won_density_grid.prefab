@@ -4307,6 +4307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  startTrans: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!195 &1955143765916930162
 NavMeshAgent:
@@ -4440,7 +4441,7 @@ MonoBehaviour:
   parameterID: 0
   ragdollDensity: 0
   SPHZombieDensity: 0
-  goalForce: 10
+  goalForce: 30
   goalForceBefore: 0
 --- !u!114 &2730666218415611439
 MonoBehaviour:

@@ -11,6 +11,9 @@ public class SpawnAgents : MonoBehaviour
     private Transform spawnTf;
 
     [SerializeField]
+    private Transform goalTf;
+
+    [SerializeField]
     private GameObject agent;
 
     [SerializeField]
@@ -32,6 +35,10 @@ public class SpawnAgents : MonoBehaviour
     {
         isOn = true;
         //Invoke("TurnOn", 10f);
+        if(spawnTf == null)
+        {
+            spawnTf = GetComponent<Transform>();
+        }
     }
 
     private void Start()
@@ -138,10 +145,12 @@ public class SpawnAgents : MonoBehaviour
         //randPos = new Vector3(Random.Range(-2f, 2f), 0, 0);
         newAgent.transform.position = spawnTf.position;
         newAgent.GetComponent<PlayerMovement>().startTrans = spawnTf;
+        newAgent.GetComponent<PlayerMovement>().target = goalTf;
         newAgent.GetComponent<NavMeshAgent>().enabled = true;
         newAgent.GetComponent<PlayerMovement>().enabled = true;
         SPHProperties sp = newAgent.GetComponent<SPHProperties>();
         sp.position = newAgent.transform.position;
+        sp.goalPosition = goalTf.transform.position;
 
         NavagentSpawner.Instance.RVOPointCloud[int.Parse(newAgent.name.Substring(23))] = sp.position;
         NavagentSpawner.Instance.TypeOfSimulation[int.Parse(newAgent.name.Substring(23))] = 0;

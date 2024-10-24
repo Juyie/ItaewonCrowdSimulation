@@ -371,9 +371,10 @@ public class SPHManagerSingleThread : MonoBehaviour
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity += maxAcc * Time.fixedDeltaTime;
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(RVOGameObject[i].GetComponent<Rigidbody>().velocity, maxVelocity);
 
-                if (addForce && RVOGameObject[i].transform.position.x >= -5f && RVOGameObject[i].transform.position.x <= 5f && RVOGameObject[i].transform.position.z >= -17f && RVOGameObject[i].transform.position.z <= -15f)
+                //if (addForce && RVOGameObject[i].transform.position.x >= -5f && RVOGameObject[i].transform.position.x <= 5f && RVOGameObject[i].transform.position.z >= -17f && RVOGameObject[i].transform.position.z <= -15f)
+                if(addForce && i % 100 ==0)
                 {
-                    RVOGameObject[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -500f), ForceMode.Impulse);
+                    RVOGameObject[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -300f), ForceMode.Impulse);
                 }
 
                 sp.velocity = RVOGameObject[i].GetComponent<Rigidbody>().velocity;
@@ -584,7 +585,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     }
     public void TurnOffSPHZombies(GameObject agent)
     {
-        agent.GetComponent<SPHProperties>().goalForce = 30;
+        agent.GetComponent<SPHProperties>().goalForce = agent.GetComponent<SPHProperties>().goalForceBefore;
         agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
     }
 
