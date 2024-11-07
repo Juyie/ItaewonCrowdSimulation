@@ -3309,6 +3309,7 @@ GameObject:
   - component: {fileID: 9156292958039447343}
   - component: {fileID: 9156292958039447344}
   - component: {fileID: 34187630537910560}
+  - component: {fileID: 736034167562553790}
   - component: {fileID: 2584364200060459340}
   - component: {fileID: 4242323422040218120}
   m_Layer: 0
@@ -3557,6 +3558,55 @@ MonoBehaviour:
     m_NumColorKeys: 5
     m_NumAlphaKeys: 3
   density: 0
+--- !u!114 &736034167562553790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156292958039447346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddb2361dd9afb54b928aab9905814f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorParts:
+  - {fileID: 9156292958039447346}
+  - {fileID: 9156292957292879387}
+  - {fileID: 9156292957138524820}
+  - {fileID: 9156292957789355374}
+  - {fileID: 9156292956596943104}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 1, a: 1}
+    key1: {r: 0, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 1, b: 0, a: 1}
+    key3: {r: 0.9921875, g: 1, b: 0, a: 0}
+    key4: {r: 1, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16384
+    ctime2: 32768
+    ctime3: 49151
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 32960
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 3
+  velocity: 0
 --- !u!114 &2584364200060459340
 MonoBehaviour:
   m_ObjectHideFlags: 0
