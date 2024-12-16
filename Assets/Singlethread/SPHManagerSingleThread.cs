@@ -115,7 +115,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     public SPHParticle[] particles = new SPHParticle[6000];
 
     private bool addForce = false;
-    private bool addForceFlag = true;
+    private bool addForceFlag = false;
     private bool addForceShort = false;
     private bool addForceFlagShort = true;
 
@@ -212,6 +212,10 @@ public class SPHManagerSingleThread : MonoBehaviour
         {
             addForceFlag = false;
             StartCoroutine(WaitAndAddForce());
+        }
+        else
+        {
+            StartCoroutine(TurnOnAddForceFlag());
         }
 
         if (addForceFlagShort)
@@ -594,7 +598,7 @@ public class SPHManagerSingleThread : MonoBehaviour
         addForce = true;
         yield return new WaitForSeconds(0.5f);
         addForce = false;
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(9.5f);
         addForceFlag = true;
     }
 
@@ -605,5 +609,11 @@ public class SPHManagerSingleThread : MonoBehaviour
         addForceShort = false;
         yield return new WaitForSeconds(0.5f);
         addForceFlagShort = true;
+    }
+
+    IEnumerator TurnOnAddForceFlag()
+    {
+        yield return new WaitForSeconds(120f);
+        addForceFlag = true;
     }
 }
