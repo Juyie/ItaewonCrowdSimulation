@@ -256,7 +256,7 @@ public class SaveAgentsData : MonoBehaviour
 
     private void AllWaitAgents()
     {
-        int dataLength = 6000;
+        int dataLength = 600;
         for (int i = 0; i < dataLength; i++)
         {
             GameObject newAgent;

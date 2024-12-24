@@ -7,12 +7,6 @@ public class CheckNeighborGrid : MonoBehaviour
     [SerializeField]
     private CalculateDensityGrid[] neighborGrids;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +34,7 @@ public class CheckNeighborGrid : MonoBehaviour
         bool check = true;
         for(int i = 0; i < neighborGrids.Length; i++)
         {
-            if (!neighborGrids[i].satisfy)
+            if (!neighborGrids[i].mySPH)
             {
                 check = false;
             }

@@ -12,22 +12,13 @@ public class CalculateDensityGrid : MonoBehaviour
     private int criteriaAgentNumSPH;
     private int criteriaAgentNumSPHZombie;
     private int criteriaAgentNumRagdoll;
-    private int criteriaSatisfyNum;
 
-    public bool checkNeighbor = false;
-    public bool satisfy = false;
+    [HideInInspector]
     public bool turnOn = false;
+    [HideInInspector]
     public bool mySPH = false;
+    [HideInInspector]
     public bool allSPH = false;
-    public bool suffSPH = false;
-
-    public bool turnOnRagdoll = false;
-
-    public bool printDensity = false;
-
-    // weight calculation ver.
-    private float criteriaWeight = 0.95f;
-    private float criteriaWeightNum;
 
     public GridController controller;
 
@@ -37,91 +28,43 @@ public class CalculateDensityGrid : MonoBehaviour
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
         criteriaAgentNumSPH = Mathf.FloorToInt(area * 4);
-        criteriaAgentNumSPHZombie = Mathf.FloorToInt(area * 1.75f * 12);
-        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 1.75f * 12);
-        criteriaSatisfyNum = Mathf.FloorToInt(area * 3);
-        criteriaWeightNum = Mathf.FloorToInt(area * 4);
+        criteriaAgentNumSPHZombie = Mathf.FloorToInt(area * 12);
+        criteriaAgentNumRagdoll = Mathf.FloorToInt(area * 12);
+        if(controller == null)
+        {
+            controller = GameObject.FindWithTag("GridController").GetComponent<GridController>();
+        }
     }
 
     // List
     // Update is called once per frame
     void Update()
     {
-        if (controller.Step)
+        if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && allSPH)
         {
-            if (agentList.GetListLength() >= criteriaSatisfyNum)
-            {
-                satisfy = true;
-                //GetComponent<MeshRenderer>().material.color = Color.red;
-            }
-            else
-            {
-                satisfy = false;
-                //GetComponent<MeshRenderer>().material.color = Color.white;
-            }
+            agentList.TurnOnRagdollDensity();
+        }
+        if (agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn)
+        {
+            agentList.TurnOnSPHZombie();
 
-            if (checkNeighbor)
+            if(agentList.GetListLength() < criteriaAgentNumRagdoll)
             {
-                if (agentList.GetListLength() >= criteriaAgentNumRagdoll && turnOn && satisfy && allSPH && suffSPH)
-                {
-                    //agentList.TurnOnRagdolls();
-                    agentList.TurnOnRagdollDensity();
-                }
-                if (agentList.GetListLength() >= criteriaAgentNumSPHZombie && turnOn && satisfy)
-                {
-                    agentList.TurnOnSPHZombie();
-
-                    if(agentList.GetListLength() < criteriaAgentNumRagdoll)
-                    {
-                        agentList.TurnOffRagdollDensity();
-                    }
-                }
-                else if (agentList.GetListLength() >= criteriaAgentNumSPH && turnOn && satisfy)
-                {
-                    agentList.TurnOnSPH();
-                    mySPH = true;
-
-                    if (agentList.GetListLength() < criteriaAgentNumSPHZombie)
-                    {
-                        agentList.TurnOffSPHZombie();
-                    }
-                    else if (agentList.GetListLength() < criteriaAgentNumRagdoll)
-                    {
-                        agentList.TurnOffRagdollDensity();
-                    }
-                }
-                /*
-                else if (agentList.GetListLength() < criteriaAgentNumSPH)
-                {
-                    agentList.TurnOffSPH();
-                    mySPH = false;
-                }
-                */
-            }
-            else
-            {
-                if (agentList.GetListLength() >= criteriaAgentNumRagdoll)
-                {
-                    turnOn = true;
-                    //agentList.TurnOnRagdolls();
-                }
-                else if (agentList.GetListLength() >= criteriaAgentNumSPH)
-                {
-                    turnOn = true;
-                    agentList.TurnOnSPH();
-                }
-                else
-                {
-                    turnOn = false;
-                }
+                agentList.TurnOffRagdollDensity();
             }
         }
-        else if(controller.Exponential)
+        else if (agentList.GetListLength() >= criteriaAgentNumSPH && turnOn)
         {
-            agentList.SetExponentialNum(controller.exponentialSize);
-            if (agentList.GetSpeedPerAgent() >= criteriaWeight * criteriaWeightNum)
+            agentList.TurnOnSPH();
+            mySPH = true;
+
+            if (agentList.GetListLength() < criteriaAgentNumSPHZombie)
             {
-                agentList.TurnOnRagdollsDic();
+                agentList.TurnOffSPHZombie();
+            }
+            else if (agentList.GetListLength() < criteriaAgentNumRagdoll)
+            {
+                agentList.TurnOffRagdollDensity();
             }
         }
     }

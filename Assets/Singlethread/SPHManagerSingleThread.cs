@@ -112,7 +112,7 @@ public class SPHManagerSingleThread : MonoBehaviour
     [SerializeField] private int rowSize = 16;
 
     // Data
-    public SPHParticle[] particles = new SPHParticle[6000];
+    public SPHParticle[] particles = new SPHParticle[600];
 
     private bool addForce = false;
     private bool addForceFlag = false;
