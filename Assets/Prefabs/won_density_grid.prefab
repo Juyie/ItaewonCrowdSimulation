@@ -2325,7 +2325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607873267184077458}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ddb2361dd9afb54b928aab9905814f6, type: 3}
   m_Name: 
@@ -4344,7 +4344,6 @@ MonoBehaviour:
   - {fileID: 3950045032570197876}
   - {fileID: 6515279456901312695}
   hardCollider: {fileID: 7224867085170324193}
-  contactDetectors: []
 --- !u!114 &9160018124809068718
 MonoBehaviour:
   m_ObjectHideFlags: 0

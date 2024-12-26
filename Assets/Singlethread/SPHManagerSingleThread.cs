@@ -1,6 +1,4 @@
 ﻿using DataStructures.ViliWonka.KDTree;
-using Google.Protobuf.WellKnownTypes;
-using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
