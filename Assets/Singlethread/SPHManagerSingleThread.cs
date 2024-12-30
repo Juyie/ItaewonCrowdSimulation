@@ -109,9 +109,6 @@ public class SPHManagerSingleThread : MonoBehaviour
     [SerializeField] private int amount = 250;
     [SerializeField] private int rowSize = 16;
 
-    // Data
-    public SPHParticle[] particles = new SPHParticle[600];
-
     private bool addForce = false;
     private bool addForceFlag = false;
     private bool addForceShort = false;
@@ -220,39 +217,6 @@ public class SPHManagerSingleThread : MonoBehaviour
         {
             addForceFlagShort = false;
             StartCoroutine(WaitAndAddForceShort());
-        }
-    }
-
-    private void InitSPH()
-    {
-        particles = new SPHParticle[amount];
-
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject go = Instantiate(character0Prefab);
-            go.transform.parent = GameObject.Find("SPHAgents").transform;
-            go.transform.position = new Vector3(-4.5f + (i % 46) * 0.2f, 0.0f, 19.5f - (i / 46) % 46 * 0.5f);
-            go.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
-            go.name = "char" + i.ToString();
-            go.GetComponent<NavMeshAgent>().enabled = false;
-            go.GetComponent<NavMeshObstacle>().enabled = true;
-
-            Vector3 goalPosition = new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), 0.0f, goalPos2.z);
-
-            particles[i].Init(go.transform.position, goalPosition, parameterID, go);
-        }
-    }
-
-    private void UpdateSPH()
-    {
-        particles = new SPHParticle[GameObject.Find("SPHAgents").transform.childCount];
-
-        for (int i = 0; i < GameObject.Find("SPHAgents").transform.childCount; i++)
-        {
-            GameObject go = GameObject.Find("SPHAgents").transform.GetChild(i).gameObject;
-            SPHProperties sp = go.GetComponent<SPHProperties>();
-
-            particles[i].Init(sp.position, sp.goalPosition, sp.parameterID, go);
         }
     }
 
@@ -544,7 +508,7 @@ public class SPHManagerSingleThread : MonoBehaviour
                 if (RVOGameObject[i].GetComponent<SPHProperties>().velocity.magnitude > 0.1f)
                 {
                     RVOGameObject[i].GetComponent<Animator>().SetBool("isWalking", true);
-                    RVOGameObject[i].GetComponent<Animator>().speed = RVOGameObject[i].GetComponent<SPHProperties>().velocity.magnitude / maxVelocity;
+                    RVOGameObject[i].GetComponent<Animator>().speed = Mathf.Min(1, RVOGameObject[i].GetComponent<SPHProperties>().velocity.magnitude / maxVelocity);
                 }
                 else
                 {

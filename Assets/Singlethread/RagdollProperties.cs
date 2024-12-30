@@ -14,14 +14,12 @@ public class RagdollProperties : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        particles = SPHManager.particles;
         Ragdollagents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
     }
 
     // Update is called once per frame
     void Update()
     {
-        particles = SPHManager.particles;
         Ragdollagents = GameObject.Find("RagdollManager").GetComponent<RagdollSpawner>().RagdollAgents;
         ComputeDensityPressure();
     }

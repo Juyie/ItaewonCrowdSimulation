@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
                 else
                 {
                     animator.SetBool("isWalking", true);
-                    animator.speed = GetComponent<NavMeshAgent>().velocity.magnitude / 0.6f;
+                    animator.speed = Mathf.Min(1, GetComponent<NavMeshAgent>().velocity.magnitude / 0.6f);
                 }
 
                 isRagdollOn = gameObject.GetComponent<OnOffRagdoll>().GetIsRagdollOn();

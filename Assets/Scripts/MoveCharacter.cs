@@ -16,13 +16,10 @@ public class MoveCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 move = new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         gameObject.transform.Translate(move * Time.deltaTime * playerSpeed);
 
-        if (!Input.GetMouseButton(1))
-        {
-            float y = Input.GetAxis("Mouse X") * rotateXSpeed * Time.deltaTime;
-            gameObject.transform.eulerAngles = new Vector3(0, gameObject.transform.eulerAngles.y + y, 0);
-        }
+        float y = Input.GetAxis("Mouse X") * rotateXSpeed * Time.deltaTime;
+        gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y + y, gameObject.transform.eulerAngles.z);
     }
 }

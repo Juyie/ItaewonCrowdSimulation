@@ -145,7 +145,7 @@ public class SimpleSceneManager : MonoBehaviour
             newAgent.transform.parent = GameObject.Find("SPHAgents").transform;
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
-            SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
+            //SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
             newAgent.SetActive(true);
             count++;
         }
@@ -165,7 +165,7 @@ public class SimpleSceneManager : MonoBehaviour
             newAgent.GetComponent<NavMeshObstacle>().enabled = true;
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
-            SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
+            //SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
             newAgent.SetActive(true);
             count++;
         }
@@ -181,7 +181,7 @@ public class SimpleSceneManager : MonoBehaviour
             newAgent.GetComponent<NavMeshObstacle>().enabled = true;
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
-            SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
+            //SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
             newAgent.SetActive(true);
             count++;
         }
@@ -197,7 +197,7 @@ public class SimpleSceneManager : MonoBehaviour
             newAgent.GetComponent<NavMeshObstacle>().enabled = true;
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
-            SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
+            //SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
             newAgent.SetActive(true);
             count++;
         }
@@ -213,7 +213,7 @@ public class SimpleSceneManager : MonoBehaviour
             newAgent.GetComponent<NavMeshObstacle>().enabled = true;
             SPHProperties sp = newAgent.GetComponent<SPHProperties>();
             sp.position = newAgent.transform.position;
-            SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
+            //SPHManagerSingleThread.Instance.particles[int.Parse(newAgent.name.Substring(23))].Init(newAgent.GetComponent<SPHProperties>().position, newAgent.GetComponent<SPHProperties>().goalPosition, newAgent.GetComponent<SPHProperties>().parameterID, newAgent);
             newAgent.SetActive(true);
             count++;
         }

@@ -17,7 +17,7 @@ public class MoveCamera : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             float x = Input.GetAxis("Mouse Y") * rotateYSpeed * Time.deltaTime * -1;
-            gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x + x, 0, 0);
+            gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x + x, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
         }
     }
 }
