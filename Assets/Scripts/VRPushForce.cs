@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class VRPushForce : MonoBehaviour
 {
     [SerializeField]
-    private float pushForce = 0.1f;
+    private float pushForce = 0.6f;
 
     private void OnTriggerStay(Collider other)
     {
