@@ -6,14 +6,14 @@ using UnityEngine.AI;
 public class VRPushForce : MonoBehaviour
 {
     [SerializeField]
-    private float pushForce = 0.6f;
+    private float pushForce = 0.1f;
 
     private void OnTriggerStay(Collider other)
     {
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if(rb != null && other.tag == "agent")
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetAxis("Fire1") > 0)
             {
                 if (rb.GetComponent<NavMeshAgent>().enabled)
                 {

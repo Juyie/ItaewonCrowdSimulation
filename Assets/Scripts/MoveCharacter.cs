@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MoveCharacter : MonoBehaviour
 {
-    public float playerSpeed = 2.0f;
-    public float rotateXSpeed = 250.0f;
+    public float playerSpeed = 0.8f;
+    public float rotateXSpeed = 20.0f;
 
     // Start is called before the first frame update
     void Start()

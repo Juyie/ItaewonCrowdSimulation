@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public float rotateYSpeed = 250.0f;
+    public float rotateYSpeed = 20.0f;
 
     private void Start()
     {
@@ -14,10 +14,7 @@ public class MoveCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1))
-        {
-            float x = Input.GetAxis("Mouse Y") * rotateYSpeed * Time.deltaTime * -1;
-            gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x + x, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
-        }
+        float x = Input.GetAxis("Mouse Y") * rotateYSpeed * Time.deltaTime;
+        gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x + x, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
     }
 }
