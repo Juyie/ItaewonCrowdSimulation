@@ -13,7 +13,7 @@ public class VRPushForce : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if(rb != null && other.tag == "agent")
         {
-            if (Input.GetAxis("Fire1") > 0)
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (rb.GetComponent<NavMeshAgent>().enabled)
                 {
