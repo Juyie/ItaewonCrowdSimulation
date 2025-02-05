@@ -1,20 +1,62 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class MoveCamera : MonoBehaviour
 {
-    public float rotateYSpeed = 20.0f;
+    [SerializeField]
+    private Camera cam;
+
+    [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
+    private float rotateXSpeed = 20.0f;
+
+    [SerializeField]
+    private float rotateYSpeed = 20.0f;
+
+    [SerializeField]
+    private SteamVR_Input_Sources rightHand;
+
+    [SerializeField]
+    private SteamVR_Action_Boolean up;
+
+    [SerializeField]
+    private SteamVR_Action_Boolean down;
+
+    [SerializeField]
+    private SteamVR_Action_Boolean left;
+
+    [SerializeField]
+    private SteamVR_Action_Boolean right;
+
+    [SerializeField]
+    private SteamVR_Input_Sources head;
+
+    [SerializeField]
+    private SteamVR_Action_Pose camRot;
+
+    private Quaternion rotBase;
+    private Quaternion rotNow;
+    private Quaternion camBase;
 
     private void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        camBase = cam.transform.rotation;
+        rotBase = camRot.GetLocalRotation(head);
     }
 
     void Update()
     {
-        float x = Input.GetAxis("Mouse Y") * rotateYSpeed * Time.deltaTime;
-        gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x + x, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
+        Quaternion rotationOffset = camRot.GetLocalRotation(head)* Quaternion.Inverse(rotBase);
+        rotationOffset = new Quaternion(-rotationOffset.x, rotationOffset.y, rotationOffset.z, rotationOffset.w);
+        Vector3 eulerRotation = rotationOffset.eulerAngles;
+        cam.transform.rotation = camBase * rotationOffset;
+        player.transform.rotation = camBase * Quaternion.Euler(0, eulerRotation.y, 0);
     }
 }

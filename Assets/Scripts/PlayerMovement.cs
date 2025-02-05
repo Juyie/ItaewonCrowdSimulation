@@ -61,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
         {
             gameObject.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
+
+        navMeshAgent.destination = target.position;
     }
 
     // Update is called once per frame
@@ -77,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (navMeshAgent.isOnNavMesh)
             {
-                if (velocity.sqrMagnitude <= 0.1)
+                if (navMeshAgent.velocity.sqrMagnitude <= 0f)
                 {
                     animator.SetBool("isWalking", false);
                 }
@@ -94,12 +96,18 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (!isRagdollOn && navMeshAgent.destination != null)
                 {
-                    navMeshAgent.SetDestination(target.position);
+                    NavMeshPath path = new NavMeshPath();
+                    navMeshAgent.CalculatePath(target.position , path);
+                    navMeshAgent.SetPath(path);
+                    //navMeshAgent.SetDestination(target.position);
                     //gameObject.GetComponent<SPHProperties>().goalPosition = target.position;
                 }
 
                 if (!navMeshAgent.pathPending)
                 {
+                    NavMeshPath path = new NavMeshPath();
+                    navMeshAgent.CalculatePath(target.position , path);
+                    navMeshAgent.SetPath(path);
                     if (navMeshAgent.remainingDistance <= 0.5f)
                     {
                         gameObject.transform.position = startTrans.position;
@@ -112,6 +120,8 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 //Destroy(gameObject);
+                navMeshAgent.SetDestination(target.position);
+                //navMeshAgent.CalculatePath(target.position, navMeshAgent.path);
                 if(startTrans == null)
                 {
                     this.enabled = false;
