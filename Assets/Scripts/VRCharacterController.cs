@@ -11,25 +11,6 @@ public class VRCharacterController : MonoBehaviour
 
     [SerializeField]
     private float playerSpeed = 0.8f;
-
-    [SerializeField]
-    private float rotateXSpeed = 20.0f;
-
-    [SerializeField]
-    private SteamVR_Input_Sources leftHand;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean up;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean down;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean left;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean right;
-
     
     [SerializeField]
     private SteamVR_Input_Sources waist;
@@ -37,8 +18,6 @@ public class VRCharacterController : MonoBehaviour
     [SerializeField]
     private SteamVR_Action_Pose waistPos;
 
-    private Vector3 initialTrackerPos;
-    private Vector3 initialPlayerPos;
     private Vector3 posBefore;
     private Vector3 posNow;
     private Vector3 posDiff;
@@ -47,9 +26,7 @@ public class VRCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initialTrackerPos = waistPos.GetLocalPosition(waist);
         posBefore = waistPos.GetLocalPosition(waist);
-        initialPlayerPos = player.transform.position;
     }
 
     // Update is called once per frame

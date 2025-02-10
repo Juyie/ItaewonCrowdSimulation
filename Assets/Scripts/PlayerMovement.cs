@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator= GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        //navMeshAgent.SetDestination(target.position);
+        navMeshAgent.SetDestination(target.position);
 
         displayAgentNumber = FindObjectOfType<DisplayAgentNumber>();
 
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
                 else
                 {
                     animator.SetBool("isWalking", true);
-                    animator.speed = Mathf.Min(1, GetComponent<NavMeshAgent>().velocity.magnitude / 0.6f);
+                    animator.speed = Mathf.Min(1, navMeshAgent.velocity.magnitude / 0.6f);
                 }
 
                 isRagdollOn = gameObject.GetComponent<OnOffRagdoll>().GetIsRagdollOn();
@@ -147,9 +147,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void CalculateVelocity()
     {
-        posBefore = posAfter;
         posAfter = transform.position;
-
         velocity = (posAfter - posBefore) / Time.deltaTime;
+
+        posBefore = posAfter;
     }
 }

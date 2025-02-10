@@ -13,34 +13,12 @@ public class MoveCamera : MonoBehaviour
     private GameObject player;
 
     [SerializeField]
-    private float rotateXSpeed = 20.0f;
-
-    [SerializeField]
-    private float rotateYSpeed = 20.0f;
-
-    [SerializeField]
-    private SteamVR_Input_Sources rightHand;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean up;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean down;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean left;
-
-    [SerializeField]
-    private SteamVR_Action_Boolean right;
-
-    [SerializeField]
     private SteamVR_Input_Sources head;
 
     [SerializeField]
     private SteamVR_Action_Pose camRot;
 
     private Quaternion rotBase;
-    private Quaternion rotNow;
     private Quaternion camBase;
 
     private void Start()
@@ -54,7 +32,7 @@ public class MoveCamera : MonoBehaviour
     void Update()
     {
         Quaternion rotationOffset = camRot.GetLocalRotation(head)* Quaternion.Inverse(rotBase);
-        rotationOffset = new Quaternion(-rotationOffset.x, rotationOffset.y, rotationOffset.z, rotationOffset.w);
+        rotationOffset = new Quaternion(-rotationOffset.x, rotationOffset.y, -rotationOffset.z, rotationOffset.w);
         Vector3 eulerRotation = rotationOffset.eulerAngles;
         cam.transform.rotation = camBase * rotationOffset;
         player.transform.rotation = camBase * Quaternion.Euler(0, eulerRotation.y, 0);
