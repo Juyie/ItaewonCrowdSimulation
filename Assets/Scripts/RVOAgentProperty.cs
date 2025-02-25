@@ -25,7 +25,6 @@ public class RVOAgentProperty : MonoBehaviour
         RVOPointCloud = NavagentSpawner.Instance.RVOPointCloud;
         RVOKDTree = NavagentSpawner.Instance.RVOKDTree;
         TypeOfSimulation = NavagentSpawner.Instance.TypeOfSimulation;
-        particles = SPHManager.particles;
         query = new KDQuery();
     }
 

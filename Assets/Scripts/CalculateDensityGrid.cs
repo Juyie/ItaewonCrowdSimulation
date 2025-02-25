@@ -20,11 +20,12 @@ public class CalculateDensityGrid : MonoBehaviour
     [HideInInspector]
     public bool allSPH = false;
 
-    public GridController controller;
+    private GridController controller;
 
     // Start is called before the first frame update
     void Start()
     {
+        controller = GameObject.FindWithTag("GridController").GetComponent<GridController>();
         agentList = GetComponent<GridAgentList>();
         area = transform.localScale.x * transform.localScale.z * 100;
         criteriaAgentNumSPH = Mathf.FloorToInt(area * 4);

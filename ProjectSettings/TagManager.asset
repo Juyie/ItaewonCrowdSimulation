@@ -37,6 +37,7 @@ TagManager:
   - agentPrefab
   - target
   - GridController
+  - Canvas
   layers:
   - Default
   - TransparentFX

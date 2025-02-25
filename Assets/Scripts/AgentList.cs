@@ -29,17 +29,6 @@ public class AgentList : MonoBehaviour
         {
             UIText.text = agentList.Count.ToString();
         }
-
-        /*
-        if (agentList.Count >= 64) 
-        {
-            onOffRagdoll.TurnOnRagdoll();
-        }
-        else
-        {
-            onOffRagdoll.TurnOffRagdoll();
-        }
-        */
     }
 
     public int GetListLength()
@@ -49,10 +38,7 @@ public class AgentList : MonoBehaviour
 
     public void AddAgent(string name)
     {
-        //Debug.Log("Add: " + name);
         agentList.Add(name);
-        //Debug.Log(agentList.Count);
-        //PrintList();
     }
 
     public bool FindAgent(string name)

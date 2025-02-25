@@ -92,16 +92,8 @@ public class SPHManagerSingleThread : MonoBehaviour
     // Consts
     private static Vector3 GRAVITY = new Vector3(0.0f, -9.81f, 0.0f);
     private const float GAS_CONST = 100.0f;
-    private const float DT = 0.0008f;
-    private const float BOUND_DAMPING = -0.5f;
-    private Vector3 goalPos1 = new Vector3(0.0f, 0.0f, 19.5f);
-    private Vector3 goalPos2 = new Vector3(0.0f, 0.0f, -19.5f);
     private float maxAcceleration = 5.0f;
     public float maxVelocity = 0.6f;
-
-    // Properties
-    [Header("Import")]
-    [SerializeField] private GameObject character0Prefab = null;
 
     [Header("Parameters")]
     [SerializeField] private int parameterID = 0;
@@ -111,29 +103,13 @@ public class SPHManagerSingleThread : MonoBehaviour
     [SerializeField] private int amount = 250;
     [SerializeField] private int rowSize = 16;
 
-    // Data
-    public SPHParticle[] particles = new SPHParticle[600];
-
-    private bool addForce = false;
-    private bool addForceFlag = false;
-    private bool addForceShort = false;
-    private bool addForceFlagShort = true;
-
-    private RagdollSpawner.RagdollAgent[] RagdollAgents;
-
     private GameObject[] RVOGameObject;
     private Vector3[] RVOPointCloud;
     private KDTree RVOKDTree;
     private KDQuery query;
     private int[] TypeOfSimulation;
-
-    private float friction = 4.0f;
-    private float torqueForce = 30.622f;
-    // 3500 is too low
-    // 4500 is low too
-    // 1000is too high
-    // 800
     private float tempForce = 4000f;
+    private bool makeAgentDone = false;
 
     [Header("Interaction")]
     [SerializeField] public bool RVO_SPH;
@@ -141,7 +117,6 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void Awake()
     {
-        //InitSPH();
         if (instance == null)
         {
             instance = this;
@@ -155,194 +130,30 @@ public class SPHManagerSingleThread : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RVOGameObject = NavagentSpawner.Instance.RVOGameObject;
-        RVOPointCloud = NavagentSpawner.Instance.RVOPointCloud;
-        RVOKDTree = NavagentSpawner.Instance.RVOKDTree;
-        TypeOfSimulation = NavagentSpawner.Instance.TypeOfSimulation;
-
-        ComputeDensityPressure();
-        ComputeForces();
-        Integrate();
-
-        //ComputeColliders();
-        //ComputeCollisions();
-        //ApplyPosition();
-
-        CheckVelocityForAnimation();
-
-        if (RVO_SPH)
+        if (SaveAgentsData.GetMakeAgentDone())
         {
-        }
-        if (SPH_RAGDOLL)
-        {
-            for (int i = 0; i < RVOGameObject.Length; i++)
+            RVOGameObject = NavagentSpawner.Instance.RVOGameObject;
+            RVOPointCloud = NavagentSpawner.Instance.RVOPointCloud;
+            RVOKDTree = NavagentSpawner.Instance.RVOKDTree;
+            TypeOfSimulation = NavagentSpawner.Instance.TypeOfSimulation;
+
+            ComputeDensityPressure();
+            ComputeForces();
+            Integrate();
+
+            CheckVelocityForAnimation();
+
+            if (SPH_RAGDOLL)
             {
-                if (TypeOfSimulation[i] == 1)
+                for (int i = 0; i < RVOGameObject.Length; i++)
                 {
-                    if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > tempForce && RVOGameObject[i].GetComponent<SPHProperties>().ragdollDensity == true && RVOGameObject[i].GetComponent<SPHProperties>().goalForce == 0) 
+                    if (TypeOfSimulation[i] == 1)
                     {
-                        TurnOnRagdolls(RVOGameObject[i]);
+                        if (RVOGameObject[i].GetComponent<SPHProperties>().forcePhysic.magnitude > tempForce && RVOGameObject[i].GetComponent<SPHProperties>().ragdollDensity == true && RVOGameObject[i].GetComponent<SPHProperties>().goalForce == 0)
+                        {
+                            TurnOnRagdolls(RVOGameObject[i]);
+                        }
                     }
-                }
-            }
-        }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            addForce = true;
-        }
-        if (Input.GetKeyUp(KeyCode.F))
-        {
-            addForce = false;
-        }
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            PrintPositions();
-        }
-        */
-        /*
-        if (particles.Length != GameObject.Find("SPHAgents").transform.childCount)
-        {
-            UpdateSPH();
-        }
-        */
-
-        if (addForceFlag)
-        {
-            addForceFlag = false;
-            StartCoroutine(WaitAndAddForce());
-        }
-        else
-        {
-            StartCoroutine(TurnOnAddForceFlag());
-        }
-
-        if (addForceFlagShort)
-        {
-            addForceFlagShort = false;
-            StartCoroutine(WaitAndAddForceShort());
-        }
-    }
-
-    private void InitSPH()
-    {
-        particles = new SPHParticle[amount];
-
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject go = Instantiate(character0Prefab);
-            go.transform.parent = GameObject.Find("SPHAgents").transform;
-            go.transform.position = new Vector3(-4.5f + (i % 46) * 0.2f, 0.0f, 19.5f - (i / 46) % 46 * 0.5f);
-            go.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
-            go.name = "char" + i.ToString();
-            go.GetComponent<NavMeshAgent>().enabled = false;
-            go.GetComponent<NavMeshObstacle>().enabled = true;
-
-            Vector3 goalPosition = new Vector3(UnityEngine.Random.Range(-4.5f, 4.5f), 0.0f, goalPos2.z);
-
-            particles[i].Init(go.transform.position, goalPosition, parameterID, go);
-        }
-    }
-
-    private void UpdateSPH()
-    {
-        particles = new SPHParticle[GameObject.Find("SPHAgents").transform.childCount];
-
-        for (int i = 0; i < GameObject.Find("SPHAgents").transform.childCount; i++)
-        {
-            GameObject go = GameObject.Find("SPHAgents").transform.GetChild(i).gameObject;
-            SPHProperties sp = go.GetComponent<SPHProperties>();
-
-            particles[i].Init(sp.position, sp.goalPosition, sp.parameterID, go);
-        }
-    }
-
-    private static bool Intersect(SPHCollider collider, Vector3 position, float radius, out Vector3 penetrationNormal, out Vector3 penetrationPosition, out float penetrationLength)
-    {
-        Vector3 colliderProjection = collider.position - position;
-
-        penetrationNormal = Vector3.Cross(collider.right, collider.up);
-        penetrationLength = Mathf.Abs(Vector3.Dot(colliderProjection, penetrationNormal * collider.scale.z)) - (radius / 2.0f);
-        penetrationPosition = collider.position - colliderProjection;
-
-        return penetrationLength < 0.0f
-            && Mathf.Abs(Vector3.Dot(colliderProjection, collider.right)) < collider.scale.x
-            && Mathf.Abs(Vector3.Dot(colliderProjection, collider.up)) < collider.scale.y;
-    }
-
-
-    private static Vector3 DampVelocity(SPHCollider collider, Vector3 velocity, Vector3 penetrationNormal, float drag)
-    {
-        Vector3 newVelocity = Vector3.Dot(velocity, penetrationNormal) * penetrationNormal * BOUND_DAMPING
-                            + Vector3.Dot(velocity, collider.right) * collider.right * drag
-                            + Vector3.Dot(velocity, collider.up) * collider.up * drag;
-        return newVelocity;
-    }
-
-    private static Vector3 DampVelocity(Vector3 velocity, Vector3 penetrationNormal, float drag)
-    {
-        Vector3 newVelocity = Vector3.Dot(velocity, penetrationNormal) * penetrationNormal * BOUND_DAMPING
-                            + Vector3.Dot(velocity, Vector3.right) * Vector3.right * drag
-                            + Vector3.Dot(velocity, Vector3.up) * Vector3.up * drag;
-        return newVelocity;
-    }
-
-
-    private void ComputeColliders()
-    {
-        // Get colliders
-        GameObject[] collidersGO = GameObject.FindGameObjectsWithTag("SPHCollider");
-        SPHCollider[] colliders = new SPHCollider[collidersGO.Length];
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            colliders[i].Init(collidersGO[i].transform);
-        }
-
-        for (int i = 0; i < RVOGameObject.Length; i++)
-        {
-            if (TypeOfSimulation[i] == 1)
-            {
-                for (int j = 0; j < colliders.Length; j++)
-                {
-                    // Check collision
-                    Vector3 penetrationNormal;
-                    Vector3 penetrationPosition;
-                    float penetrationLength;
-
-                    SPHProperties sp = RVOGameObject[i].GetComponent<SPHProperties>();
-                    if (Intersect(colliders[j], sp.position, parameters[sp.parameterID].particleRadius, out penetrationNormal, out penetrationPosition, out penetrationLength))
-                    {
-                        //sp.velocity = DampVelocity(colliders[j], sp.velocity, penetrationNormal, 1.0f - parameters[sp.parameterID].particleDrag);
-                        //sp.position = penetrationPosition - penetrationNormal * Mathf.Abs(penetrationLength);
-                        RVOGameObject[i].GetComponent<Rigidbody>().velocity = DampVelocity(colliders[j], RVOGameObject[i].GetComponent<Rigidbody>().velocity, penetrationNormal, 1.0f - parameters[sp.parameterID].particleDrag);
-                        sp.velocity = RVOGameObject[i].GetComponent<Rigidbody>().velocity;
-                        RVOGameObject[i].transform.position = penetrationPosition - penetrationNormal * Mathf.Abs(penetrationLength);
-                        sp.position = RVOGameObject[i].transform.position;
-                    }
-                }
-            }
-        }
-    }
-
-    private void ComputeCollisions()
-    {
-        for (int i = 0; i < RVOGameObject.Length; i++)
-        {
-            if (TypeOfSimulation[i] == 1)
-            {
-                SPHProperties spi = RVOGameObject[i].GetComponent<SPHProperties>();
-                List<int> results = new List<int>();
-                query.Radius(RVOKDTree, spi.position, parameters[parameterID].particleRadius / 2, results);
-                for (int j = 0; j < results.Count; j++)
-                {
-                    SPHProperties spj = RVOGameObject[j].GetComponent<SPHProperties>();
-
-                    Vector3 penetrationNormal = (spj.position - spi.position).normalized;
-                    float penetrationLength = -(spj.position - spi.position).magnitude + parameters[parameterID].particleRadius / 2;
-                    Debug.Log(penetrationLength);
-                    //spi.velocity = DampVelocity(spi.velocity, penetrationNormal, 1.0f - parameters[spi.parameterID].particleDrag);
-                    spi.position -= penetrationNormal * Mathf.Abs(penetrationLength) * Time.fixedDeltaTime / results.Count;
                 }
             }
         }
@@ -371,28 +182,12 @@ public class SPHManagerSingleThread : MonoBehaviour
 
                 
                 Vector3 maxAcc = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
-                //RVOGameObject[i].GetComponent<Rigidbody>().AddForce(maxAcc, ForceMode.Acceleration);
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity += maxAcc * Time.fixedDeltaTime;
                 RVOGameObject[i].GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(RVOGameObject[i].GetComponent<Rigidbody>().velocity, maxVelocity);
-
-                //if (addForce && RVOGameObject[i].transform.position.x >= -5f && RVOGameObject[i].transform.position.x <= 5f && RVOGameObject[i].transform.position.z >= -17f && RVOGameObject[i].transform.position.z <= -15f)
-                if(addForce && i % 101 == 0)
-                {
-                    RVOGameObject[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -500f), ForceMode.Impulse);
-                }
 
                 sp.velocity = RVOGameObject[i].GetComponent<Rigidbody>().velocity;
                 RVOGameObject[i].transform.position = new Vector3(RVOGameObject[i].transform.position.x, yPos, RVOGameObject[i].transform.position.z);
                 sp.position = RVOGameObject[i].transform.position;
-                /*
-                Vector3 a = Vector3.ClampMagnitude(sp.forcePhysic / parameters[sp.parameterID].particleMass, maxAcceleration);
-                sp.velocity += a * Time.fixedDeltaTime;
-                sp.velocity = Vector3.ClampMagnitude(sp.velocity, maxVelocity);
-                sp.position += sp.velocity * Time.fixedDeltaTime;
-                sp.position.y = yPos;
-                RVOGameObject[i].GetComponent<Rigidbody>().position = sp.position;
-                */
-                //Debug.Log("Pos after: " + sp.position + ", Y pos: " + yPos);
             }
         }
     }
@@ -424,8 +219,6 @@ public class SPHManagerSingleThread : MonoBehaviour
             spi.pressure = GAS_CONST * (spi.density - parameters[spi.parameterID].restDensity * (parameters[0].particleMass + parameters[1].particleMass) / 2);
         }
     }
-
-
 
     private void ComputeForces()
     {
@@ -461,9 +254,7 @@ public class SPHManagerSingleThread : MonoBehaviour
             goalNorm = (spi.goalPosition - spi.position).normalized;
             rotation = new Vector3(0.0f, spi.forcePhysic.normalized.y + 180.0f, 0.0f);
 
-
             Vector3 forceGoal = goalNorm * spi.goalForce * spi.density;
-
             
             Vector3 Impulse1 = new Vector3(0.0f, 0.0f, -50.0f);
             Vector3 Impulse2 = new Vector3(0.0f, 0.0f, 50.0f);
@@ -471,69 +262,10 @@ public class SPHManagerSingleThread : MonoBehaviour
             Vector3 Impulse4 = new Vector3(-10.0f, 0.0f, 0.0f);
             Vector3 Impulse5 = new Vector3(-300.0f, 0.0f, 0.0f);
 
-            //Vector3 Impulse1 = new Vector3(0.0f, 0.0f, 0.0f);
-            //Vector3 Impulse2 = new Vector3(0.0f, 0.0f, 0.0f);
-            //Vector3 Impulse3 = new Vector3(0.0f, 0.0f, 0.0f);
-
-            // Apply
-
             float forceX = forcePressure.x + forceViscosity.x + forceGoal.x + forceGravity.x;
             float forceZ = forcePressure.y + forceViscosity.y +forceGoal.z + forceGravity.z;
 
             spi.forcePhysic = (new Vector3(forceX, forceGravity.y, forceZ) / spi.density);
-
-
-            //spi.forcePhysic = new Vector3(forceX, 0.0f, forceZ) / spi.density;
-
-            
-            //Debug.Log("Y: " + spi.forcePhysic.y);
-            
-            /*
-            if (addForce && spi.position.x > 10.0f)
-            {
-                //Debug.Log("Force");
-                if (spi.position.z > 8.0f && spi.position.z < 10.0f)
-                {
-                    spi.forcePhysic += Impulse1;
-                }
-                else if(spi.position.z < 2.6f && spi.position.z > 0.6f)
-                {
-                    spi.forcePhysic += Impulse2;
-                }
-            }
-            if (addForce && (spi.position.x > 32.0f))// && spi.position.x < 40.0f || spi.position.x > 42.0f && spi.position.x < 45.0f))
-            {
-                if (spi.position.z < 7.42 && spi.position.z > 2.74)
-                {
-                    spi.forcePhysic += Impulse3;
-                }
-
-                //if (spi.position.z < 5.8 && spi.position.z > 3.3 && spi.position.x < 34.0f)
-                //{
-                    //spi.forcePhysic += Impulse5;
-                //}
-            }
-
-            if (addForceShort)
-            {
-                if (spi.position.x > 43.5f && spi.position.x < 45.5f && spi.position.z > 2.0f && spi.position.z < 6.0f)
-                {
-                    spi.forcePhysic += Impulse4;
-                }
-            }
-            */
-            //Debug.Log("Force: " + spi.forcePhysic);
-        }
-    }
-
-    private void ApplyPosition()
-    {
-        for (int i = 0; i < RVOGameObject.Length; i++)
-        {
-            if (TypeOfSimulation[i] == 1)
-            {
-                RVOGameObject[i].transform.position = RVOGameObject[i].GetComponent<SPHProperties>().position;// + new Vector3(0.0f, parameters[0].particleRadius / 2, 0.0f);
-            }
         }
     }
 
@@ -556,64 +288,10 @@ public class SPHManagerSingleThread : MonoBehaviour
         }
     }
 
-    private void PrintPositions()
-    {
-        for (int i = 0; i < RVOGameObject.Length; i++)
-        {
-            if (TypeOfSimulation[i] == 1)
-            {
-                if (RVOGameObject[i].GetComponent<SPHProperties>().position.x == RVOGameObject[i].transform.position.x && RVOGameObject[i].GetComponent<SPHProperties>().position.z == RVOGameObject[i].transform.position.z)
-                {
-                    Debug.Log("Same Position");
-                }
-                else if (RVOGameObject[i].GetComponent<SPHProperties>().position.x != RVOGameObject[i].transform.position.x || RVOGameObject[i].GetComponent<SPHProperties>().position.z != RVOGameObject[i].transform.position.z)
-                {
-                    Debug.Log("Diff position. SPH position: " + RVOGameObject[i].GetComponent<SPHProperties>().position + ", GO position: " + RVOGameObject[i].transform.position);
-                }
-            }
-        }
-    }
-
     public void TurnOnRagdolls(GameObject agent)
     {
         agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
         agent.transform.parent = GameObject.Find("RagdollAgents").transform;
         NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 2;
-        //agent.GetComponent<SPHProperties>().parameterID = 2;
-    }
-
-    public void TurnOnSPHZombies(GameObject agent)
-    {
-        agent.GetComponent<SPHProperties>().goalForce = 0;
-        agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
-    }
-    public void TurnOffSPHZombies(GameObject agent)
-    {
-        agent.GetComponent<SPHProperties>().goalForce = agent.GetComponent<SPHProperties>().goalForceBefore;
-        agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
-    }
-
-    IEnumerator WaitAndAddForce()
-    {
-        addForce = true;
-        yield return new WaitForSeconds(0.5f);
-        addForce = false;
-        yield return new WaitForSeconds(9.5f);
-        addForceFlag = true;
-    }
-
-    IEnumerator WaitAndAddForceShort()
-    {
-        addForceShort = true;
-        yield return new WaitForSeconds(1.0f);
-        addForceShort = false;
-        yield return new WaitForSeconds(0.5f);
-        addForceFlagShort = true;
-    }
-
-    IEnumerator TurnOnAddForceFlag()
-    {
-        yield return new WaitForSeconds(120f);
-        addForceFlag = true;
     }
 }

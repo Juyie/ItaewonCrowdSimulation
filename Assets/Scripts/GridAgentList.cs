@@ -17,6 +17,7 @@ public class GridAgentList : MonoBehaviour
     private SPHManagerSingleThread SPHManager;
 
     public bool densityColor = true;
+    [HideInInspector]
     public bool allSPH = true;
 
     public void SetExponentialNum(float num)
@@ -245,18 +246,6 @@ public class GridAgentList : MonoBehaviour
             }
             agent.GetComponent<SPHProperties>().SPHZombieDensity = false;
         }
-    }
-
-    private void InitSPH(int i, GameObject agent)
-    {
-        SPHManagerSingleThread.Instance.particles[i].position = agent.transform.position;
-        SPHManagerSingleThread.Instance.particles[i].goalPosition = agent.GetComponent<SPHProperties>().goalPosition;
-        SPHManagerSingleThread.Instance.particles[i].velocity = Vector3.zero;
-        SPHManagerSingleThread.Instance.particles[i].forcePhysic = Vector3.zero;
-        SPHManagerSingleThread.Instance.particles[i].forceHeading = Vector3.zero;
-        SPHManagerSingleThread.Instance.particles[i].density = 0.0f;
-        SPHManagerSingleThread.Instance.particles[i].pressure = 0.0f;
-        SPHManagerSingleThread.Instance.particles[i].go = null;
     }
 
     public void TurnOnRagdolls()

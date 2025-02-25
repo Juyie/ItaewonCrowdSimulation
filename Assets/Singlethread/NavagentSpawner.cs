@@ -18,13 +18,14 @@ public class NavagentSpawner : MonoBehaviour
     public KDTree RVOKDTree;
     public int maxPointsPerLeafNode = 32;
     public int[] TypeOfSimulation;
+    public int dataLength = 600;
 
     // Start is called before the first frame update
     void Awake()
     {
-        RVOGameObject = new GameObject[600];
-        RVOPointCloud = new Vector3[600];
-        TypeOfSimulation = new int[600];
+        RVOGameObject = new GameObject[dataLength];
+        RVOPointCloud = new Vector3[dataLength];
+        TypeOfSimulation = new int[dataLength];
 
         if (instance == null)
         {
@@ -34,7 +35,10 @@ public class NavagentSpawner : MonoBehaviour
 
     private void Update()
     {
-        UpdateKDTree();
+        if (SaveAgentsData.GetMakeAgentDone())
+        {
+            UpdateKDTree();
+        }
     }
 
     private void UpdateKDTree()
