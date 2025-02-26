@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using JKress.AITrainer;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
+using Unity.MLAgentsExamples;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,10 +15,19 @@ public class OnOffRagdoll : MonoBehaviour
     private Rigidbody[] rigidbodies;
 
     [SerializeField]
+    private Collider[] bodyColliders;
+
+    [SerializeField]
     private GameObject[] colorBodies;
 
     [SerializeField]
     private NavMeshObstacle[] navObstacles;
+
+    [SerializeField]
+    private CapsuleCollider hardCollider;
+
+    [SerializeField]
+    private ObjectContact[] contactDetectors;
 
     private NavMeshAgent navAgent;
 
@@ -41,11 +52,14 @@ public class OnOffRagdoll : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
 
         playerMovement = GetComponent<PlayerMovement>();
+
+        //TurnOnRigidBody();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if(isRagdollOn && Input.GetKeyDown(KeyCode.Space))
         {
             TurnOffRagdoll();
@@ -54,7 +68,7 @@ public class OnOffRagdoll : MonoBehaviour
         {
             TurnOnRagdoll();
         }
-
+        
         /*
         if (isStop)
         {
@@ -71,11 +85,23 @@ public class OnOffRagdoll : MonoBehaviour
     {
         animator.enabled = false;
 
-        for (int i = 0; i < rigidbodies.Length - 1; i++)
+        for (int i = 0; i < rigidbodies.Length; i++)
         {
             rigidbodies[i].useGravity = true;
             rigidbodies[i].isKinematic = false;
         }
+
+        for(int j = 0; j < bodyColliders.Length; j++)
+        {
+            bodyColliders[j].enabled = true;
+        }
+       
+        GetComponent<Rigidbody>().mass = 0;
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().freezeRotation = false;
+
+
+        hardCollider.enabled = false;
     }
 
     private void TurnOffRigidBody()
@@ -87,6 +113,13 @@ public class OnOffRagdoll : MonoBehaviour
             rigidbodies[i].useGravity = false;
             rigidbodies[i].isKinematic = true;
         }
+
+        for (int j = 0; j < bodyColliders.Length; j++)
+        {
+            bodyColliders[j].enabled = false;
+        }
+
+        //hardCollider.enabled = true;
     }
 
     private void TurnOnChangeColor()
@@ -130,11 +163,39 @@ public class OnOffRagdoll : MonoBehaviour
         //RestartNavMeshAgent();
     }
 
+    private void TurnOnWalkerML()
+    {
+        GetComponent<WalkerAgent>().enabled = true;
+    }
+
+    private void TurnOffWalkerML()
+    {
+        GetComponent<WalkerAgent>().enabled = false;
+    }
+
+    private void TurnOnContactDetectors()
+    {
+        for (int i = 0; i < contactDetectors.Length; i++)
+        {
+            contactDetectors[i].enabled = true;
+        }
+    }
+
+    private void TurnOffContactDetectors()
+    {
+        for (int i = 0; i < contactDetectors.Length; i++)
+        {
+            contactDetectors[i].enabled = false;
+        }
+    }
+
     public void TurnOnRagdoll()
     {
         TurnOnRigidBody();
         TurnOnChangeColor();
         TurnOnNavObstacles();
+        //TurnOnWalkerML();
+        //TurnOnContactDetectors();
 
         isRagdollOn = true;
     }
@@ -144,6 +205,8 @@ public class OnOffRagdoll : MonoBehaviour
         TurnOffRigidBody();
         TurnOffChangeColor();
         TurnOffNavObstacles();
+        //TurnOffWalkerML();
+        //TurnOffContactDetectors();
 
         isRagdollOn = false;
     }

@@ -18,37 +18,37 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             currentCamera.enabled = false;
             currentCamera = cameras[0];
             currentCamera.enabled = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.F2))
         {
             currentCamera.enabled = false;
             currentCamera = cameras[1];
             currentCamera.enabled = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.F3))
         {
             currentCamera.enabled = false;
             currentCamera = cameras[2];
             currentCamera.enabled = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.F4))
         {
             currentCamera.enabled = false;
             currentCamera = cameras[3];
             currentCamera.enabled = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.F5))
         {
             currentCamera.enabled = false;
             currentCamera = cameras[4];
             currentCamera.enabled = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        else if (Input.GetKeyDown(KeyCode.F6))
         {
             currentCamera.enabled = false;
             currentCamera = cameras[5];

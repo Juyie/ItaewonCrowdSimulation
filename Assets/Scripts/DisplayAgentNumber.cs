@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class DisplayAgentNumber : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] groups;
-
-    [SerializeField]
     private Text uiText;
 
     public int agentNumber = 0;

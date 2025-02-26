@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class GridAgentList : MonoBehaviour
@@ -12,6 +14,11 @@ public class GridAgentList : MonoBehaviour
     Dictionary<GameObject, float> agentSpeedDictionary = new Dictionary<GameObject, float>();
 
     private float exponentialNum = 3.0f;
+    private SPHManagerSingleThread SPHManager;
+
+    public bool densityColor = true;
+    [HideInInspector]
+    public bool allSPH = true;
 
     public void SetExponentialNum(float num)
     {
@@ -21,7 +28,7 @@ public class GridAgentList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SPHManager = GameObject.Find("SPHManager").GetComponent<SPHManagerSingleThread>();
     }
 
     // Update is called once per frame
@@ -30,6 +37,22 @@ public class GridAgentList : MonoBehaviour
         if (printList)
         {
             PrintList();
+        }
+        if (densityColor)
+        {
+            DensityColor();
+        }
+        if (allSPH)
+        {
+            TurnOnSPHNoColor();
+        }
+    }
+
+    public void DensityColor()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            agent.transform.GetChild(0).GetComponent<ChangeDensityColor>().density = GetListLength();
         }
     }
 
@@ -68,6 +91,163 @@ public class GridAgentList : MonoBehaviour
         //PrintList();
     }
 
+    public void TurnOnSPH()
+    {
+        foreach(GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<NavMeshAgent>().enabled = false;
+            /*
+            agent.GetComponent<NavMeshAgent>().speed = 0;
+            agent.GetComponent<NavMeshAgent>().angularSpeed = 0;
+            agent.GetComponent<NavMeshAgent>().acceleration = 0;
+            agent.GetComponent<NavMeshAgent>().radius = 0.2f;
+            if(agent.GetComponent<NavMeshAgent>().isOnNavMesh)
+                agent.GetComponent<NavMeshAgent>().isStopped = true;
+            */
+            agent.GetComponent<NavMeshObstacle>().enabled = true;
+            agent.GetComponent<SPHProperties>().position = agent.transform.position;
+            agent.transform.parent = GameObject.Find("SPHAgents").transform;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 1;
+            //SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow; 
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            }
+            //agent.transform.position -= new Vector3(0, SPHManager.parameters[0].particleRadius / 2, 0);
+            agent.transform.GetComponent<CapsuleCollider>().enabled = true;
+        }
+    }
+
+    public void TurnOnSPHNoColor()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<NavMeshAgent>().enabled = false;
+            agent.GetComponent<NavMeshObstacle>().enabled = true;
+            agent.GetComponent<SPHProperties>().position = agent.transform.position;
+            agent.transform.parent = GameObject.Find("SPHAgents").transform;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 1;
+            //SPHManagerSingleThread.Instance.particles[int.Parse(agent.name.Substring(23))].Init(agent.GetComponent<SPHProperties>().position, agent.GetComponent<SPHProperties>().goalPosition, agent.GetComponent<SPHProperties>().parameterID, agent);
+        
+            //agent.transform.position -= new Vector3(0, SPHManager.parameters[0].particleRadius / 2, 0);
+        }
+    }
+
+    public void TurnOnSPHZombie()
+    {
+        foreach(GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().goalForce = 0;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.green;
+            }
+        }
+    }
+
+    public void TurnOffSPHZombie()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().goalForce = agent.GetComponent<SPHProperties>().goalForceBefore;
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            }
+        }
+    }
+
+    public void CheckAndTurnOnSPH()
+    {
+        for (int i = 0; i < NavagentSpawner.Instance.RVOGameObject.Length; i++)
+        {
+            GameObject agent = NavagentSpawner.Instance.RVOGameObject[i];
+            if (agent.GetComponent<SPHProperties>().density > 4)
+            {
+                agent.GetComponent <NavMeshAgent>().enabled = false;
+                agent.GetComponent<NavMeshObstacle>().enabled |= true;
+                agent.GetComponent<SPHProperties>().position = agent.transform.position;
+                agent.transform.parent = GameObject.Find("SPHAgents").transform;
+                NavagentSpawner.Instance.TypeOfSimulation[i] = 1;
+                agent.transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
+            }
+        }
+    }
+
+    public void TurnOffSPH()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<NavMeshAgent>().enabled = true;
+            agent.GetComponent<NavMeshObstacle>().enabled = false;
+            /*
+            agent.GetComponent<NavMeshAgent>().speed = 0.6f;
+            agent.GetComponent<NavMeshAgent>().angularSpeed = 120;
+            agent.GetComponent<NavMeshAgent>().acceleration = 5;
+            agent.GetComponent<NavMeshAgent>().radius = 0.4f;
+            if (agent.GetComponent<NavMeshAgent>().isOnNavMesh)
+                agent.GetComponent<NavMeshAgent>().isStopped = false;
+            */
+            agent.GetComponent<SPHProperties>().position = agent.transform.position;
+            agent.transform.parent = GameObject.Find("RVOAgents").transform;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 0;
+            //InitSPH(int.Parse(agent.name.Substring(23)), agent);
+            agent.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = Color.white; 
+            if (agent.name.StartsWith("w"))
+            {
+                agent.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+            }
+            agent.transform.GetComponent<CapsuleCollider>().enabled = false;
+        }
+    }
+
+    public void TurnOnSPHZombieDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().SPHZombieDensity = true;
+        }
+    }
+
+    public void TurnOffSPHZombieDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().SPHZombieDensity = false;
+        }
+    }
+
     public void TurnOnRagdolls()
     {
         foreach (GameObject agent in agentList)
@@ -77,6 +257,33 @@ public class GridAgentList : MonoBehaviour
                 RemoveAgent(agent);
             }
             agent.GetComponent<OnOffRagdoll>().TurnOnRagdoll();
+            agent.transform.parent = GameObject.Find("RagdollAgents").transform;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(agent.name.Substring(23))] = 2;
+            //agent.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().material.color = Color.red;
+        }
+    }
+
+    public void TurnOnRagdollDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().ragdollDensity = true;
+        }
+    }
+
+    public void TurnOffRagdollDensity()
+    {
+        foreach (GameObject agent in agentList)
+        {
+            if (agent == null)
+            {
+                RemoveAgent(agent);
+            }
+            agent.GetComponent<SPHProperties>().ragdollDensity = false;
         }
     }
 

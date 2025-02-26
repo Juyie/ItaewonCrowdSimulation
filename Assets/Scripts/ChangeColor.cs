@@ -5,7 +5,10 @@ using UnityEngine;
 public class ChangeColor : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] bodies;
+    private GameObject[] bodyParts;
+
+    [SerializeField]
+    private GameObject[] colorParts;
 
     [SerializeField]
     private Gradient gradient;
@@ -13,15 +16,24 @@ public class ChangeColor : MonoBehaviour
     [Range(0f, 1f)]
     private float t;
 
+    [SerializeField]
+    private CalculateForce calculateForce;
+
     private float force = 0f;
     private float maxForce = 0;
     private float totalWeight = 0;
+    private float dangerForce = 5000f;
+
+    private void OnEnable()
+    {
+        calculateForce.enabled = true;
+    }
 
     private void Awake()
     {
-        for(int i = 0; i < bodies.Length; i++)
+        for(int i = 0; i < bodyParts.Length; i++)
         {
-            totalWeight += bodies[i].GetComponent<Rigidbody>().mass;
+            totalWeight += bodyParts[i].GetComponent<Rigidbody>().mass;
         }
         //Debug.Log(totalWeight);
     }
@@ -34,22 +46,27 @@ public class ChangeColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < bodies.Length; i++)
+        force = 0;
+        for (int i = 0; i < bodyParts.Length; i++)
         {
-            force += bodies[i].GetComponent<CalculateContactForce>().forcePower;
+            force += bodyParts[i].GetComponent<CalculateContactForce>().forcePower;
         }
         //force /= bodies.Length;
         //force /= totalWeight;
 
-        t = Mathf.Min(force / 1500, 1f);
+        t = Mathf.Min(force / 5000, 1f);
 
-        GetComponent<SkinnedMeshRenderer>().material.color = gradient.Evaluate(t);
+        for (int j = 0; j < colorParts.Length; j++)
+        {
+            colorParts[j].GetComponent<SkinnedMeshRenderer>().material.color = gradient.Evaluate(t);
+        }
         if (force > maxForce)
         {
             maxForce = force;
             //Debug.Log(maxForce);
         }
 
+        /*
         if (Input.GetMouseButton(0))
         {
             if(GetComponent<SkinnedMeshRenderer>().material.color == Color.blue || GetComponent<SkinnedMeshRenderer>().material.color == Color.white) 
@@ -61,7 +78,6 @@ public class ChangeColor : MonoBehaviour
         {
             GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
-
-        force = 0;
+        */
     }
 }

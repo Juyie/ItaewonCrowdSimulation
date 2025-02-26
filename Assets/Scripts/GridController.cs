@@ -5,27 +5,45 @@ using UnityEngine;
 
 public class GridController : MonoBehaviour
 {
-    public bool Step = true;
-    public bool Exponential = false;
-    public float stepSize = 0.01f;
-    public float exponentialSize = 3.0f;
+    [SerializeField]
+    private GameObject[] grids;
 
-    // Start is called before the first frame update
-    void Start()
+    public float stepSize = 0.01f;
+
+    [HideInInspector]
+    public DisplayAgentNumber agentNumber;
+
+    private bool once = true;
+    private bool on = true;
+    private int count = 0;
+
+    private void Awake()
     {
-        
+        StartSimulation();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Step)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Exponential = false;
+            StopSimulation();
         }
-        else
+    }
+
+    private void StartSimulation()
+    {
+        for(int i = 0;  i < grids.Length; i++)
         {
-            Exponential = true;
+            grids[i].GetComponent<CalculateDensityGrid>().enabled = true;
+        }
+    }
+
+    private void StopSimulation()
+    {
+        for (int i = 0; i < grids.Length; i++)
+        {
+            grids[i].GetComponent<CalculateDensityGrid>().enabled = false;
         }
     }
 }

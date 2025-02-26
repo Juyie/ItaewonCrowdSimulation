@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using DataStructures.ViliWonka.KDTree;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Entities.UniversalDelegates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,62 +11,71 @@ public class SpawnAgents : MonoBehaviour
     private Transform spawnTf;
 
     [SerializeField]
-    private GameObject agent;
+    private Transform goalTf;
 
     [SerializeField]
-    private float[] intervalTimes;
+    private float intervalTime;
 
-    [SerializeField]
     private DisplayAgentNumber displayAgentNumber;
 
     private bool isReady = true;
-    private Vector3 randPos;
-    private bool isOn = true;
+    private bool isOn = false;
     private int count = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
         isOn = true;
+        //Invoke("TurnOn", 10f);
+        if(spawnTf == null)
+        {
+            spawnTf = GetComponent<Transform>();
+        }
+    }
+
+    private void Start()
+    {
+        displayAgentNumber = GameObject.FindWithTag("Canvas").GetComponent<DisplayAgentNumber>();
+        count = displayAgentNumber.agentNumber;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isReady && isOn)
+        if (SaveAgentsData.GetMakeAgentDone() && isReady && isOn)
         {
-            StartCoroutine(Spawn());
-            isReady = false;
+            count = displayAgentNumber.agentNumber;
+            if (count < NavagentSpawner.Instance.RVOGameObject.Length)
+            {
+                StartCoroutine(SpawnWaitAgent());
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            isOn = !isOn;
-        }
+        
+        count = displayAgentNumber.agentNumber;
     }
-
-    IEnumerator Spawn()
+    IEnumerator SpawnWaitAgent()
     {
         isReady = false;
-        float intervalTime = Random.Range(intervalTimes[0], intervalTimes[1]);
         yield return new WaitForSeconds(intervalTime);
-        GameObject newAgent = Instantiate(agent);
-        randPos = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-16f, 16f));
-        newAgent.name += count.ToString();
-        newAgent.transform.position = spawnTf.position + randPos;
-        newAgent.transform.rotation = agent.transform.rotation;
-        newAgent.transform.parent = spawnTf;
-        newAgent.GetComponent<NavMeshAgent>().enabled = true;
-        newAgent.GetComponent<PlayerMovement>().enabled = true;
-        newAgent.SetActive(true);
-        displayAgentNumber.agentNumber++;
-        isReady = true;
-        count++;
-    }
+        count = displayAgentNumber.agentNumber;
+        if (GameObject.Find("WaitAgents").transform.GetChild(0).gameObject != null)
+        {
+            GameObject newAgent = GameObject.Find("WaitAgents").transform.GetChild(0).gameObject;
+            newAgent.transform.parent = GameObject.Find("RVOAgents").transform;
+            newAgent.transform.position = spawnTf.position;
+            newAgent.GetComponent<PlayerMovement>().startTrans = spawnTf;
+            newAgent.GetComponent<PlayerMovement>().target = goalTf;
+            newAgent.GetComponent<NavMeshAgent>().enabled = true;
+            newAgent.GetComponent<PlayerMovement>().enabled = true;
+            SPHProperties sp = newAgent.GetComponent<SPHProperties>();
+            sp.position = newAgent.transform.position;
+            sp.goalPosition = goalTf.transform.position;
 
-    IEnumerator SetReady()
-    {
-        yield return new WaitForSeconds(1);
-        isReady = true;
+            NavagentSpawner.Instance.RVOPointCloud[int.Parse(newAgent.name.Substring(23))] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[int.Parse(newAgent.name.Substring(23))] = 0;
+
+            displayAgentNumber.agentNumber++;
+            isReady = true;
+        }
     }
 }
