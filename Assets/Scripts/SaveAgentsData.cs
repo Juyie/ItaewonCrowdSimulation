@@ -77,7 +77,7 @@ public class SaveAgentsData : MonoBehaviour
                 data.targetPosNames[i] = RVOAgents.transform.GetChild(i).GetComponent<PlayerMovement>().target.name;
             }
 
-            string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\";
+            string path = "C:\\Users\\user\\Desktop\\Juyie";
 
             /*
             if(!Directory.Exists(path))
@@ -97,16 +97,16 @@ public class SaveAgentsData : MonoBehaviour
 
     public void JsonLoad()
     {
-        string path = "C:\\Users\\juyie\\Desktop\\SimulationData\\agentdata4500_v3.json";
+        string path = "C:\\Users\\user\\Desktop\\Juyie\\agentdata4500_v3.json";
 
         string saveFile = File.ReadAllText(path);
         AgentData data = JsonUtility.FromJson<AgentData>(saveFile);
 
         Debug.Log(data.positions.Length);
-        int dataLength = 2160;
+        int dataLength = 6000;
         //int dataLength = 45;
-        /*
-        for (int i = dataLength * 4 / 5; i < dataLength; i++)
+        
+        for (int i = 0; i < 600; i++)
         //for(int i = 0; i < dataLength * 1 / 6; i++)
         {
             GameObject newAgent;
@@ -144,10 +144,11 @@ public class SaveAgentsData : MonoBehaviour
 
             displayAgentNumber.agentNumber++;
         }
-        */
+        
         // waited agent
-        for (int i = 0; i < dataLength; i++)
-        //for(int i = dataLength * 1 / 6; i < dataLength; i++)
+        //for (int i = 0; i < dataLength; i++)
+        
+        for(int i = 600; i < 4500; i++)
         {
             GameObject newAgent;
             int prefabNum = Random.Range(0, 2);
@@ -182,8 +183,9 @@ public class SaveAgentsData : MonoBehaviour
             NavagentSpawner.Instance.RVOPointCloud[i] = sp.position;
             NavagentSpawner.Instance.TypeOfSimulation[i] = 4; // waited agent
         }
-        /*
-        for (int i = 0; i < dataLength * 1 / 3; i++)
+        
+        
+        for (int i = 0; i < 1500; i++)
         //for(int i = dataLength * 1 / 6; i < dataLength; i++)
         {
             GameObject newAgent;
@@ -196,7 +198,7 @@ public class SaveAgentsData : MonoBehaviour
             {
                 newAgent = Instantiate(WMAgentPf);
             }
-            newAgent.name += 4500 + i;
+            newAgent.name += i + 4500;
             newAgent.transform.position = data.positions[i] + new Vector3(0.0f, 100.0f, 0.0f);
             newAgent.transform.rotation = Quaternion.Euler(data.rotations[i]);
             newAgent.GetComponent<PlayerMovement>().target = GameObject.Find(data.targetPosNames[i]).transform;
@@ -215,10 +217,10 @@ public class SaveAgentsData : MonoBehaviour
             }
             newAgent.SetActive(true);
 
-            NavagentSpawner.Instance.RVOGameObject[dataLength + i] = newAgent;
-            NavagentSpawner.Instance.RVOPointCloud[dataLength + i] = sp.position;
-            NavagentSpawner.Instance.TypeOfSimulation[dataLength + i] = 4; // waited agent
-        }*/
+            NavagentSpawner.Instance.RVOGameObject[i + 4500] = newAgent;
+            NavagentSpawner.Instance.RVOPointCloud[i + 4500] = sp.position;
+            NavagentSpawner.Instance.TypeOfSimulation[i + 4500] = 4; // waited agent
+        }
         /*
         //for (int i = 0; i < data.positions.Length / 2 - 3; i++)
         for (int i = 0; i < data.positions.Length; i++)

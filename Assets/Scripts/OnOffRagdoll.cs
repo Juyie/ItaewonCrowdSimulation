@@ -1,5 +1,4 @@
-﻿using JKress.AITrainer;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.MLAgentsExamples;
@@ -23,8 +22,6 @@ public class OnOffRagdoll : MonoBehaviour
     [SerializeField]
     private CapsuleCollider[] capsuleColliders;
 
-    [SerializeField]
-    private ObjectContact[] contactDetectors;
 
     private NavMeshAgent navAgent;
 
@@ -146,36 +143,10 @@ public class OnOffRagdoll : MonoBehaviour
         //RestartNavMeshAgent();
     }
 
-    private void TurnOnWalkerML()
-    {
-        GetComponent<WalkerAgent>().enabled = true;
-    }
-
-    private void TurnOffWalkerML()
-    {
-        GetComponent<WalkerAgent>().enabled = false;
-    }
-
-    private void TurnOnContactDetectors()
-    {
-        for (int i = 0; i < contactDetectors.Length; i++)
-        {
-            contactDetectors[i].enabled = true;
-        }
-    }
-
-    private void TurnOffContactDetectors()
-    {
-        for (int i = 0; i < contactDetectors.Length; i++)
-        {
-            contactDetectors[i].enabled = false;
-        }
-    }
-
     public void TurnOnRagdoll()
     {
         TurnOnRigidBody();
-       // TurnOnChangeColor();
+        TurnOnChangeColor();
         TurnOnNavObstacles();
         //TurnOnWalkerML();
         //TurnOnContactDetectors();
@@ -186,7 +157,7 @@ public class OnOffRagdoll : MonoBehaviour
     public void TurnOffRagdoll()
     {
         TurnOffRigidBody();
-        //TurnOffChangeColor();
+        TurnOffChangeColor();
         TurnOffNavObstacles();
         //TurnOffWalkerML();
         //TurnOffContactDetectors();
